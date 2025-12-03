@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Legacy Squash Institute Uganda</title>
   <meta name="description" content="Legacy Squash Institute Uganda – Igniting Greatness, Defining Legacy. Developing elite squash athletes and empowering youth through sport and education.">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <script src="https://kit.fontawesome.com/a2d04b0df3.js" crossorigin="anonymous"></script>
 
   <style>
@@ -13,9 +13,9 @@
       --navy: #0B1E3F;
       --gold: #FFB400;
       --orange: #FF6B00;
-      --light-bg: rgba(255, 255, 255, 0.1);
+      --light-bg: rgba(255,255,255,0.1);
       --dark-text: #1c1c1c;
-      --gray: #eee;
+      --gray: #eaeaea;
     }
 
     * {
@@ -26,31 +26,31 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      color: var(--dark-text);
       background: url('img/logo.jpg') no-repeat center center fixed;
-      background-size: 650px;
+      background-size: 600px;
       background-color: #081730;
+      color: white;
       background-blend-mode: soft-light;
     }
 
-    section, header, footer, nav, .highlight-box, .founder, .sponsor-card, .stat {
-      background: rgba(255, 255, 255, 0.12);
+    /* Glass Effect */
+    section, header, footer, nav, .gallery-container img, .founder, .sponsor-card, .stat {
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 10px;
+      border-radius: 12px;
     }
 
+    /* Navigation */
     nav {
       position: fixed;
-      top: 0;
       width: 100%;
-      backdrop-filter: blur(15px);
-      background: rgba(11, 30, 63, 0.6);
+      top: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 15px 10%;
+      padding: 10px 10%;
+      background: rgba(11, 30, 63, 0.6);
       z-index: 1000;
       border-bottom: 1px solid rgba(255,255,255,0.2);
     }
@@ -58,10 +58,7 @@
     nav ul {
       list-style: none;
       display: flex;
-      flex-wrap: wrap;
       gap: 25px;
-      margin: 0;
-      padding: 0;
     }
 
     nav a {
@@ -75,67 +72,54 @@
       color: var(--gold);
     }
 
+    nav img {
+      height: 95px; 
+      margin-right: 50px;
+      border-radius: 8px;
+    }
+
+    /* Header */
     header {
-      background: linear-gradient(rgba(11, 30, 63, 0.6), rgba(11, 30, 63, 0.6));
-      color: white;
       text-align: center;
-      padding: 180px 20px 140px;
+      padding: 160px 20px 130px;
       margin-top: 70px;
     }
 
     header h1 {
-      font-size: 2.5em;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+      font-size: 2.6em;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
     }
 
     header p {
-      font-size: 1.2em;
-      color: var(--gold);
       margin-top: 10px;
+      color: var(--gold);
+      font-size: 1.2em;
     }
 
+    /* Sections */
     section {
       padding: 80px 10%;
-      margin: 40px 0;
+      margin: 45px 0;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
     }
 
     section h2 {
+      font-size: 2.1em;
       color: var(--gold);
-      font-size: 2.2em;
       border-bottom: 3px solid var(--orange);
       display: inline-block;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
+      padding-bottom: 5px;
     }
 
     section p {
-      line-height: 1.8;
       max-width: 900px;
       margin: 15px auto;
-      color: white;
+      line-height: 1.8;
     }
 
-    .highlight-box {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      padding: 25px;
-      border-radius: 10px;
-      margin-top: 30px;
-      color: white;
-      text-align: left;
-    }
-
-    .highlight-box ul {
-      padding-left: 20px;
-    }
-
-    .highlight-box li {
-      margin: 8px 0;
-    }
-
+    /* Founders */
     .founders {
       display: flex;
       flex-wrap: wrap;
@@ -145,9 +129,8 @@
 
     .founder {
       width: 320px;
-      color: white;
       padding: 25px;
-      transition: transform 0.3s;
+      transition: 0.3s;
     }
 
     .founder:hover {
@@ -158,6 +141,28 @@
       color: var(--orange);
     }
 
+    /* Gallery */
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .gallery-container img {
+      width: 330px;
+      height: 230px;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+
+    .gallery-container img:hover {
+      transform: scale(1.06);
+      box-shadow: 0 0 15px rgba(255,255,255,0.4);
+    }
+
+    /* Sponsors */
     .sponsor-levels {
       display: flex;
       flex-wrap: wrap;
@@ -166,140 +171,88 @@
     }
 
     .sponsor-card {
-      width: 270px;
-      color: white;
-      transition: all 0.3s;
-      padding: 15px;
+      width: 260px;
+      padding: 18px;
+      transition: 0.3s;
     }
 
     .sponsor-card:hover {
+      border-color: var(--gold);
       transform: scale(1.05);
-      border: 1px solid var(--gold);
     }
 
+    /* Stats */
     .stats {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 40px;
-      margin-top: 40px;
+      gap: 35px;
+      margin-top: 35px;
     }
 
     .stat {
-      color: white;
-      padding: 25px 40px;
+      padding: 25px 35px;
       box-shadow: 0 2px 10px rgba(255,255,255,0.2);
     }
 
     .stat h3 {
       color: var(--gold);
-      font-size: 2.4em;
-      margin: 0;
+      font-size: 2.2em;
     }
 
-    iframe {
-      border: none;
-      width: 100%;
-      height: 400px;
-      border-radius: 8px;
-      margin-top: 20px;
-    }
-
+    /* Footer */
     footer {
-      color: white;
       text-align: center;
-      padding: 40px 20px;
+      padding: 45px 20px;
       border-top: 1px solid rgba(255,255,255,0.2);
-    }
-
-    footer a {
-      color: var(--gold);
-      text-decoration: none;
-    }
-
-    .social-icons {
-      margin: 20px 0;
     }
 
     .social-icons a {
       margin: 0 8px;
-      display: inline-block;
+      font-size: 28px;
+      transition: 0.3s;
     }
 
-    .social-icons i {
-      font-size: 30px;
-      transition: transform 0.3s;
-    }
-
-    .social-icons a:hover i {
+    .social-icons a:hover {
       transform: scale(1.2);
     }
 
+    /* WhatsApp */
     .whatsapp-float {
       position: fixed;
       bottom: 25px;
       right: 25px;
-      z-index: 3000;
       background: #25D366;
-      color: white;
-      border-radius: 50%;
       width: 70px;
       height: 70px;
+      border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 2px 2px 15px rgba(0,0,0,0.4);
-      transition: transform 0.3s, box-shadow 0.3s;
+      color: white;
+      box-shadow: 3px 3px 15px rgba(0,0,0,0.5);
+      transition: 0.3s;
+      z-index: 3000;
     }
 
     .whatsapp-float:hover {
       transform: scale(1.1);
-      box-shadow: 3px 3px 18px rgba(0,0,0,0.5);
     }
 
-    .whatsapp-float i {
-      font-size: 38px;
-    }
-
-    /* Responsive Enhancements */
-    @media (max-width: 992px) {
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav img {
+        display: none;
+      }
       header h1 {
-        font-size: 2.2em;
+        font-size: 1.9em;
       }
       section {
-        padding: 60px 6%;
+        padding: 55px 6%;
       }
-    }
-
-    @media (max-width: 768px) {
-      .founders, .sponsor-levels, .stats {
-        flex-direction: column;
-        align-items: center;
-      }
-      nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .whatsapp-float {
-        width: 60px;
-        height: 60px;
-        bottom: 20px;
-        right: 20px;
-      }
-      .whatsapp-float i {
-        font-size: 32px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.8em;
-      }
-      section h2 {
-        font-size: 1.6em;
-      }
-      p {
-        font-size: 0.95em;
+      .gallery-container img {
+        width: 90%;
+        height: 220px;
       }
     }
   </style>
@@ -307,122 +260,122 @@
 
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <img src="img/logo.jpg" alt="Legacy Squash Logo" style="height:100px; margin-right:50px;">
-    <ul>
-      <li><a href="#vision">Vision</a></li>
-      <li><a href="#constitution">Constitution</a></li>
-      <li><a href="#founders">Founders</a></li>
-      <li><a href="#sponsorship">Sponsors</a></li>
-      <li><a href="#impact">Impact</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<!-- NAVIGATION -->
+<nav>
+  <img src="img/logo.jpg" alt="Logo">
+  <ul>
+    <li><a href="#vision">Vision</a></li>
+    <li><a href="#constitution">Constitution</a></li>
+    <li><a href="#founders">Founders</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#sponsorship">Sponsors</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- Hero -->
-  <header>
-    <h1>LEGACY SQUASH INSTITUTE UGANDA</h1>
-    <p>“Igniting Greatness, Defining Legacy”</p>
-    <p><strong>Founded by:</strong> Ivan Wasswa & Paul Kasirye Kadoma</p>
-       <p><strong>Co Founder:</strong>Julian Ainomugisha</p>
-  </header>
+<!-- HERO -->
+<header>
+  <h1>LEGACY SQUASH INSTITUTE UGANDA</h1>
+  <p>“Igniting Greatness, Defining Legacy”</p>
+  <p><strong>Founded by:</strong> Ivan Wasswa & Paul Kasirye Kadoma</p>
+  <p><strong>Co-Founder:</strong> Julian Ainomugisha</p>
+</header>
 
-  <!-- Vision -->
-  <section id="vision">
-    <h2>Vision & Mission</h2>
-    <p><strong>Vision:</strong> To ignite greatness and define a lasting legacy through world-class squash education, competition, and character building.</p>
-    <p><strong>Mission:</strong> To nurture disciplined, elite African athletes by providing modern facilities, capacity building, professional coaching, and global exposure.</p>
-  </section>
+<!-- VISION -->
+<section id="vision">
+  <h2>Vision & Mission</h2>
+  <p><strong>Vision:</strong> To ignite greatness and define a lasting legacy through world-class squash education, competition, and character building.</p>
+  <p><strong>Mission:</strong> To nurture disciplined, elite African athletes by providing modern facilities, capacity building, professional coaching, and global exposure.</p>
+</section>
 
-  <!-- Constitution -->
-  <section id="constitution">
-    <h2>Constitution Summary</h2>
-    <div class="highlight-box">
-      <p><strong>Legal Foundation:</strong> Registered in Kampala under the Companies Act and licensed by the National Council of Sports (NCS) in compliance with the Uganda National Sports Act 2023. Affiliated to the Uganda Squash Rackets Association (USRA) and aligned with WSF & PSA development standards.</p>
-      <p><strong>Core Objectives:</strong></p>
-      <ul>
-        <li>Talent identification and structured training.</li>
-        <li>Hosting national & international squash events.</li>
-        <li>Promoting integrity, inclusion, and anti-doping compliance.</li>
-        <li>Partnering with schools, sponsors, and sports federations.</li>
-        <li>Strengthening Uganda’s presence in global squash.</li>
-      </ul>
-      <p><strong>Governance Structure:</strong> Managed by a Board of Directors (Chairperson, Vice-Chairperson, Secretary, Treasurer, Technical Director, Founders (ex officio), Athlete Representative). Daily operations are overseen by the Executive Committee under the Director of Operations.</p>
-      <p><strong>Founders:</strong> Ivan Wasswa – Director of Athlete Development; Paul Kasirye Kadoma – Director of Technical Programs.</p>
-      <p><strong>Finance & Compliance:</strong> Transparent accounting, annual audits, and NCS/URA reporting. All revenues are reinvested in player welfare and institutional development.</p>
-      <p><strong>Conduct & Safeguarding:</strong> Enforces anti-corruption, equality, and child protection policies. All youth coaches undergo background checks.</p>
-      <p><strong>Affiliation Duties:</strong> Operate under USRA technical guidance, share player data, and represent Uganda in international circuits through USRA.</p>
-      <p><strong>Amendments & Dissolution:</strong> Requires a two-thirds vote by the General Assembly and ratification by NCS & USRA. Upon dissolution, all assets will be transferred to a recognized sports charity in Uganda.</p>
-      <p><em>Adopted: 2025, Kampala.<br>Witnessed by: Chairperson, USRA.</em></p>
+<!-- CONSTITUTION -->
+<section id="constitution">
+  <h2>Constitution Summary</h2>
+  <p><strong>Legal Foundation:</strong> Registered in Kampala under the Companies Act...</p>
+</section>
+
+<!-- FOUNDERS -->
+<section id="founders">
+  <h2>Founders’ Profiles</h2>
+  <div class="founders">
+    <div class="founder">
+      <h3>Ivan Wasswa</h3>
+      <p><strong>Director of Athlete Development</strong></p>
+      <p>Seed 2 Squash Player in Uganda...</p>
     </div>
-  </section>
 
-  <!-- Founders -->
-  <section id="founders">
-    <h2>Founders’ Profiles</h2>
-    <div class="founders">
-      <div class="founder">
-        <h3>Ivan Wasswa</h3>
-        <p><strong>Co-Founder & Director of Athlete Development</strong></p>
-        <p>Seed 2 Squash Player in Uganda. Known for exceptional fitness, precision, and leadership both on and off the court.</p>
-      </div>
-      <div class="founder">
-        <h3>Paul Kasirye Kadoma</h3>
-        <p><strong>Co-Founder & Director of Technical Programs</strong></p>
-        <p>Uganda’s Seed 1 Squash Player, admired for his speed, touch, and professionalism. A mentor respected across Africa’s squash community.</p>
-      </div>
+    <div class="founder">
+      <h3>Paul Kasirye Kadoma</h3>
+      <p><strong>Director of Technical Programs</strong></p>
+      <p>Uganda’s Seed 1 Squash Player...</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Sponsorship -->
-  <section id="sponsorship">
-    <h2>Global Sponsorship & Development Proposal</h2>
-    <p>Legacy Squash Institute Uganda seeks partnerships to build Africa’s first elite squash development hub — bridging sport, education, and technology to empower youth and elevate Uganda on the global squash stage.</p>
-    <div class="sponsor-levels">
-      <div class="sponsor-card"><h4>Title Partner</h4><p>UGX 500M+ / $130,000+</p><p>Naming rights, facility branding, media coverage</p></div>
-      <div class="sponsor-card"><h4>Gold Sponsor</h4><p>UGX 200–499M / $52,000–129,000</p><p>Logo on uniforms, digital promotion, CSR recognition</p></div>
-      <div class="sponsor-card"><h4>Silver Sponsor</h4><p>UGX 50–199M / $13,000–51,000</p><p>Tournament co-branding, banners, press coverage</p></div>
-      <div class="sponsor-card"><h4>Bronze Sponsor</h4><p>UGX 10–49M / $2,600–12,999</p><p>Website visibility, local event presence</p></div>
-      <div class="sponsor-card"><h4>In-Kind Partner</h4><p>Equipment, Nutrition, Transport</p><p>Official Supplier Recognition</p></div>
-    </div>
-  </section>
+<!-- NEW GALLERY -->
+<section id="gallery">
+  <h2>Gallery</h2>
+  <p>A look at our training, competitions, and community outreach programs.</p>
 
-  <!-- Impact -->
-  <section id="impact">
-    <h2>Impact & Call to Action</h2>
-    <p>Legacy Squash Institute Uganda aims to train 1,000 youth in its first three years, host international tournaments, and provide scholarships for underprivileged athletes. Sponsors will not only gain brand exposure but become partners in shaping Africa’s squash legacy.</p>
-    <div class="stats">
-      <div class="stat"><h3>1,000+</h3><p>Youth to be Trained</p></div>
-      <div class="stat"><h3>10+</h3><p>Global Partnerships</p></div>
-      <div class="stat"><h3>5+</h3><p>International Events</p></div>
-    </div>
-  </section>
+  <div class="gallery-container">
+    <img src="img/1.jpg" alt="">
+    <img src="img/2.jpg" alt="">
+    <img src="img/3.jpg" alt="">
+  </div>
+</section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: <a href="mailto:info@legacysquash.com">info@legacysquash.com</a></p>
-    <p>Location: Kampala, Uganda</p>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.744583214341!2d32.58251977479361!3d0.34759679965822114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb5b5a7c3f29%3A0x94f9c84e3efc4c1!2sKampala%2C%20Uganda!5e0!3m2!1sen!2sug!4v1730666666666!5m2!1sen!2sug" allowfullscreen></iframe>
-  </section>
+<!-- SPONSORSHIP -->
+<section id="sponsorship">
+  <h2>Global Sponsorship & Development Proposal</h2>
+  <p>We seek partnerships to build Africa’s first elite squash development hub...</p>
 
-  <!-- Footer -->
-  <footer>
-    <div class="social-icons">
-      <a href="https://facebook.com" style="color:#1877F2;"><i class="fab fa-facebook-square"></i></a>
-      <a href="https://instagram.com" style="color:#E1306C;"><i class="fab fa-instagram"></i></a>
-      <a href="https://x.com" style="color:#1DA1F2;"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://linkedin.com" style="color:#0077B5;"><i class="fab fa-linkedin"></i></a>
-      <a href="https://youtube.com" style="color:#FF0000;"><i class="fab fa-youtube"></i></a>
-    </div>
-    <p>© 2025 Legacy Squash Institute Uganda. All Rights Reserved.</p>
-  </footer>
+  <div class="sponsor-levels">
+    <div class="sponsor-card"><h4>Title Partner</h4><p>UGX 500M+</p></div>
+    <div class="sponsor-card"><h4>Gold Sponsor</h4><p>UGX 200–499M</p></div>
+    <div class="sponsor-card"><h4>Silver Sponsor</h4><p>UGX 50–199M</p></div>
+    <div class="sponsor-card"><h4>Bronze Sponsor</h4><p>UGX 10–49M</p></div>
+    <div class="sponsor-card"><h4>In-Kind Partner</h4><p>Equipment / Nutrition</p></div>
+  </div>
+</section>
 
-  <!-- Floating WhatsApp -->
-  <a href="https://wa.me/256700122803" target="_blank" class="whatsapp-float" title="Chat with us on WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+<!-- IMPACT -->
+<section id="impact">
+  <h2>Impact & Call to Action</h2>
+  <p>Aiming to train 1,000 youth in 3 years...</p>
+
+  <div class="stats">
+    <div class="stat"><h3>1,000+</h3><p>Youth to Be Trained</p></div>
+    <div class="stat"><h3>10+</h3><p>Global Partners</p></div>
+    <div class="stat"><h3>5+</h3><p>International Events</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: <a href="mailto:info@legacysquash.com">info@legacysquash.com</a></p>
+  <p>Kampala, Uganda</p>
+
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18..." allowfullscreen></iframe>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook-square"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-x-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
+  </div>
+  <p>© 2025 Legacy Squash Institute Uganda</p>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/256700122803" class="whatsapp-float">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
 </body>
 </html>
