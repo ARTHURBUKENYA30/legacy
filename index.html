@@ -223,10 +223,21 @@
       z-index: 2000;
     }
 
+    .gallery-container img {
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* SAME SHAPE (SQUARE) */
+  object-fit: cover;     /* FILLS NICELY */
+  border-radius: 12px;
+  background: #000;
+  padding: 3px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+
     .gallery-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 👈 ADD THIS LINE */
-  gap: 10px;
+  gap: 8px;
 }
 
   </style>
