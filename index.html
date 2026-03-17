@@ -24,15 +24,9 @@ color:white;
 }
 
 /* NAVBAR */
-.navbar{
-background:rgba(11,30,63,0.95);
-backdrop-filter:blur(10px);
-}
+.navbar{background:rgba(11,30,63,0.95);backdrop-filter:blur(10px);} 
 .navbar-brand img{height:50px;}
-.nav-link{
-color:white !important;
-font-weight:600;
-}
+.nav-link{color:white!important;font-weight:600;}
 .nav-link:hover{color:var(--gold)!important;}
 
 /* HERO */
@@ -46,149 +40,45 @@ text-align:center;
 background:url('img/1.jpg') center/cover no-repeat;
 position:relative;
 }
-.hero::after{
-content:"";
-position:absolute;
-width:100%;height:100%;
-background:rgba(0,0,0,0.6);
-}
+.hero::after{content:"";position:absolute;width:100%;height:100%;background:rgba(0,0,0,0.6);} 
 .hero-content{position:relative;z-index:2;}
-.hero h1{font-size:clamp(1.8rem,5vw,3rem);}
+.hero h1{font-size:clamp(1.8rem,5vw,3rem);} 
 
-/* BUTTON */
-.youtube-btn{
-background:red;
-padding:12px 30px;
-border-radius:30px;
-color:white;
-font-weight:bold;
-text-decoration:none;
-}
+.youtube-btn{background:red;padding:12px 30px;border-radius:30px;color:white;font-weight:bold;text-decoration:none;}
 .youtube-btn:hover{background:#cc0000;}
 
 section{padding:70px 5%;text-align:center;}
 section h2{color:var(--gold);margin-bottom:20px;}
 
-/* GALLERY FIX */
-.gallery-container{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:10px;
-}
-.gallery-container img{
-width:100%;
-height:180px;
-object-fit:cover;
-border-radius:10px;
-}
+.highlight{background:rgba(255,255,255,0.1);padding:20px;border-radius:10px;text-align:left;}
 
-/* RESPONSIVE */
-@media(max-width:992px){
-.gallery-container{grid-template-columns:repeat(3,1fr);} 
-}
-@media(max-width:768px){
-.gallery-container{grid-template-columns:repeat(2,1fr);} 
-}
-@media(max-width:480px){
-.gallery-container{grid-template-columns:1fr;} 
-}
-
-/* CARDS */
+/* FOUNDERS */
 .founders{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
-.founder{background:rgba(255,255,255,0.05);padding:20px;border-radius:10px;width:250px;}
+.founder{background:rgba(255,255,255,0.05);padding:20px;border-radius:10px;width:260px;}
 
-/* WHATSAPP */
-.whatsapp-float{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-padding:15px;
-border-radius:50%;
-color:white;
-font-size:22px;
-}
+/* GALLERY */
+.gallery-container{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.gallery-container img{width:100%;height:180px;object-fit:cover;border-radius:10px;}
 
-footer{background:#000;padding:20px;text-align:center;}
+@media(max-width:992px){.gallery-container{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:768px){.gallery-container{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.gallery-container{grid-template-columns:1fr;}}
+
+/* SPONSORS */
+.sponsor-levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;}
+.sponsor-card{background:rgba(255,255,255,0.05);padding:20px;border-radius:10px;}
+
+/* STATS */
+.stats{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;}
+.stat h3{color:var(--gold);font-size:2rem;}
+
+footer{background:#000;padding:30px;text-align:center;}
+
+.whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25D366;padding:15px;border-radius:50%;color:white;font-size:22px;}
 </style>
 </head>
 
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg fixed-top">
-<div class="container">
-<a class="navbar-brand" href="#"><img src="img/logo.jpg"></a>
-<button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="nav">
-<ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link" href="#vision">Vision</a></li>
-<li class="nav-item"><a class="nav-link" href="#founders">Founders</a></li>
-<li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-</ul>
-</div>
-</div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-<div class="hero-content">
-<h1>GREEN SHOOTS LEGACY SPORTS SQUASH ACADEMY</h1>
-<p style="color:gold">From greenshoots to greatness</p>
-<a href="https://youtube.com/@greenshootssquashtv" target="_blank" class="youtube-btn">YouTube</a>
-</div>
-</section>
-
-<!-- VISION -->
-<section id="vision">
-<h2>Vision & Mission</h2>
-<p><b>Vision:</b> Ignite greatness through squash.</p>
-<p><b>Mission:</b> Build elite African athletes.</p>
-</section>
-
-<!-- FOUNDERS -->
-<section id="founders">
-<h2>Founders</h2>
-<div class="founders">
-<div class="founder"><h4>Ivan Wasswa</h4></div>
-<div class="founder"><h4>Paul Kasirye</h4></div>
-<div class="founder"><h4>Julian Ainomugisha</h4></div>
-</div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery">
-<h2>Gallery</h2>
-<div class="gallery-container">
-<img src="img/1.jpg">
-<img src="img/2.jpg">
-<img src="img/3.jpg">
-<img src="img/4.jpg">
-<img src="img/5.jpg">
-<img src="img/6.jpg">
-<img src="img/7.jpg">
-<img src="img/8.jpg">
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-<h2>Contact</h2>
-<p>Kampala, Uganda</p>
-</section>
-
-<footer>
-<p>© 2025 Green Shoots Academy</p>
-</footer>
-
-<a href="https://wa.me/256700122803" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>AOS.init();</script>
-
-</body>
-</html>
+<nav class="navbar navbar-expand
