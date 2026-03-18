@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,196 +8,198 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/a2d04b0df3.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/a2d04b0df3.js"></script>
 
 <style>
 :root{
 --navy:#0B1E3F;
 --gold:#FFB400;
 --orange:#FF6B00;
+--youtube:#FF0000;
 }
 
 body{
 font-family:'Poppins',sans-serif;
 background:#081730;
 color:white;
-scroll-behavior:smooth;
 }
 
 /* NAVBAR */
 .navbar{
-position:fixed;
-width:100%;
-top:0;
-left:0;
-padding:15px 40px;
-background:rgba(11,30,63,0.9);
-display:flex;
-justify-content:space-between;
-align-items:center;
-z-index:1000;
-backdrop-filter:blur(8px);
+background:rgba(11,30,63,0.95)!important;
+backdrop-filter:blur(10px);
 }
-.navbar img{height:60px;}
-.nav-links{display:flex;list-style:none;gap:20px;}
-.nav-links a{color:white;text-decoration:none;font-weight:600;transition:0.3s;}
-.nav-links a:hover{color:var(--gold);}
+.navbar-brand img{
+height:50px;
+}
+.nav-link{
+color:white !important;
+font-weight:600;
+}
+.nav-link:hover{
+color:var(--gold)!important;
+}
 
 /* HERO */
 .hero{
-margin-top:90px;
+margin-top:80px;
 height:90vh;
-position:relative;
-overflow:hidden;
+background:url('img/1.jpg') center/cover no-repeat;
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
+position:relative;
 }
 .hero::after{
 content:"";
 position:absolute;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.5);
-z-index:1;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
 }
 .hero-content{
 position:relative;
 z-index:2;
-padding:30px;
-border-radius:10px;
+padding:20px;
 }
-.hero-content h1{font-size:3rem;}
-.hero-content p{color:var(--gold);font-size:1.2rem;}
+.hero h1{
+font-size:2.5rem;
+}
+.hero p{
+color:var(--gold);
+}
+
+/* BUTTONS */
+.btn-youtube{
+background:var(--youtube);
+color:white;
+border:none;
+padding:12px 30px;
+border-radius:30px;
+font-weight:bold;
+transition:0.3s;
+}
+.btn-youtube:hover{
+background:#cc0000;
+}
 
 /* SECTIONS */
 section{
-padding:80px 10%;
-text-align:center;
+padding:70px 5%;
 }
 section h2{
 color:var(--gold);
-margin-bottom:25px;
-font-size:2em;
+margin-bottom:20px;
 }
-.highlight{
-background:rgba(255,255,255,0.1);
-padding:25px;
-border-radius:10px;
-margin-top:25px;
-text-align:left;
-}
-.highlight ul{margin-left:20px;}
-.founders{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;}
-.founder{width:250px;background:rgba(255,255,255,0.05);padding:20px;border-radius:15px;}
 
-/* GALLERY */
+/* CARD STYLE */
+.highlight, .founder, .sponsor-card{
+background:rgba(255,255,255,0.05);
+border-radius:12px;
+padding:20px;
+}
+
+/* FOUNDERS */
+.founders{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+/* GALLERY FIXED */
 .gallery-container{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
 gap:15px;
 }
 .gallery-container img{
 width:100%;
-height:150px;
+height:180px;
 object-fit:cover;
-border-radius:10px;
+border-radius:12px;
 transition:0.3s;
 }
-.gallery-container img:hover{transform:scale(1.05);}
+.gallery-container img:hover{
+transform:scale(1.05);
+}
 
 /* SPONSORS */
 .sponsor-levels{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:30px;
-align-items:center;
-}
-.sponsor-card{
-background:rgba(255,255,255,0.05);
-padding:20px;
-border-radius:10px;
-transition:0.3s;
-}
-.sponsor-card:hover{
-transform:translateY(-10px);
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
+gap:20px;
 }
 
 /* STATS */
 .stats{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:40px;
-margin-top:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:20px;
+text-align:center;
 }
 .stat h3{
-font-size:2.5em;
 color:var(--gold);
 }
-
-/* BUTTONS */
-.donate-btn{
-display:inline-block;
-margin-top:25px;
-padding:12px 30px;
-background:var(--orange);
-color:white;
-font-weight:bold;
-border-radius:30px;
-text-decoration:none;
-transition:0.3s;
-}
-.donate-btn:hover{background:var(--gold);}
 
 /* FOOTER */
 footer{
 background:#000;
-padding:40px 20px;
+padding:30px;
 text-align:center;
 }
 .social-icons i{
-font-size:25px;
-margin:0 10px;
-cursor:pointer;
-transition:0.3s;
+font-size:22px;
+margin:10px;
 }
-.social-icons i:hover{color:var(--gold);}
+.social-icons i:hover{
+color:var(--gold);
+}
 
-/* WHATSAPP FLOAT */
+/* WHATSAPP */
 .whatsapp-float{
 position:fixed;
 bottom:20px;
 right:20px;
 background:#25D366;
-color:white;
 padding:15px;
 border-radius:50%;
-font-size:24px;
-text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,0.3);
-transition:0.3s;
+font-size:22px;
+color:white;
 }
-.whatsapp-float:hover{transform:scale(1.1);}
+
+/* MOBILE FIX */
+@media(max-width:768px){
+.hero h1{
+font-size:1.8rem;
+}
+}
 </style>
 </head>
 
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar">
-<img src="img/logo.jpg" alt="Legacy Logo">
-<ul class="nav-links">
-<li><a href="#vision">Vision</a></li>
-<li><a href="#constitution">Constitution</a></li>
-<li><a href="#founders">Founders</a></li>
-<li><a href="#gallery">Gallery</a></li>
-<li><a href="#sponsorship">Sponsors</a></li>
-<li><a href="#impact">Impact</a></li>
-<li><a href="#contact">Contact</a></li>
+<nav class="navbar navbar-expand-lg fixed-top">
+<div class="container">
+<a class="navbar-brand" href="#"><img src="img/logo.jpg"></a>
+
+<button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navMenu">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="#vision">Vision</a></li>
+<li class="nav-item"><a class="nav-link" href="#constitution">Constitution</a></li>
+<li class="nav-item"><a class="nav-link" href="#founders">Founders</a></li>
+<li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+<li class="nav-item"><a class="nav-link" href="#sponsorship">Sponsors</a></li>
+<li class="nav-item"><a class="nav-link" href="#impact">Impact</a></li>
+<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
 </ul>
+</div>
+</div>
 </nav>
 
 <!-- HERO -->
@@ -206,19 +207,21 @@ transition:0.3s;
 <div class="hero-content" data-aos="fade-up">
 <h1>GREEN SHOOTS LEGACY SPORTS SQUASH ACADEMY</h1>
 <p>From greenshoots to greatness and defining legacy!</p>
-<a href="https://youtube.com/@greenshootssquashtv?si=G1e2EGo_g4WRhQOv" target="_blank" class="donate-btn">YouTube</a>
+<a href="https://youtube.com/@greenshootssquashtv?si=G1e2EGo_g4WRhQOv" target="_blank" class="btn btn-youtube">
+<i class="fab fa-youtube"></i> Watch on YouTube
+</a>
 </div>
 </header>
 
 <!-- VISION -->
-<section id="vision" class="section-padding" data-aos="fade-up">
+<section id="vision">
 <h2>Vision & Mission</h2>
-<p><strong>Vision:</strong> To ignite greatness and define a lasting legacy through world-class squash education, competition, and character building.</p>
-<p><strong>Mission:</strong> To nurture disciplined, elite African athletes by providing modern facilities, capacity building, professional coaching, and global exposure.</p>
+<p><strong>Vision:</strong> To ignite greatness and define a lasting legacy...</p>
+<p><strong>Mission:</strong> To nurture disciplined, elite African athletes...</p>
 </section>
 
 <!-- CONSTITUTION -->
-<section id="constitution" class="section-padding" data-aos="fade-up">
+<section id="constitution">
 <h2>Constitution Summary</h2>
 <div class="highlight">
 <p><strong>Legal Foundation:</strong> Registered in Kampala under the Companies Act...</p>
@@ -230,149 +233,93 @@ transition:0.3s;
 <li>Strengthening Uganda’s presence in global squash.</li>
 </ul>
 <p><strong>Governance Structure:</strong> Managed by a Board of Directors...</p>
-<p><strong>Founders:</strong> Ivan Wasswa – Director of Athlete Development; Paul Kasirye Kadoma – Director of Technical Programs.</p>
-<p><strong>Co-Founder:</strong> Julian Ainomugisha - Seed one Uganda female squash player and qualified quantity surveyor with safeguarding skills and PR!</p>
-<p><strong>Finance & Compliance:</strong> Transparent accounting, annual audits...</p>
-<p><strong>Conduct & Safeguarding:</strong> Anti-corruption, equality, and child protection policies.</p>
-<p><strong>Affiliation Duties:</strong> Operate under USRA technical guidance...</p>
-<p><strong>Amendments & Dissolution:</strong> Requires a two-thirds vote...</p>
-<p><em>Adopted: 2025, Kampala. Witnessed by: Chairperson, USRA.</em></p>
+<p><strong>Founders:</strong> Ivan Wasswa, Paul Kasirye Kadoma</p>
+<p><strong>Co-Founder:</strong> Julian Ainomugisha</p>
 </div>
 </section>
 
 <!-- FOUNDERS -->
-<section id="founders" class="section-padding" data-aos="fade-up">
-<h2>Founders’ Profiles</h2>
+<section id="founders">
+<h2>Founders</h2>
 <div class="founders">
-<div class="founder">
-<h3>Ivan Wasswa</h3>
-<p><strong>Founder & Technical Director</strong></p>
-<p>Certified Squash Coach & Sports Wellness Professional</p>
-</div>
-<div class="founder">
-<h3>Paul Kasirye Kadoma</h3>
-<p><strong>Co-Founder & Director of Technical Programs</strong></p>
-<p>Uganda’s Seed 1 Squash Player...</p>
-</div>
-<div class="founder">
-<h3>Julian Ainomugisha</h3>
-<p><strong>Co-Founder</strong></p>
-<p>Seed one Uganda female squash player and qualified quantity surveyor with safeguarding skills and public relations!</p>
-</div>
+<div class="founder"><h3>Ivan Wasswa</h3></div>
+<div class="founder"><h3>Paul Kasirye Kadoma</h3></div>
+<div class="founder"><h3>Julian Ainomugisha</h3></div>
 </div>
 </section>
 
 <!-- GALLERY -->
-<section id="gallery" class="section-padding" data-aos="fade-up">
+<section id="gallery">
 <h2>Gallery</h2>
-<p>Highlights from training, events, and youth programs.</p>
 <div class="gallery-container">
-<img src="img/1.jpg" alt="Gallery 1">
-<img src="img/2.jpg" alt="Gallery 2">
-<img src="img/3.jpg" alt="Gallery 3">
-<img src="img/4.jpg" alt="Gallery 4">
-<img src="img/5.jpg" alt="Gallery 5">
-<img src="img/6.jpg" alt="Gallery 6">
-<img src="img/7.jpg" alt="Gallery 7">
-<img src="img/8.jpg" alt="Gallery 8">
-<img src="img/9.jpg" alt="Gallery 9">
-<img src="img/10.jpg" alt="Gallery 10">
-<img src="img/11.jpg" alt="Gallery 11">
-<img src="img/12.jpg" alt="Gallery 12">
-<img src="img/13.jpg" alt="Gallery 13">
-<img src="img/14.jpg" alt="Gallery 14">
-<img src="img/15.jpg" alt="Gallery 15">
-<img src="img/16.jpg" alt="Gallery 16">
-<img src="img/17.jpg" alt="Gallery 17">
-<img src="img/18.jpg" alt="Gallery 18">
-<img src="img/19.jpg" alt="Gallery 19">
-<img src="img/20.jpg" alt="Gallery 20">
-<img src="img/21.jpg" alt="Gallery 21">
-<img src="img/22.jpg" alt="Gallery 22">
-<img src="img/23.jpg" alt="Gallery 23">
-<img src="img/24.jpg" alt="Gallery 24">
-<img src="img/25.jpg" alt="Gallery 25">
-<img src="img/26.jpg" alt="Gallery 26">
-<img src="img/27.jpg" alt="Gallery 27">
-<img src="img/28.jpg" alt="Gallery 28">
-<img src="img/29.jpg" alt="Gallery 29">
-<img src="img/30.jpg" alt="Gallery 30">
-<img src="img/31.jpg" alt="Gallery 31">
-<img src="img/32.jpg" alt="Gallery 32">
-<img src="img/33.jpg" alt="Gallery 33">
-<img src="img/34.jpg" alt="Gallery 34">
-<img src="img/35.jpg" alt="Gallery 35">
-<img src="img/36.jpg" alt="Gallery 36">
-<img src="img/37.jpg" alt="Gallery 37">
-<img src="img/38.jpg" alt="Gallery 38">
-<img src="img/39.jpg" alt="Gallery 39">
-<img src="img/40.jpg" alt="Gallery 40">
-<img src="img/41.jpg" alt="Gallery 41">
-<img src="img/42.jpg" alt="Gallery 42">
-<img src="img/43.jpg" alt="Gallery 43">
-<img src="img/44.jpg" alt="Gallery 44">
-<img src="img/45.jpg" alt="Gallery 45">
+<img src="img/1.jpg">
+<img src="img/2.jpg">
+<img src="img/3.jpg">
+<img src="img/4.jpg">
+<img src="img/5.jpg">
+<img src="img/6.jpg">
+<img src="img/7.jpg">
+<img src="img/8.jpg">
+<img src="img/9.jpg">
+<img src="img/10.jpg">
+<img src="img/11.jpg">
+<img src="img/12.jpg">
+<img src="img/13.jpg">
+<img src="img/14.jpg">
+<img src="img/15.jpg">
+<img src="img/16.jpg">
+<img src="img/17.jpg">
+<img src="img/18.jpg">
+<img src="img/19.jpg">
+<img src="img/20.jpg">
+<img src="img/21.jpg">
+<img src="img/22.jpg">
+<img src="img/23.jpg">
+<img src="img/24.jpg">
+<img src="img/25.jpg">
+<img src="img/26.jpg">
+<img src="img/27.jpg">
+<img src="img/28.jpg">
+<img src="img/29.jpg">
+<img src="img/30.jpg">
+<img src="img/31.jpg">
+<img src="img/32.jpg">
+<img src="img/33.jpg">
+<img src="img/34.jpg">
+<img src="img/35.jpg">
+<img src="img/36.jpg">
+<img src="img/37.jpg">
+<img src="img/38.jpg">
+<img src="img/39.jpg">
+<img src="img/40.jpg">
+<img src="img/41.jpg">
+<img src="img/42.jpg">
+<img src="img/43.jpg">
+<img src="img/44.jpg">
+<img src="img/45.jpg">
 </div>
-</section>
-
-<!-- SPONSORSHIP -->
-<section id="sponsorship" class="section-padding" data-aos="fade-up">
-<h2>Global Sponsorship & Development Proposal</h2>
-<p>Green Shoots Legacy Sports Squash Academy seeks partnerships...</p>
-<div class="sponsor-levels">
-<div class="sponsor-card"><h4>Title Partner</h4><p>UGX 500M+ / $130,000+</p></div>
-<div class="sponsor-card"><h4>Gold Sponsor</h4><p>UGX 200–499M</p></div>
-<div class="sponsor-card"><h4>Silver Sponsor</h4><p>UGX 50–199M</p></div>
-<div class="sponsor-card"><h4>Bronze Sponsor</h4><p>UGX 10–49M</p></div>
-<div class="sponsor-card"><h4>In-Kind Partner</h4>
-<p>Squash rackets, balls, shoes, grips, bags, apparel, training kits, tournament support, branding, scholarships, community outreach.</p></div>
-</div>
-</section>
-
-<!-- IMPACT -->
-<section id="impact" class="section-padding" data-aos="fade-up">
-<h2>Impact & Call to Action</h2>
-<p>Green Shoots Legacy Sports Squash Academy aims to train 1,000 youth...</p>
-<div class="stats">
-<div class="stat"><h3>1,000+</h3><p>Youth Trained</p></div>
-<div class="stat"><h3>10+</h3><p>Global Partnerships</p></div>
-<div class="stat"><h3>5+</h3><p>International Events</p></div>
-<div class="stat"><h3>Goal</h3><p>Identify, develop, and empower young squash talent into disciplined, competitive athletes and future leaders.</p></div>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="section-padding" data-aos="fade-up">
-<h2>Contact Us</h2>
-<p>Email: <a href="mailto:ugandalegacyracketsacademy@gmail.com">ugandalegacyracketsacademy@gmail.com</a></p>
-<p>Email: <a href="mailto:ugandalegacyracketsacademy@gmail.com">ivan@greenshootsacademy.ug</a></p>
-<p>Location: Kampala, Uganda</p>
-<p>Contact: 0772330463</p>
-<p>P.O Box: 201142</p>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15956.22739787832!2d32.56560985!3d0.34759679999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbc0eb987dfbb%3A0xd7056be9c49abf0b!2sKampala!5e0!3m2!1sen!2sug!4v1700000000000!5m2!1sen!2sug" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 </section>
 
 <!-- FOOTER -->
 <footer>
 <div class="social-icons">
-<a href="#"><i class="fab fa-facebook-square"></i></a>
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="#"><i class="fab fa-x-twitter"></i></a>
-<a href="#"><i class="fab fa-linkedin"></i></a>
-<a href="#"><i class="fab fa-youtube"></i></a>
+<i class="fab fa-facebook"></i>
+<i class="fab fa-instagram"></i>
+<i class="fab fa-x-twitter"></i>
+<i class="fab fa-linkedin"></i>
+<i class="fab fa-youtube"></i>
 </div>
-<p>© 2025 Green Shoots Legacy Sports Squash Academy. All Rights Reserved.</p>
+<p>© 2025 Green Shoots Legacy Sports Squash Academy</p>
 </footer>
 
-<a href="https://wa.me/256700122803" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/256700122803" class="whatsapp-float">
+<i class="fab fa-whatsapp"></i>
+</a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-AOS.init({duration:1200});
-const toggle = document.querySelector(".navbar-toggler");
-const nav = document.querySelector(".nav-links");
-toggle.onclick = () => nav.classList.toggle("active");
+AOS.init();
 </script>
 
 </body>
