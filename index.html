@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Shoots Legacy Sports Squash Academy</title>
+<meta name="description" content="Green Shoots Legacy Sports Squash Academy — building Africa's next squash champions through talent development, community courts and school outreach in Uganda.">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a2d04b0df3.js" crossorigin="anonymous"></script>
+
+<style>
+
+/* ============================================
+   DESIGN TOKENS — Green Shoots Squash Academy
+   Palette drawn from the glass show-court: deep
+   court blue, service-line red, honey amber for
+   the Kampala sun, chalk white for court lines.
+   ============================================ */
+:root{
+  --court-blue:      #0E3A5C;
+  --court-blue-deep: #071E30;
+  --court-blue-mid:  #123F63;
+  --line-white:      #F5F3EC;
+  --chalk:           #C8CDD4;
+  --service-red:     #C8102E;
+  --amber:           #E8A33D;
+  --ink:             #081420;
+
+  --font-display: 'Anton', sans-serif;
+  --font-body: 'Work Sans', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+*{box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:var(--font-body);
+  background:var(--court-blue-deep);
+  color:var(--line-white);
+  overflow-x:hidden;
+}
+
+::selection{background:var(--service-red);color:var(--line-white);}
+
+a{text-decoration:none;}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important;}
+}
+
+/* Focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+  outline:3px solid var(--amber);
+  outline-offset:2px;
+}
+
+.eyebrow{
+  font-family:var(--font-mono);
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-size:.72rem;
+  color:var(--amber);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+}
+.eyebrow::before{
+  content:"";
+  width:26px;height:2px;
+  background:var(--service-red);
+  display:inline-block;
+}
+
+h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:.01em;text-transform:uppercase;font-weight:400;}
+
+h2.section-title{
+  font-size:clamp(2rem,4.5vw,3.2rem);
+  color:var(--line-white);
+  line-height:1.05;
+  margin-bottom:8px;
+}
+h2.section-title span{color:var(--amber);}
+
+.section-lede{
+  color:var(--chalk);
+  max-width:640px;
+  font-size:1.02rem;
+  margin-bottom:44px;
+}
+
+section{padding:110px 8% 90px;position:relative;}
+@media (max-width:768px){section{padding:80px 6% 60px;}}
+
+/* Court-line divider — the recurring signature motif:
+   a service-line + half-court "T" rendered as a rule. */
+.court-divider{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:0 0 60px;
+  opacity:.85;
+}
+.court-divider .line{flex:1;height:2px;background:linear-gradient(90deg,transparent,var(--service-red) 15%,var(--service-red) 85%,transparent);}
+.court-divider .t-mark{
+  width:10px;height:10px;border:2px solid var(--service-red);
+  transform:rotate(45deg);flex-shrink:0;
+}
+
+/* ============= NAVBAR ============= */
+.navbar{
+  background:rgba(7,30,48,.92);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(245,243,236,.08);
+  padding:14px 0;
+  transition:background .3s ease;
+}
+.navbar-brand-wrap{display:flex;align-items:center;gap:12px;}
+.navbar-brand-wrap img{height:44px;width:44px;object-fit:cover;border-radius:6px;border:2px solid var(--amber);}
+.brand-text{font-family:var(--font-display);font-size:1.05rem;line-height:1.05;color:var(--line-white);text-transform:uppercase;}
+.brand-text small{display:block;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;color:var(--amber);text-transform:uppercase;}
+
+.navbar-toggler{border:1px solid rgba(245,243,236,.3);}
+.navbar-toggler-icon{filter:invert(1);}
+
+.nav-link{
+  color:var(--line-white) !important;
+  font-family:var(--font-mono);
+  font-size:.78rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-weight:700;
+  margin:0 10px;
+  position:relative;
+  padding:8px 2px !important;
+}
+.nav-link::after{
+  content:"";
+  position:absolute;left:0;bottom:2px;
+  width:0;height:2px;background:var(--service-red);
+  transition:width .25s ease;
+}
+.nav-link:hover{color:var(--amber) !important;}
+.nav-link:hover::after{width:100%;}
+
+.nav-cta{
+  background:var(--service-red);
+  color:var(--line-white) !important;
+  padding:9px 20px !important;
+  border-radius:3px;
+  margin-left:8px;
+}
+.nav-cta:hover{background:var(--amber);color:var(--ink) !important;}
+
+/* ============= HERO ============= */
+.hero{
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:var(--court-blue-deep);
+}
+.hero video, .hero .hero-fallback{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+}
+.hero .hero-fallback{
+  background:
+    radial-gradient(ellipse at top left, rgba(200,16,46,.25), transparent 55%),
+    radial-gradient(ellipse at bottom right, rgba(232,163,61,.2), transparent 55%),
+    linear-gradient(160deg,var(--court-blue-deep),var(--court-blue) 60%,var(--court-blue-mid));
+}
+.hero::before{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(7,30,48,.55) 0%, rgba(7,30,48,.78) 60%, var(--court-blue-deep) 100%);
+  z-index:1;
+}
+/* faint court-line overlay for texture */
+.hero .court-lines{
+  position:absolute;inset:0;z-index:1;opacity:.10;pointer-events:none;
+}
+
+.hero-content{
+  position:relative;z-index:2;
+  max-width:920px;padding:0 20px;
+}
+
+.hero .eyebrow{justify-content:center;color:var(--amber);}
+
+.hero h1{
+  font-size:clamp(2.4rem,7vw,5.2rem);
+  color:var(--line-white);
+  line-height:.98;
+  margin-bottom:22px;
+  text-shadow:0 8px 30px rgba(0,0,0,.4);
+}
+.hero h1 em{font-style:normal;color:var(--service-red);}
+
+.hero p.lede{
+  color:var(--chalk);
+  font-size:clamp(1rem,1.6vw,1.25rem);
+  max-width:640px;
+  margin:0 auto 38px;
+  font-weight:300;
+}
+
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
+
+.btn-main{
+  background:var(--service-red);
+  color:var(--line-white);
+  padding:15px 30px;
+  border-radius:3px;
+  font-family:var(--font-mono);
+  font-weight:700;
+  font-size:.82rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border:1px solid var(--service-red);
+  transition:all .25s ease;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.btn-main:hover{background:transparent;color:var(--service-red);}
+
+.btn-ghost{
+  background:transparent;
+  color:var(--line-white);
+  padding:15px 30px;
+  border-radius:3px;
+  font-family:var(--font-mono);
+  font-weight:700;
+  font-size:.82rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border:1px solid rgba(245,243,236,.4);
+  transition:all .25s ease;
+}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber);}
+
+.btn-donate{
+  background:var(--amber);
+  color:var(--ink);
+  border-color:var(--amber);
+}
+.btn-donate:hover{background:transparent;color:var(--amber);}
+
+.scroll-cue{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  z-index:2;color:var(--chalk);font-family:var(--font-mono);font-size:.65rem;
+  letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:bob 2.2s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
+
+/* ============= SPONSOR MARQUEE ============= */
+.logo-slider{
+  background:var(--court-blue-deep);
+  border-top:1px solid rgba(245,243,236,.08);
+  border-bottom:1px solid rgba(245,243,236,.08);
+  padding:26px 0;
+  overflow:hidden;
+  position:relative;
+}
+.logo-track{
+  display:flex;align-items:center;gap:70px;
+  width:max-content;
+  animation:scroll 26s linear infinite;
+}
+.logo-track img{height:46px;opacity:.65;filter:grayscale(1) brightness(1.8);transition:opacity .25s;}
+.logo-track img:hover{opacity:1;filter:none;}
+@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ============= IMPACT / SCOREBOARD ============= */
+#impact{background:var(--court-blue);}
+.scoreboard{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:1px;
+  background:rgba(245,243,236,.12);
+  border:1px solid rgba(245,243,236,.12);
+}
+.stat{
+  background:var(--court-blue-deep);
+  padding:34px 20px;
+  text-align:center;
+}
+.stat h3{
+  font-family:var(--font-mono);
+  font-weight:700;
+  font-size:2.6rem;
+  color:var(--amber);
+  margin-bottom:8px;
+  letter-spacing:0;
+}
+.stat p{
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--chalk);
+  font-family:var(--font-mono);
+  margin:0;
+}
+
+/* ============= WHY PARTNER ============= */
+.partner-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(245,243,236,.1);border:1px solid rgba(245,243,236,.1);}
+@media (max-width:900px){.partner-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:520px){.partner-grid{grid-template-columns:1fr;}}
+.partner-card{
+  background:var(--court-blue-deep);
+  padding:34px 26px;
+  transition:background .25s ease;
+}
+.partner-card:hover{background:var(--court-blue-mid);}
+.partner-card i{color:var(--service-red);font-size:1.6rem;margin-bottom:16px;display:block;}
+.partner-card h4{font-size:1.05rem;color:var(--line-white);margin-bottom:10px;}
+.partner-card p{color:var(--chalk);font-size:.9rem;margin:0;}
+
+/* ============= ATHLETES ============= */
+#athletes{background:var(--court-blue-deep);}
+.athlete-card{
+  background:var(--court-blue-mid);
+  border-radius:8px;
+  overflow:hidden;
+  height:100%;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.athlete-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.35);}
+.athlete-img-wrap{position:relative;aspect-ratio:4/5;overflow:hidden;}
+.athlete-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.athlete-card:hover .athlete-img-wrap img{transform:scale(1.06);}
+.athlete-tag{
+  position:absolute;top:14px;left:14px;
+  background:var(--service-red);color:var(--line-white);
+  font-family:var(--font-mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 10px;border-radius:2px;
+}
+.athlete-body{padding:22px;}
+.athlete-body h4{color:var(--line-white);font-size:1.2rem;margin-bottom:4px;}
+.athlete-body .role{color:var(--amber);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:14px;}
+.athlete-stat-row{display:flex;justify-content:space-between;font-size:.82rem;color:var(--chalk);padding:8px 0;border-top:1px solid rgba(245,243,236,.1);}
+.athlete-stat-row strong{color:var(--line-white);font-weight:600;}
+
+.story-banner{
+  position:relative;border-radius:10px;overflow:hidden;margin-top:50px;
+  min-height:340px;display:flex;align-items:flex-end;
+}
+.story-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.story-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,20,32,.92),rgba(7,20,32,.1) 60%);}
+.story-banner-text{position:relative;z-index:1;padding:36px;max-width:560px;}
+.story-banner-text span.eyebrow{margin-bottom:10px;}
+.story-banner-text h3{color:var(--line-white);font-size:1.7rem;margin-bottom:6px;}
+.story-banner-text p{color:var(--chalk);font-size:.95rem;}
+
+/* ============= TESTIMONIALS ============= */
+#stories{background:var(--court-blue);}
+.testimonial{
+  background:var(--court-blue-deep);
+  border-left:3px solid var(--service-red);
+  padding:26px 28px;
+  border-radius:0 8px 8px 0;
+  margin-bottom:18px;
+  position:relative;
+}
+.testimonial .quote-mark{font-family:var(--font-display);font-size:2.6rem;color:var(--service-red);line-height:.4;opacity:.7;display:block;margin-bottom:14px;}
+.testimonial p{color:var(--line-white);font-size:1.02rem;font-style:italic;margin-bottom:12px;}
+.testimonial strong{color:var(--amber);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;}
+
+/* ============= PROGRAMS & PROJECTS ============= */
+.icon-card{
+  background:var(--court-blue-mid);
+  border-radius:8px;
+  padding:30px 26px;
+  height:100%;
+  border:1px solid rgba(245,243,236,.08);
+  transition:border-color .25s ease, transform .25s ease;
+}
+.icon-card:hover{border-color:var(--amber);transform:translateY(-4px);}
+.icon-card i{font-size:1.5rem;color:var(--amber);margin-bottom:16px;display:block;}
+.icon-card h4{color:var(--line-white);font-size:1.08rem;margin-bottom:10px;}
+.icon-card p{color:var(--chalk);font-size:.88rem;margin:0;}
+
+/* ============= GALLERY ============= */
+#gallery{background:var(--court-blue-deep);}
+.gallery-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px;}
+.gallery-filters button{
+  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  background:transparent;border:1px solid rgba(245,243,236,.25);color:var(--chalk);
+  padding:8px 16px;border-radius:20px;cursor:pointer;transition:all .2s ease;
+}
+.gallery-filters button.active, .gallery-filters button:hover{background:var(--service-red);border-color:var(--service-red);color:var(--line-white);}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:10px;
+}
+.gallery figure{
+  margin:0;position:relative;overflow:hidden;border-radius:6px;cursor:pointer;
+  aspect-ratio:1/1;background:var(--court-blue-mid);
+}
+.gallery figure img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;display:block;}
+.gallery figure:hover img{transform:scale(1.1);}
+.gallery figure::after{
+  content:"\f00e";font-family:"Font Awesome 6 Free";font-weight:900;
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:var(--line-white);background:rgba(7,30,48,0);font-size:1.1rem;opacity:0;
+  transition:all .25s ease;
+}
+.gallery figure:hover::after{opacity:1;background:rgba(7,30,48,.45);}
+
+.gallery-more{
+  display:block;margin:34px auto 0;
+  background:transparent;border:1px solid var(--amber);color:var(--amber);
+  font-family:var(--font-mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:12px 28px;border-radius:30px;cursor:pointer;transition:all .2s ease;
+}
+.gallery-more:hover{background:var(--amber);color:var(--ink);}
+
+/* lightbox */
+.lightbox{
+  position:fixed;inset:0;z-index:2000;background:rgba(4,14,22,.94);
+  display:none;align-items:center;justify-content:center;padding:30px;
+}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:min(90vw,900px);max-height:85vh;border-radius:6px;box-shadow:0 30px 60px rgba(0,0,0,.5);}
+.lightbox .lb-close, .lightbox .lb-nav{
+  position:absolute;color:var(--line-white);background:rgba(245,243,236,.1);
+  border:1px solid rgba(245,243,236,.25);border-radius:50%;width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;transition:background .2s ease;
+}
+.lightbox .lb-close{top:24px;right:24px;}
+.lightbox .lb-close:hover{background:var(--service-red);}
+.lightbox .lb-prev{left:24px;top:50%;transform:translateY(-50%);}
+.lightbox .lb-next{right:24px;top:50%;transform:translateY(-50%);}
+.lightbox .lb-prev:hover, .lightbox .lb-next:hover{background:var(--amber);color:var(--ink);}
+
+/* ============= JOIN / FORMS ============= */
+#join{background:var(--court-blue);}
+.form-tabs{display:flex;gap:1px;background:rgba(245,243,236,.15);margin-bottom:0;border-radius:8px 8px 0 0;overflow:hidden;flex-wrap:wrap;}
+.form-tab-btn{
+  flex:1;min-width:150px;
+  background:var(--court-blue-deep);color:var(--chalk);
+  font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  border:none;padding:18px 10px;cursor:pointer;transition:all .2s ease;
+}
+.form-tab-btn.active{background:var(--service-red);color:var(--line-white);}
+.form-tab-btn:not(.active):hover{background:var(--court-blue-mid);color:var(--line-white);}
+
+.form-panel-wrap{background:var(--court-blue-deep);border-radius:0 0 8px 8px;padding:40px;border:1px solid rgba(245,243,236,.1);border-top:none;}
+@media (max-width:600px){.form-panel-wrap{padding:26px 20px;}}
+
+.join-form{display:none;}
+.join-form.active{display:block;animation:fadein .3s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+.join-form label{
+  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:6px;display:block;
+}
+.join-form .form-control, .join-form .form-select{
+  background:var(--court-blue-mid);border:1px solid rgba(245,243,236,.15);color:var(--line-white);
+  border-radius:4px;padding:12px 14px;margin-bottom:20px;font-family:var(--font-body);
+}
+.join-form .form-control::placeholder{color:rgba(245,243,236,.4);}
+.join-form .form-control:focus, .join-form .form-select:focus{
+  background:var(--court-blue-mid);border-color:var(--amber);color:var(--line-white);box-shadow:none;
+}
+.join-form textarea.form-control{min-height:110px;resize:vertical;}
+.form-note{color:var(--chalk);font-size:.85rem;margin-bottom:24px;}
+.form-submit{width:100%;}
+
+/* ============= CTA BLOCK ============= */
+.cta-block{
+  background:linear-gradient(135deg,var(--court-blue-mid),var(--court-blue-deep));
+  padding:60px 40px;text-align:center;border-radius:14px;
+  border:1px solid rgba(245,243,236,.1);position:relative;overflow:hidden;
+}
+.cta-block h2{margin-bottom:14px;}
+.cta-block p{color:var(--chalk);max-width:560px;margin:0 auto 30px;}
+
+/* ============= CONTACT ============= */
+#contact{background:var(--court-blue);}
+.contact-info-item{display:flex;gap:16px;align-items:flex-start;margin-bottom:24px;}
+.contact-info-item i{color:var(--service-red);font-size:1.2rem;margin-top:4px;}
+.contact-info-item h4{color:var(--line-white);font-size:.95rem;margin-bottom:2px;}
+.contact-info-item p{color:var(--chalk);margin:0;font-size:.9rem;}
+.map-wrap{border-radius:10px;overflow:hidden;border:1px solid rgba(245,243,236,.15);filter:grayscale(.3) contrast(1.1);}
+.map-wrap iframe{display:block;}
+
+.social-row{display:flex;gap:12px;margin-top:20px;}
+.social-row a{
+  width:40px;height:40px;border-radius:50%;border:1px solid rgba(245,243,236,.25);
+  display:flex;align-items:center;justify-content:center;color:var(--line-white);transition:all .2s ease;
+}
+.social-row a:hover{background:var(--service-red);border-color:var(--service-red);}
+
+/* ============= FOOTER ============= */
+footer{
+  background:var(--court-blue-deep);
+  padding:40px 8% 26px;
+  text-align:center;
+  border-top:1px solid rgba(245,243,236,.08);
+}
+footer p{color:var(--chalk);font-size:.82rem;margin:4px 0;font-family:var(--font-mono);}
+footer a{color:var(--amber);}
+
+/* ============= WHATSAPP FAB ============= */
+.whatsapp{
+  position:fixed;bottom:24px;right:24px;z-index:1500;
+  background:#25D366;width:56px;height:56px;border-radius:50%;
+  color:white;font-size:1.5rem;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.35);transition:transform .2s ease;
+}
+.whatsapp:hover{transform:scale(1.08);color:white;}
+
+/* skip link */
+.skip-link{position:absolute;left:-999px;top:auto;background:var(--service-red);color:#fff;padding:12px 20px;z-index:3000;}
+.skip-link:focus{left:12px;top:12px;}
+
+</style>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+<div class="container-fluid px-4 px-lg-5">
+
+<a class="navbar-brand-wrap" href="#top">
+<img src="img/logo.jpg" alt="Green Shoots Legacy Sports Squash Academy logo">
+<span class="brand-text">Green Shoots<small>Legacy Sports Squash Academy</small></span>
+</a>
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="nav">
+<ul class="navbar-nav ms-auto align-items-lg-center">
+<li class="nav-item"><a class="nav-link" href="#impact">Impact</a></li>
+<li class="nav-item"><a class="nav-link" href="#athletes">Athletes</a></li>
+<li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
+<li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+<li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+<li class="nav-item"><a class="nav-link nav-cta" href="#join">Join Us</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<header class="hero" id="top">
+<video autoplay muted loop playsinline poster="img/1.jpg">
+<source src="videos/squash.mp4" type="video/mp4">
+</video>
+<div class="hero-fallback"></div>
+
+<svg class="court-lines" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+<rect x="40" y="40" width="920" height="520" fill="none" stroke="#F5F3EC" stroke-width="2"/>
+<line x1="40" y1="300" x2="960" y2="300" stroke="#F5F3EC" stroke-width="2"/>
+<line x1="500" y1="300" x2="500" y2="560" stroke="#F5F3EC" stroke-width="2"/>
+<rect x="40" y="230" width="200" height="70" fill="none" stroke="#F5F3EC" stroke-width="2"/>
+<rect x="760" y="230" width="200" height="70" fill="none" stroke="#F5F3EC" stroke-width="2"/>
+</svg>
+
+<div class="hero-content" data-aos="fade-up">
+<span class="eyebrow">Kampala, Uganda · Est. Community Squash Program</span>
+<h1>Building Africa's<br>Next <em>Squash</em> Champions</h1>
+<p class="lede">We don't just train athletes — we build champions, leaders and legacy, one rally, one school, one court at a time.</p>
+
+<div class="hero-ctas">
+<a href="#join" class="btn-main" data-form-target="register"><i class="fa-solid fa-user-plus"></i> Join Academy</a>
+<a href="#join" class="btn-ghost" data-form-target="sponsor"><i class="fa-solid fa-handshake"></i> Sponsor a Player</a>
+<a href="#join" class="btn-main btn-donate" data-form-target="donate"><i class="fa-solid fa-heart"></i> Donate</a>
+</div>
+</div>
+
+<div class="scroll-cue"><span>Scroll</span><i class="fa-solid fa-chevron-down"></i></div>
+</header>
+
+<!-- SPONSOR LOGOS -->
+<section class="logo-slider py-0">
+<div class="logo-track" id="logoTrack">
+<img src="img/s1.png" alt="Partner logo" loading="lazy">
+<img src="img/s2.png" alt="Partner logo" loading="lazy">
+<img src="img/s3.png" alt="Partner logo" loading="lazy">
+<img src="img/s4.png" alt="Partner logo" loading="lazy">
+</div>
+</section>
+
+<!-- IMPACT / SCOREBOARD -->
+<section id="impact">
+<span class="eyebrow">Scoreboard</span>
+<h2 class="section-title">Impact <span>Dashboard</span></h2>
+<p class="section-lede">Every number on this board is a young person who picked up a racquet and found something bigger than a game.</p>
+
+<div class="scoreboard">
+<div class="stat"><h3 data-count="1000" data-suffix="+">0</h3><p>Youth Reached</p></div>
+<div class="stat"><h3 data-count="35" data-suffix="+">0</h3><p>Partner Schools</p></div>
+<div class="stat"><h3 data-count="15" data-suffix="+">0</h3><p>Elite Athletes</p></div>
+<div class="stat"><h3 data-count="12" data-suffix="+">0</h3><p>Corporate Partners</p></div>
+<div class="stat"><h3 data-count="50" data-suffix="+">0</h3><p>Events Hosted</p></div>
+</div>
+</section>
+
+<!-- WHY PARTNER -->
+<section id="why" class="pt-0">
+<div class="court-divider"><span class="line"></span><span class="t-mark"></span><span class="line"></span></div>
+<span class="eyebrow">The Case</span>
+<h2 class="section-title">Why Partner <span>With Us</span></h2>
+<p class="section-lede">Squash is the fastest-growing racquet sport on the continent. Here's what your name next to ours actually buys.</p>
+
+<div class="partner-grid" data-aos="fade-up">
+<div class="partner-card"><i class="fa-solid fa-seedling"></i><h4>Talent Development</h4><p>Direct investment in athletes with a real pathway to national and continental ranking.</p></div>
+<div class="partner-card"><i class="fa-solid fa-award"></i><h4>Corporate CSR Value</h4><p>A measurable, community-rooted programme that fits squarely inside your CSR mandate.</p></div>
+<div class="partner-card"><i class="fa-solid fa-tower-broadcast"></i><h4>Media Exposure</h4><p>Branding across events, jerseys and coverage as our athletes climb the rankings.</p></div>
+<div class="partner-card"><i class="fa-solid fa-earth-africa"></i><h4>National Impact</h4><p>A stake in a growing sport, with reach across schools in Kampala and beyond.</p></div>
+</div>
+</section>
+
+<!-- ATHLETES -->
+<section id="athletes">
+<span class="eyebrow">Squad</span>
+<h2 class="section-title">Featured <span>Athletes</span></h2>
+<p class="section-lede">The players closest to a breakthrough — and closest to needing your support to get there.</p>
+
+<div class="row g-4" data-aos="fade-up">
+<div class="col-md-4">
+<div class="athlete-card">
+<div class="athlete-img-wrap">
+<img src="img/a.jpg" alt="Elite junior squash player mid-rally" loading="lazy">
+<span class="athlete-tag">Junior Elite</span>
+</div>
+<div class="athlete-body">
+<h4>Junior Squad Athlete</h4>
+<span class="role">Age 16 · Kampala</span>
+<div class="athlete-stat-row"><span>Ranking</span><strong>Top National 10</strong></div>
+<div class="athlete-stat-row"><span>Goal</span><strong>African Champion</strong></div>
+<div class="athlete-stat-row"><span>Sponsor Need</span><strong>Equipment + Travel</strong></div>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="athlete-card">
+<div class="athlete-img-wrap">
+<img src="img/b.jpg" alt="Squash academy athlete on court" loading="lazy">
+<span class="athlete-tag">Rising Talent</span>
+</div>
+<div class="athlete-body">
+<h4>Development Squad Athlete</h4>
+<span class="role">Age 14 · Kampala</span>
+<div class="athlete-stat-row"><span>Ranking</span><strong>Regional Top 5</strong></div>
+<div class="athlete-stat-row"><span>Goal</span><strong>National Team Call-up</strong></div>
+<div class="athlete-stat-row"><span>Sponsor Need</span><strong>Coaching Hours</strong></div>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="athlete-card">
+<div class="athlete-img-wrap">
+<img src="img/c.jpg" alt="Girls in Squash Initiative participant" loading="lazy">
+<span class="athlete-tag">Girls in Squash</span>
+</div>
+<div class="athlete-body">
+<h4>Girls Initiative Athlete</h4>
+<span class="role">Age 15 · Kampala</span>
+<div class="athlete-stat-row"><span>Ranking</span><strong>School Champion</strong></div>
+<div class="athlete-stat-row"><span>Goal</span><strong>Full Scholarship</strong></div>
+<div class="athlete-stat-row"><span>Sponsor Need</span><strong>Tuition Support</strong></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="story-banner" data-aos="fade-up">
+<img src="img/d.jpg" alt="Green Shoots Academy athletes and coaches">
+<div class="story-banner-text">
+<span class="eyebrow">Behind the Racquet</span>
+<h3>Every Champion Started on a School Court</h3>
+<p>Before the rankings and the sponsors, it's a coach, a borrowed racquet and a kid who wouldn't stop asking for one more rally.</p>
+</div>
+</div>
+</section>
+
+<!-- SUCCESS STORIES -->
+<section id="stories">
+<span class="eyebrow">Voices</span>
+<h2 class="section-title">Success <span>Stories</span></h2>
+<div class="row g-4" data-aos="fade-up">
+<div class="col-md-6">
+<div class="testimonial">
+<span class="quote-mark">&ldquo;</span>
+<p>From school beginner to national competitor in under two years — this programme changed the trajectory of my son's life.</p>
+<strong>Transformation Story</strong>
+</div>
+</div>
+<div class="col-md-6">
+<div class="testimonial">
+<span class="quote-mark">&ldquo;</span>
+<p>Watching my daughter walk onto that court and own it — Girls in Squash gave her a confidence nothing else had.</p>
+<strong>Parent Testimony</strong>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+<span class="eyebrow">What We Run</span>
+<h2 class="section-title">Programs</h2>
+<p class="section-lede">Five pathways, one goal: get more young people on court and keep them there.</p>
+
+<div class="row g-4" data-aos="fade-up">
+<div class="col-md-4"><div class="icon-card"><i class="fa-solid fa-child-reaching"></i><h4>Junior Development Pathway</h4><p>Structured coaching for beginners through to competitive juniors.</p></div></div>
+<div class="col-md-4"><div class="icon-card"><i class="fa-solid fa-trophy"></i><h4>Elite Performance Program</h4><p>High-performance training for athletes competing at national level.</p></div></div>
+<div class="col-md-4"><div class="icon-card"><i class="fa-solid fa-venus"></i><h4>Girls in Squash Initiative</h4><p>Dedicated pathway increasing access and retention for young women.</p></div></div>
+<div class="col-md-4"><div class="icon-card"><i class="fa-solid fa-school"></i><h4>School Outreach Program</h4><p>Introducing squash to schools with no prior access to the sport.</p></div></div>
+<div class="col-md-4"><div class="icon-card"><i class="fa-solid fa-chalkboard-user"></i><h4>Coach Development Program</h4><p>Training the next generation of local coaches and mentors.</p></div></div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<span class="eyebrow">On The Ground</span>
+<h2 class="section-title">Projects</h2>
+<p class="section-lede">Where the impact is actually being built right now.</p>
+
+<div class="row g-4" data-aos="fade-up">
+<div class="col-md-3"><div class="icon-card"><i class="fa-solid fa-people-group"></i><h4>Schools Squash Initiative</h4><p>Rolling out squash access across partner schools.</p></div></div>
+<div class="col-md-3"><div class="icon-card"><i class="fa-solid fa-medal"></i><h4>East Africa Championship</h4><p>Hosting and competing in the region's premier tournament.</p></div></div>
+<div class="col-md-3"><div class="icon-card"><i class="fa-solid fa-trowel-bricks"></i><h4>Community Court Development</h4><p>Building accessible courts in underserved communities.</p></div></div>
+<div class="col-md-3"><div class="icon-card"><i class="fa-solid fa-graduation-cap"></i><h4>Scholarship Program</h4><p>Funding tuition and equipment for our top young athletes.</p></div></div>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+<span class="eyebrow">On Court</span>
+<h2 class="section-title">Gallery <span>Stories</span></h2>
+<p class="section-lede">Moments from training sessions, school visits and tournament day.</p>
+
+<div class="gallery-filters">
+<button class="active" data-filter="all">All</button>
+<button data-filter="1">Training</button>
+<button data-filter="2">Tournaments</button>
+<button data-filter="3">Schools</button>
+<button data-filter="4">Community</button>
+</div>
+
+<div class="gallery" id="galleryGrid" data-aos="fade-up"></div>
+
+<button class="gallery-more" id="galleryMore">Load More Photos</button>
+</section>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox">
+<button class="lb-close" id="lbClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+<button class="lb-prev" id="lbPrev" aria-label="Previous photo"><i class="fa-solid fa-chevron-left"></i></button>
+<img id="lbImg" src="" alt="Gallery photo enlarged">
+<button class="lb-next" id="lbNext" aria-label="Next photo"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+
+<!-- CTA -->
+<section class="pt-0">
+<div class="cta-block" data-aos="zoom-in">
+<span class="eyebrow" style="justify-content:center;">Get Involved</span>
+<h2 class="section-title">Become Part <span>of the Legacy</span></h2>
+<p>Whether you're a parent, a company or a fan of the game — there's a direct way in below.</p>
+<div class="hero-ctas">
+<a href="#join" class="btn-main" data-form-target="register"><i class="fa-solid fa-user-plus"></i> Register Athlete</a>
+<a href="#join" class="btn-ghost" data-form-target="sponsor"><i class="fa-solid fa-handshake"></i> Sponsor a Player</a>
+<a href="#join" class="btn-main btn-donate" data-form-target="donate"><i class="fa-solid fa-heart"></i> Donate</a>
+</div>
+</div>
+</section>
+
+<!-- JOIN / DIRECT FORMS -->
+<section id="join">
+<span class="eyebrow">Direct &amp; Simple</span>
+<h2 class="section-title">Join the <span>Academy</span></h2>
+<p class="section-lede">No redirects, no third-party forms — fill in what applies to you right here and we'll be in touch within 48 hours.</p>
+
+<div data-aos="fade-up">
+<div class="form-tabs" role="tablist">
+<button class="form-tab-btn active" data-tab="register" role="tab" aria-selected="true">Register Athlete</button>
+<button class="form-tab-btn" data-tab="sponsor" role="tab" aria-selected="false">Sponsor a Player</button>
+<button class="form-tab-btn" data-tab="donate" role="tab" aria-selected="false">Donate</button>
+</div>
+
+<div class="form-panel-wrap">
+
+<!-- Register form -->
+<form class="join-form active" id="form-register" action="https://formsubmit.co/ivan@greenshootsacademy.ug" method="POST">
+<input type="hidden" name="_subject" value="New Academy Registration">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<div class="row">
+<div class="col-md-6"><label for="r-name">Athlete Full Name</label><input class="form-control" id="r-name" name="Athlete Name" required></div>
+<div class="col-md-6"><label for="r-age">Age</label><input class="form-control" id="r-age" name="Age" type="number" min="4" max="25" required></div>
+<div class="col-md-6"><label for="r-guardian">Parent / Guardian Name</label><input class="form-control" id="r-guardian" name="Guardian Name" required></div>
+<div class="col-md-6"><label for="r-phone">Phone Number</label><input class="form-control" id="r-phone" name="Phone" type="tel" required></div>
+<div class="col-md-6"><label for="r-email">Email Address</label><input class="form-control" id="r-email" name="Email" type="email" required></div>
+<div class="col-md-6"><label for="r-program">Program of Interest</label>
+<select class="form-select" id="r-program" name="Program">
+<option>Junior Development Pathway</option>
+<option>Elite Performance Program</option>
+<option>Girls in Squash Initiative</option>
+<option>School Outreach Program</option>
+</select>
+</div>
+<div class="col-12"><label for="r-notes">Anything We Should Know?</label><textarea class="form-control" id="r-notes" name="Notes" placeholder="Previous experience, school, availability..."></textarea></div>
+</div>
+<p class="form-note">Submitting registers your interest — our team confirms enrolment and schedule by phone or email.</p>
+<button type="submit" class="btn-main form-submit"><i class="fa-solid fa-user-plus"></i> Submit Registration</button>
+</form>
+
+<!-- Sponsor form -->
+<form class="join-form" id="form-sponsor" action="https://formsubmit.co/ivan@greenshootsacademy.ug" method="POST">
+<input type="hidden" name="_subject" value="New Sponsorship Enquiry">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<div class="row">
+<div class="col-md-6"><label for="s-name">Contact Name</label><input class="form-control" id="s-name" name="Contact Name" required></div>
+<div class="col-md-6"><label for="s-org">Company / Organisation</label><input class="form-control" id="s-org" name="Organisation"></div>
+<div class="col-md-6"><label for="s-email">Email Address</label><input class="form-control" id="s-email" name="Email" type="email" required></div>
+<div class="col-md-6"><label for="s-phone">Phone Number</label><input class="form-control" id="s-phone" name="Phone" type="tel" required></div>
+<div class="col-md-6"><label for="s-level">Sponsorship Level</label>
+<select class="form-select" id="s-level" name="Sponsorship Level">
+<option>Individual Athlete Sponsor</option>
+<option>Bronze Corporate Partner</option>
+<option>Silver Corporate Partner</option>
+<option>Gold Corporate Partner</option>
+<option>In-Kind (Equipment / Travel)</option>
+</select>
+</div>
+<div class="col-md-6"><label for="s-budget">Estimated Annual Budget (UGX)</label><input class="form-control" id="s-budget" name="Budget" placeholder="e.g. 5,000,000"></div>
+<div class="col-12"><label for="s-notes">Tell Us More</label><textarea class="form-control" id="s-notes" name="Notes" placeholder="Which athlete or program interests you?"></textarea></div>
+</div>
+<p class="form-note">A member of our partnerships team will follow up directly with a sponsorship pack.</p>
+<button type="submit" class="btn-main form-submit"><i class="fa-solid fa-handshake"></i> Submit Sponsorship Enquiry</button>
+</form>
+
+<!-- Donate form -->
+<form class="join-form" id="form-donate" action="https://formsubmit.co/ivan@greenshootsacademy.ug" method="POST">
+<input type="hidden" name="_subject" value="New Donation Pledge">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<div class="row">
+<div class="col-md-6"><label for="d-name">Full Name</label><input class="form-control" id="d-name" name="Donor Name" required></div>
+<div class="col-md-6"><label for="d-email">Email Address</label><input class="form-control" id="d-email" name="Email" type="email" required></div>
+<div class="col-md-6"><label for="d-phone">Phone Number</label><input class="form-control" id="d-phone" name="Phone" type="tel" required></div>
+<div class="col-md-6"><label for="d-amount">Pledge Amount (UGX)</label><input class="form-control" id="d-amount" name="Amount" placeholder="e.g. 200,000" required></div>
+<div class="col-md-6"><label for="d-freq">Frequency</label>
+<select class="form-select" id="d-freq" name="Frequency">
+<option>One-Time</option>
+<option>Monthly</option>
+<option>Annually</option>
+</select>
+</div>
+<div class="col-md-6"><label for="d-fund">Direct My Gift To</label>
+<select class="form-select" id="d-fund" name="Fund">
+<option>Where Needed Most</option>
+<option>Scholarship Program</option>
+<option>Community Court Development</option>
+<option>Girls in Squash Initiative</option>
+</select>
+</div>
+<div class="col-12"><label for="d-notes">Message (Optional)</label><textarea class="form-control" id="d-notes" name="Notes"></textarea></div>
+</div>
+<p class="form-note">We'll send a confirmation and payment instructions (Mobile Money / Bank Transfer) directly to your email.</p>
+<button type="submit" class="btn-main btn-donate form-submit"><i class="fa-solid fa-heart"></i> Submit Donation Pledge</button>
+</form>
+
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<span class="eyebrow">Reach Us</span>
+<h2 class="section-title">Contact <span>Us</span></h2>
+
+<div class="row g-5">
+<div class="col-lg-5">
+<div class="contact-info-item"><i class="fa-solid fa-envelope"></i><div><h4>Email</h4><p><a href="mailto:ivan@greenshootsacademy.ug" style="color:var(--chalk);">ivan@greenshootsacademy.ug</a></p></div></div>
+<div class="contact-info-item"><i class="fa-solid fa-phone"></i><div><h4>Phone</h4><p><a href="tel:+256772330463" style="color:var(--chalk);">+256 772 330 463</a></p></div></div>
+<div class="contact-info-item"><i class="fa-solid fa-location-dot"></i><div><h4>Location</h4><p>Kampala, Uganda</p></div></div>
+<div class="social-row">
+<a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+<a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+<a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+<a href="https://wa.me/256700122803" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+</div>
+</div>
+<div class="col-lg-7">
+<div class="map-wrap">
+<iframe src="https://www.google.com/maps?q=Kampala&output=embed" width="100%" height="320" style="border:0;" loading="lazy" title="Map showing Kampala, Uganda"></iframe>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+<img src="img/logo.jpg" alt="Green Shoots Legacy Sports Squash Academy" height="42" style="border-radius:6px;margin-bottom:14px;">
+<p>&copy; 2025 Green Shoots Legacy Sports Squash Academy. All rights reserved.</p>
+<p>Kampala, Uganda &nbsp;·&nbsp; <a href="mailto:ivan@greenshootsacademy.ug">ivan@greenshootsacademy.ug</a> &nbsp;·&nbsp; <a href="tel:+256772330463">+256 772 330 463</a></p>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/256700122803" aria-label="Chat on WhatsApp" target="_blank" rel="noopener">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({duration:900, once:true, easing:'ease-out-cubic'});
+
+/* ===== Navbar shrink on scroll ===== */
+const nav = document.querySelector('.navbar');
+window.addEventListener('scroll', () => {
+  nav.style.boxShadow = window.scrollY > 40 ? '0 6px 20px rgba(0,0,0,.35)' : 'none';
+});
+
+/* ===== Sponsor marquee: duplicate track for seamless loop ===== */
+const track = document.getElementById('logoTrack');
+track.innerHTML += track.innerHTML;
+
+/* ===== Scoreboard count-up ===== */
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const counters = document.querySelectorAll('.stat h3');
+const countUp = (el) => {
+  const target = parseInt(el.dataset.count, 10);
+  const suffix = el.dataset.suffix || '';
+  if (prefersReduced) { el.textContent = target + suffix; return; }
+  let start = 0;
+  const duration = 1400;
+  const startTime = performance.now();
+  const step = (now) => {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target + suffix;
+  };
+  requestAnimationFrame(step);
+};
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      countUp(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.5});
+counters.forEach(c => counterObserver.observe(c));
+
+/* ===== Gallery: build from img/1.jpg..45.jpg + img/a-d.jpg, tag with categories, paginate ===== */
+const galleryGrid = document.getElementById('galleryGrid');
+const galleryMoreBtn = document.getElementById('galleryMore');
+
+const galleryImages = [];
+['a','b','c','d'].forEach((letter, i) => {
+  galleryImages.push({src:`img/${letter}.jpg`, cat: String((i % 4) + 1)});
+});
+for (let i = 1; i <= 45; i++) {
+  galleryImages.push({src:`img/${i}.jpg`, cat: String((i % 4) + 1)});
+}
+
+const categoryLabels = {1:'Training', 2:'Tournaments', 3:'Schools', 4:'Community'};
+let visibleCount = 18;
+let currentFilter = 'all';
+
+function renderGallery(){
+  galleryGrid.innerHTML = '';
+  const filtered = galleryImages.filter(img => currentFilter === 'all' || img.cat === currentFilter);
+  filtered.slice(0, visibleCount).forEach((img, idx) => {
+    const fig = document.createElement('figure');
+    fig.dataset.index = idx;
+    fig.innerHTML = `<img src="${img.src}" alt="${categoryLabels[img.cat]} moment at Green Shoots Academy" loading="lazy">`;
+    fig.addEventListener('click', () => openLightbox(filtered, idx));
+    galleryGrid.appendChild(fig);
+  });
+  galleryMoreBtn.style.display = filtered.length > visibleCount ? 'block' : 'none';
+}
+renderGallery();
+
+document.querySelectorAll('.gallery-filters button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.gallery-filters button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    visibleCount = 18;
+    renderGallery();
+  });
+});
+
+galleryMoreBtn.addEventListener('click', () => {
+  visibleCount += 18;
+  renderGallery();
+});
+
+/* ===== Lightbox ===== */
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+let currentGalleryList = [];
+let currentIndex = 0;
+
+function openLightbox(list, idx){
+  currentGalleryList = list;
+  currentIndex = idx;
+  updateLightboxImg();
+  lightbox.classList.add('open');
+}
+function updateLightboxImg(){
+  lbImg.src = currentGalleryList[currentIndex].src;
+}
+document.getElementById('lbClose').addEventListener('click', () => lightbox.classList.remove('open'));
+document.getElementById('lbNext').addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % currentGalleryList.length;
+  updateLightboxImg();
+});
+document.getElementById('lbPrev').addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + currentGalleryList.length) % currentGalleryList.length;
+  updateLightboxImg();
+});
+lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('open'); });
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') lightbox.classList.remove('open');
+  if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
+  if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+});
+
+/* ===== Join form tabs, deep-linkable via data-form-target ===== */
+const tabButtons = document.querySelectorAll('.form-tab-btn');
+const forms = document.querySelectorAll('.join-form');
+
+function activateForm(target){
+  tabButtons.forEach(b => {
+    const isActive = b.dataset.tab === target;
+    b.classList.toggle('active', isActive);
+    b.setAttribute('aria-selected', isActive);
+  });
+  forms.forEach(f => f.classList.toggle('active', f.id === `form-${target}`));
+}
+
+tabButtons.forEach(btn => {
+  btn.addEventListener('click', () => activateForm(btn.dataset.tab));
+});
+
+document.querySelectorAll('[data-form-target]').forEach(link => {
+  link.addEventListener('click', () => activateForm(link.dataset.formTarget));
+});
+</script>
+
+</body>
+</html>
