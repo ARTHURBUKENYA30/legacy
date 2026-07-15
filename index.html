@@ -799,16 +799,151 @@ footer a{color:var(--amber);}
 <section id="join">
 <span class="eyebrow">Direct &amp; Simple</span>
 <h2 class="section-title">Join the <span>Academy</span></h2>
-<p class="section-lede">No redirects, no third-party forms — fill in what applies to you right here and we'll be in touch within 48 hours.</p>
+<p class="section-lede">
+No redirects, no third-party forms — fill in what applies to you right here and we'll be in touch within 48 hours.
+</p>
 
 <div data-aos="fade-up">
+
 <div class="form-tabs" role="tablist">
-<button class="form-tab-btn active" data-tab="register" role="tab" aria-selected="true">Register Athlete</button>
-<button class="form-tab-btn" data-tab="sponsor" role="tab" aria-selected="false">Sponsor a Player</button>
-<button class="form-tab-btn" data-tab="donate" role="tab" aria-selected="false">Donate</button>
+<button class="form-tab-btn active" onclick="showForm('register')">
+Register Athlete
+</button>
+
+<button class="form-tab-btn" onclick="showForm('sponsor')">
+Sponsor a Player
+</button>
+
+<button class="form-tab-btn" onclick="showForm('donate')">
+Donate
+</button>
 </div>
 
+
 <div class="form-panel-wrap">
+
+
+<!-- ATHLETE REGISTRATION FORM -->
+<div id="register" class="form-panel">
+
+<form action="mailto:ugandalegacyracketsacademy@gmail.com" 
+method="post" 
+enctype="text/plain">
+
+<h3>Athlete Registration</h3>
+
+<input type="text" name="Athlete Name" placeholder="Full Name" required>
+
+<input type="number" name="Age" placeholder="Age" required>
+
+<input type="text" name="Guardian Contact" placeholder="Parent/Guardian Phone">
+
+<input type="email" name="Email" placeholder="Email Address" required>
+
+<textarea name="Message" placeholder="Tell us about the athlete"></textarea>
+
+
+<button type="submit">
+Submit Registration
+</button>
+
+</form>
+
+</div>
+
+
+
+<!-- SPONSORSHIP FORM -->
+<div id="sponsor" class="form-panel" style="display:none;">
+
+<form action="mailto:ugandalegacyracketsacademy@gmail.com" 
+method="post" 
+enctype="text/plain">
+
+<h3>Sponsorship Inquiry</h3>
+
+<input type="text" name="Sponsor Name" placeholder="Your Name / Organization" required>
+
+<input type="email" name="Email" placeholder="Email Address" required>
+
+<input type="text" name="Phone" placeholder="Phone Number">
+
+<textarea name="Sponsorship Details" 
+placeholder="Tell us how you would like to support a player">
+</textarea>
+
+
+<button type="submit">
+Submit Sponsorship Inquiry
+</button>
+
+</form>
+
+</div>
+
+
+
+<!-- DONATION FORM -->
+<div id="donate" class="form-panel" style="display:none;">
+
+<form action="mailto:ugandalegacyracketsacademy@gmail.com" 
+method="post" 
+enctype="text/plain">
+
+<h3>Donation Pledge</h3>
+
+<input type="text" name="Donor Name" placeholder="Your Name" required>
+
+<input type="email" name="Email" placeholder="Email Address" required>
+
+<input type="text" name="Donation Amount" placeholder="Amount You Wish To Donate">
+
+<textarea name="Donation Message"
+placeholder="Your donation pledge or message">
+</textarea>
+
+
+<button type="submit">
+Submit Donation Pledge
+</button>
+
+</form>
+
+</div>
+
+
+</div>
+</div>
+</section>
+
+
+
+<script>
+
+function showForm(form){
+
+let panels=document.querySelectorAll(".form-panel");
+
+panels.forEach(panel=>{
+panel.style.display="none";
+});
+
+
+document.getElementById(form).style.display="block";
+
+
+let buttons=document.querySelectorAll(".form-tab-btn");
+
+buttons.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+
+event.target.classList.add("active");
+
+}
+
+</script>
 
 <!-- Register form -->
 <form class="join-form active" id="form-register" action="https://formsubmit.co/ivan@greenshootsacademy.ug" method="POST">
