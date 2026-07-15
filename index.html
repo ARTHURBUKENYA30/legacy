@@ -797,241 +797,427 @@ footer a{color:var(--amber);}
 
 <!-- JOIN / DIRECT FORMS -->
 <section id="join">
+
 <span class="eyebrow">Direct &amp; Simple</span>
-<h2 class="section-title">Join the <span>Academy</span></h2>
+
+<h2 class="section-title">
+Join the <span>Academy</span>
+</h2>
+
 <p class="section-lede">
 No redirects, no third-party forms — fill in what applies to you right here and we'll be in touch within 48 hours.
 </p>
 
+
 <div data-aos="fade-up">
 
+
 <div class="form-tabs" role="tablist">
-<button class="form-tab-btn active" onclick="showForm('register')">
+
+<button class="form-tab-btn active" onclick="showForm('form-register',this)">
 Register Athlete
 </button>
 
-<button class="form-tab-btn" onclick="showForm('sponsor')">
+<button class="form-tab-btn" onclick="showForm('form-sponsor',this)">
 Sponsor a Player
 </button>
 
-<button class="form-tab-btn" onclick="showForm('donate')">
+<button class="form-tab-btn" onclick="showForm('form-donate',this)">
 Donate
 </button>
+
 </div>
+
 
 
 <div class="form-panel-wrap">
 
 
-<!-- ATHLETE REGISTRATION FORM -->
-<div id="register" class="form-panel">
 
-<form action="mailto:ugandalegacyracketsacademy@gmail.com" 
-method="post" 
-enctype="text/plain">
+<!-- ================= REGISTER FORM ================= -->
 
-<h3>Athlete Registration</h3>
-
-<input type="text" name="Athlete Name" placeholder="Full Name" required>
-
-<input type="number" name="Age" placeholder="Age" required>
-
-<input type="text" name="Guardian Contact" placeholder="Parent/Guardian Phone">
-
-<input type="email" name="Email" placeholder="Email Address" required>
-
-<textarea name="Message" placeholder="Tell us about the athlete"></textarea>
+<form class="join-form active" id="form-register"
+action="https://formsubmit.co/ugandalegacyracketsacademy@gmail.com"
+method="POST">
 
 
-<button type="submit">
+<input type="hidden" name="_subject" value="New Athlete Registration">
+
+<input type="hidden" name="_template" value="table">
+
+<input type="hidden" name="_captcha" value="false">
+
+<input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+
+
+
+<div class="row">
+
+
+<div class="col-md-6">
+<label>Athlete Full Name</label>
+<input class="form-control" name="Athlete Name" required>
+</div>
+
+
+<div class="col-md-6">
+<label>Age</label>
+<input class="form-control" name="Age" type="number" min="4" max="25" required>
+</div>
+
+
+<div class="col-md-6">
+<label>Parent / Guardian Name</label>
+<input class="form-control" name="Guardian Name" required>
+</div>
+
+
+<div class="col-md-6">
+<label>Phone Number</label>
+<input class="form-control" name="Phone" type="tel" required>
+</div>
+
+
+<div class="col-md-6">
+<label>Email Address</label>
+<input class="form-control" name="Email" type="email" required>
+</div>
+
+
+<div class="col-md-6">
+
+<label>Program of Interest</label>
+
+<select class="form-select" name="Program">
+
+<option>Junior Development Pathway</option>
+
+<option>Elite Performance Program</option>
+
+<option>Girls in Squash Initiative</option>
+
+<option>School Outreach Program</option>
+
+</select>
+
+</div>
+
+
+<div class="col-12">
+
+<label>Anything We Should Know?</label>
+
+<textarea class="form-control" name="Notes"></textarea>
+
+</div>
+
+
+</div>
+
+
+<p class="form-note">
+Submitting registers your interest — our team confirms enrolment and schedule by phone or email.
+</p>
+
+
+<button type="submit" class="btn-main form-submit">
 Submit Registration
 </button>
 
+
 </form>
+
+
+
+
+
+
+<!-- ================= SPONSOR FORM ================= -->
+
+
+<form class="join-form" id="form-sponsor"
+action="https://formsubmit.co/ugandalegacyracketsacademy@gmail.com"
+method="POST">
+
+
+<input type="hidden" name="_subject" value="New Sponsorship Inquiry">
+
+<input type="hidden" name="_template" value="table">
+
+<input type="hidden" name="_captcha" value="false">
+
+
+
+<div class="row">
+
+
+<div class="col-md-6">
+
+<label>Contact Name</label>
+
+<input class="form-control" name="Contact Name" required>
 
 </div>
 
 
 
-<!-- SPONSORSHIP FORM -->
-<div id="sponsor" class="form-panel" style="display:none;">
+<div class="col-md-6">
 
-<form action="mailto:ugandalegacyracketsacademy@gmail.com" 
-method="post" 
-enctype="text/plain">
+<label>Company / Organisation</label>
 
-<h3>Sponsorship Inquiry</h3>
+<input class="form-control" name="Organisation">
 
-<input type="text" name="Sponsor Name" placeholder="Your Name / Organization" required>
-
-<input type="email" name="Email" placeholder="Email Address" required>
-
-<input type="text" name="Phone" placeholder="Phone Number">
-
-<textarea name="Sponsorship Details" 
-placeholder="Tell us how you would like to support a player">
-</textarea>
+</div>
 
 
-<button type="submit">
+
+<div class="col-md-6">
+
+<label>Email Address</label>
+
+<input class="form-control" name="Email" type="email" required>
+
+</div>
+
+
+
+<div class="col-md-6">
+
+<label>Phone Number</label>
+
+<input class="form-control" name="Phone" type="tel" required>
+
+</div>
+
+
+
+<div class="col-md-6">
+
+<label>Sponsorship Level</label>
+
+
+<select class="form-select" name="Sponsorship Level">
+
+
+<option>Individual Athlete Sponsor</option>
+
+<option>Bronze Corporate Partner</option>
+
+<option>Silver Corporate Partner</option>
+
+<option>Gold Corporate Partner</option>
+
+<option>Equipment / Travel Support</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+<div class="col-12">
+
+<label>Tell Us More</label>
+
+<textarea class="form-control" name="Notes"></textarea>
+
+</div>
+
+
+</div>
+
+
+<p class="form-note">
+Our partnerships team will contact you with sponsorship details.
+</p>
+
+
+<button type="submit" class="btn-main form-submit">
 Submit Sponsorship Inquiry
 </button>
 
+
 </form>
+
+
+
+
+
+
+<!-- ================= DONATION FORM ================= -->
+
+
+<form class="join-form" id="form-donate"
+action="https://formsubmit.co/ugandalegacyracketsacademy@gmail.com"
+method="POST">
+
+
+<input type="hidden" name="_subject" value="New Donation Pledge">
+
+<input type="hidden" name="_template" value="table">
+
+<input type="hidden" name="_captcha" value="false">
+
+
+
+<div class="row">
+
+
+
+<div class="col-md-6">
+
+<label>Full Name</label>
+
+<input class="form-control" name="Donor Name" required>
 
 </div>
 
 
 
-<!-- DONATION FORM -->
-<div id="donate" class="form-panel" style="display:none;">
+<div class="col-md-6">
 
-<form action="mailto:ugandalegacyracketsacademy@gmail.com" 
-method="post" 
-enctype="text/plain">
+<label>Email Address</label>
 
-<h3>Donation Pledge</h3>
+<input class="form-control" name="Email" type="email" required>
 
-<input type="text" name="Donor Name" placeholder="Your Name" required>
-
-<input type="email" name="Email" placeholder="Email Address" required>
-
-<input type="text" name="Donation Amount" placeholder="Amount You Wish To Donate">
-
-<textarea name="Donation Message"
-placeholder="Your donation pledge or message">
-</textarea>
+</div>
 
 
-<button type="submit">
+
+<div class="col-md-6">
+
+<label>Phone Number</label>
+
+<input class="form-control" name="Phone" type="tel">
+
+</div>
+
+
+
+<div class="col-md-6">
+
+<label>Pledge Amount (UGX)</label>
+
+<input class="form-control" name="Amount" placeholder="e.g. 200,000" required>
+
+</div>
+
+
+
+
+<div class="col-md-6">
+
+<label>Frequency</label>
+
+<select class="form-select" name="Frequency">
+
+<option>One-Time</option>
+
+<option>Monthly</option>
+
+<option>Annually</option>
+
+</select>
+
+
+</div>
+
+
+
+
+<div class="col-md-6">
+
+<label>Direct My Gift To</label>
+
+<select class="form-select" name="Fund">
+
+<option>Where Needed Most</option>
+
+<option>Scholarship Program</option>
+
+<option>Community Court Development</option>
+
+<option>Girls in Squash Initiative</option>
+
+</select>
+
+
+</div>
+
+
+
+<div class="col-12">
+
+<label>Message</label>
+
+<textarea class="form-control" name="Notes"></textarea>
+
+</div>
+
+
+</div>
+
+
+
+<p class="form-note">
+We'll send confirmation and payment instructions directly to your email.
+</p>
+
+
+
+<button type="submit" class="btn-main btn-donate form-submit">
+
 Submit Donation Pledge
+
 </button>
 
+
+
 </form>
 
-</div>
 
 
 </div>
+
 </div>
+
+
 </section>
+
+
 
 
 
 <script>
 
-function showForm(form){
+function showForm(id,button){
 
-let panels=document.querySelectorAll(".form-panel");
+document.querySelectorAll(".join-form").forEach(form=>{
 
-panels.forEach(panel=>{
-panel.style.display="none";
+form.classList.remove("active");
+
 });
 
 
-document.getElementById(form).style.display="block";
+document.getElementById(id).classList.add("active");
 
 
-let buttons=document.querySelectorAll(".form-tab-btn");
+document.querySelectorAll(".form-tab-btn").forEach(btn=>{
 
-buttons.forEach(btn=>{
 btn.classList.remove("active");
+
 });
 
 
-event.target.classList.add("active");
+button.classList.add("active");
+
 
 }
 
-</script>
-
-<!-- Register form -->
-<form class="join-form active" id="form-register" action="https://formsubmit.co/ivan@greenshootsacademy.ug" method="POST">
-<input type="hidden" name="_subject" value="New Academy Registration">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="false">
-<div class="row">
-<div class="col-md-6"><label for="r-name">Athlete Full Name</label><input class="form-control" id="r-name" name="Athlete Name" required></div>
-<div class="col-md-6"><label for="r-age">Age</label><input class="form-control" id="r-age" name="Age" type="number" min="4" max="25" required></div>
-<div class="col-md-6"><label for="r-guardian">Parent / Guardian Name</label><input class="form-control" id="r-guardian" name="Guardian Name" required></div>
-<div class="col-md-6"><label for="r-phone">Phone Number</label><input class="form-control" id="r-phone" name="Phone" type="tel" required></div>
-<div class="col-md-6"><label for="r-email">Email Address</label><input class="form-control" id="r-email" name="Email" type="email" required></div>
-<div class="col-md-6"><label for="r-program">Program of Interest</label>
-<select class="form-select" id="r-program" name="Program">
-<option>Junior Development Pathway</option>
-<option>Elite Performance Program</option>
-<option>Girls in Squash Initiative</option>
-<option>School Outreach Program</option>
-</select>
-</div>
-<div class="col-12"><label for="r-notes">Anything We Should Know?</label><textarea class="form-control" id="r-notes" name="Notes" placeholder="Previous experience, school, availability..."></textarea></div>
-</div>
-<p class="form-note">Submitting registers your interest — our team confirms enrolment and schedule by phone or email.</p>
-<button type="submit" class="btn-main form-submit"><i class="fa-solid fa-user-plus"></i> Submit Registration</button>
-</form>
-
-<!-- Sponsor form -->
-<form class="join-form" id="form-sponsor" action="https://formsubmit.co/ivan@greenshootsacademy.ug" method="POST">
-<input type="hidden" name="_subject" value="New Sponsorship Enquiry">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="false">
-<div class="row">
-<div class="col-md-6"><label for="s-name">Contact Name</label><input class="form-control" id="s-name" name="Contact Name" required></div>
-<div class="col-md-6"><label for="s-org">Company / Organisation</label><input class="form-control" id="s-org" name="Organisation"></div>
-<div class="col-md-6"><label for="s-email">Email Address</label><input class="form-control" id="s-email" name="Email" type="email" required></div>
-<div class="col-md-6"><label for="s-phone">Phone Number</label><input class="form-control" id="s-phone" name="Phone" type="tel" required></div>
-<div class="col-md-6"><label for="s-level">Sponsorship Level</label>
-<select class="form-select" id="s-level" name="Sponsorship Level">
-<option>Individual Athlete Sponsor</option>
-<option>Bronze Corporate Partner</option>
-<option>Silver Corporate Partner</option>
-<option>Gold Corporate Partner</option>
-<option>In-Kind (Equipment / Travel)</option>
-</select>
-</div>
-<div class="col-md-6"><label for="s-budget">Estimated Annual Budget (UGX)</label><input class="form-control" id="s-budget" name="Budget" placeholder="e.g. 5,000,000"></div>
-<div class="col-12"><label for="s-notes">Tell Us More</label><textarea class="form-control" id="s-notes" name="Notes" placeholder="Which athlete or program interests you?"></textarea></div>
-</div>
-<p class="form-note">A member of our partnerships team will follow up directly with a sponsorship pack.</p>
-<button type="submit" class="btn-main form-submit"><i class="fa-solid fa-handshake"></i> Submit Sponsorship Enquiry</button>
-</form>
-
-<!-- Donate form -->
-<form class="join-form" id="form-donate" action="https://formsubmit.co/ivan@greenshootsacademy.ug" method="POST">
-<input type="hidden" name="_subject" value="New Donation Pledge">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="false">
-<div class="row">
-<div class="col-md-6"><label for="d-name">Full Name</label><input class="form-control" id="d-name" name="Donor Name" required></div>
-<div class="col-md-6"><label for="d-email">Email Address</label><input class="form-control" id="d-email" name="Email" type="email" required></div>
-<div class="col-md-6"><label for="d-phone">Phone Number</label><input class="form-control" id="d-phone" name="Phone" type="tel" required></div>
-<div class="col-md-6"><label for="d-amount">Pledge Amount (UGX)</label><input class="form-control" id="d-amount" name="Amount" placeholder="e.g. 200,000" required></div>
-<div class="col-md-6"><label for="d-freq">Frequency</label>
-<select class="form-select" id="d-freq" name="Frequency">
-<option>One-Time</option>
-<option>Monthly</option>
-<option>Annually</option>
-</select>
-</div>
-<div class="col-md-6"><label for="d-fund">Direct My Gift To</label>
-<select class="form-select" id="d-fund" name="Fund">
-<option>Where Needed Most</option>
-<option>Scholarship Program</option>
-<option>Community Court Development</option>
-<option>Girls in Squash Initiative</option>
-</select>
-</div>
-<div class="col-12"><label for="d-notes">Message (Optional)</label><textarea class="form-control" id="d-notes" name="Notes"></textarea></div>
-</div>
-<p class="form-note">We'll send a confirmation and payment instructions (Mobile Money / Bank Transfer) directly to your email.</p>
-<button type="submit" class="btn-main btn-donate form-submit"><i class="fa-solid fa-heart"></i> Submit Donation Pledge</button>
-</form>
-
-</div>
-</div>
-</section>
-
-<!-- CONTACT -->
+</script><!-- CONTACT -->
 <section id="contact">
 <span class="eyebrow">Reach Us</span>
 <h2 class="section-title">Contact <span>Us</span></h2>
