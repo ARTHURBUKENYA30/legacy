@@ -543,8 +543,8 @@ footer a{color:var(--amber);}
 <div class="container-fluid px-4 px-lg-5">
 
 <a class="navbar-brand-wrap" href="#top">
-<img src="img/logo.jpg" alt="Green Shoots Legacy Sports Squash Academy logo">
-<span class="brand-text">Green Shoots<small>Legacy Sports Squash Academy</small></span>
+<img src="img/logo.jpg" alt="Green Shoots Legacy Sports Squash Academy logo" id="navLogo">
+<span class="brand-text" id="navBrandText">Green Shoots<small>Legacy Sports Squash Academy</small></span>
 </a>
 
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -569,8 +569,8 @@ footer a{color:var(--amber);}
 
 <!-- HERO -->
 <header class="hero" id="top">
-<video autoplay muted loop playsinline poster="img/1.jpg">
-<source src="videos/squash.mp4" type="video/mp4">
+<video autoplay muted loop playsinline poster="img/1.jpg" id="heroVideo">
+<source src="videos/squash.mp4" type="video/mp4" id="heroVideoSource">
 </video>
 <div class="hero-fallback"></div>
 
@@ -583,9 +583,9 @@ footer a{color:var(--amber);}
 </svg>
 
 <div class="hero-content" data-aos="fade-up">
-<span class="eyebrow">Kampala, Uganda · Est. Community Squash Program</span>
-<h1>Building Africa's<br>Next <em>Squash</em> Champions</h1>
-<p class="lede">We don't just train athletes — we build champions, leaders and legacy, one rally, one school, one court at a time.</p>
+<span class="eyebrow" id="heroEyebrow">Kampala, Uganda · Est. Community Squash Program</span>
+<h1 id="heroHeading">Building Africa's<br>Next <em>Squash</em> Champions</h1>
+<p class="lede" id="heroLede">We don't just train athletes — we build champions, leaders and legacy, one rally, one school, one court at a time.</p>
 
 <div class="hero-ctas">
 <a href="#join" class="btn-main" data-form-target="register"><i class="fa-solid fa-user-plus"></i> Join Academy</a>
@@ -599,12 +599,7 @@ footer a{color:var(--amber);}
 
 <!-- SPONSOR LOGOS -->
 <section class="logo-slider py-0">
-<div class="logo-track" id="logoTrack">
-<img src="img/s1.png" alt="Partner logo" loading="lazy">
-<img src="img/s2.png" alt="Partner logo" loading="lazy">
-<img src="img/s3.png" alt="Partner logo" loading="lazy">
-<img src="img/s4.png" alt="Partner logo" loading="lazy">
-</div>
+<div class="logo-track" id="logoTrack"></div>
 </section>
 
 <!-- IMPACT / SCOREBOARD -->
@@ -613,13 +608,7 @@ footer a{color:var(--amber);}
 <h2 class="section-title">Impact <span>Dashboard</span></h2>
 <p class="section-lede">Every number on this board is a young person who picked up a racquet and found something bigger than a game.</p>
 
-<div class="scoreboard">
-<div class="stat"><h3 data-count="1000" data-suffix="+">0</h3><p>Youth Reached</p></div>
-<div class="stat"><h3 data-count="35" data-suffix="+">0</h3><p>Partner Schools</p></div>
-<div class="stat"><h3 data-count="15" data-suffix="+">0</h3><p>Elite Athletes</p></div>
-<div class="stat"><h3 data-count="12" data-suffix="+">0</h3><p>Corporate Partners</p></div>
-<div class="stat"><h3 data-count="50" data-suffix="+">0</h3><p>Events Hosted</p></div>
-</div>
+<div class="scoreboard" id="scoreboardGrid"></div>
 </section>
 
 <!-- WHY PARTNER -->
@@ -629,12 +618,7 @@ footer a{color:var(--amber);}
 <h2 class="section-title">Why Partner <span>With Us</span></h2>
 <p class="section-lede">Squash is the fastest-growing racquet sport on the continent. Here's what your name next to ours actually buys.</p>
 
-<div class="partner-grid" data-aos="fade-up">
-<div class="partner-card"><i class="fa-solid fa-seedling"></i><h4>Talent Development</h4><p>Direct investment in athletes with a real pathway to national and continental ranking.</p></div>
-<div class="partner-card"><i class="fa-solid fa-award"></i><h4>Corporate CSR Value</h4><p>A measurable, community-rooted programme that fits squarely inside your CSR mandate.</p></div>
-<div class="partner-card"><i class="fa-solid fa-tower-broadcast"></i><h4>Media Exposure</h4><p>Branding across events, jerseys and coverage as our athletes climb the rankings.</p></div>
-<div class="partner-card"><i class="fa-solid fa-earth-africa"></i><h4>National Impact</h4><p>A stake in a growing sport, with reach across schools in Kampala and beyond.</p></div>
-</div>
+<div class="partner-grid" id="partnerGrid" data-aos="fade-up"></div>
 </section>
 
 <!-- ATHLETES -->
@@ -643,86 +627,16 @@ footer a{color:var(--amber);}
 <h2 class="section-title">Featured <span>Athletes</span></h2>
 <p class="section-lede">The players closest to a breakthrough — and closest to needing your support to get there.</p>
 
-<div class="row g-4" data-aos="fade-up">
-<div class="col-md-4">
-<div class="athlete-card">
-<div class="athlete-img-wrap">
-<img src="img/a.jpg" alt="Elite junior squash player mid-rally" loading="lazy">
-<span class="athlete-tag">Junior Elite</span>
-</div>
-<div class="athlete-body">
-<h4>Junior Squad Athlete</h4>
-<span class="role">Age 16 · Kampala</span>
-<div class="athlete-stat-row"><span>Ranking</span><strong>Top National 10</strong></div>
-<div class="athlete-stat-row"><span>Goal</span><strong>African Champion</strong></div>
-<div class="athlete-stat-row"><span>Sponsor Need</span><strong>Equipment + Travel</strong></div>
-</div>
-</div>
-</div>
+<div class="row g-4" id="athletesGrid" data-aos="fade-up"></div>
 
-<div class="col-md-4">
-<div class="athlete-card">
-<div class="athlete-img-wrap">
-<img src="img/b.jpg" alt="Squash academy athlete on court" loading="lazy">
-<span class="athlete-tag">Rising Talent</span>
-</div>
-<div class="athlete-body">
-<h4>Development Squad Athlete</h4>
-<span class="role">Age 14 · Kampala</span>
-<div class="athlete-stat-row"><span>Ranking</span><strong>Regional Top 5</strong></div>
-<div class="athlete-stat-row"><span>Goal</span><strong>National Team Call-up</strong></div>
-<div class="athlete-stat-row"><span>Sponsor Need</span><strong>Coaching Hours</strong></div>
-</div>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="athlete-card">
-<div class="athlete-img-wrap">
-<img src="img/c.jpg" alt="Girls in Squash Initiative participant" loading="lazy">
-<span class="athlete-tag">Girls in Squash</span>
-</div>
-<div class="athlete-body">
-<h4>Girls Initiative Athlete</h4>
-<span class="role">Age 15 · Kampala</span>
-<div class="athlete-stat-row"><span>Ranking</span><strong>School Champion</strong></div>
-<div class="athlete-stat-row"><span>Goal</span><strong>Full Scholarship</strong></div>
-<div class="athlete-stat-row"><span>Sponsor Need</span><strong>Tuition Support</strong></div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="story-banner" data-aos="fade-up">
-<img src="img/d.jpg" alt="Green Shoots Academy athletes and coaches">
-<div class="story-banner-text">
-<span class="eyebrow">Behind the Racquet</span>
-<h3>Every Champion Started on a School Court</h3>
-<p>Before the rankings and the sponsors, it's a coach, a borrowed racquet and a kid who wouldn't stop asking for one more rally.</p>
-</div>
-</div>
+<div class="story-banner" id="storyBanner" data-aos="fade-up"></div>
 </section>
 
 <!-- SUCCESS STORIES -->
 <section id="stories">
 <span class="eyebrow">Voices</span>
 <h2 class="section-title">Success <span>Stories</span></h2>
-<div class="row g-4" data-aos="fade-up">
-<div class="col-md-6">
-<div class="testimonial">
-<span class="quote-mark">&ldquo;</span>
-<p>From school beginner to national competitor in under two years — this programme changed the trajectory of my son's life.</p>
-<strong>Transformation Story</strong>
-</div>
-</div>
-<div class="col-md-6">
-<div class="testimonial">
-<span class="quote-mark">&ldquo;</span>
-<p>Watching my daughter walk onto that court and own it — Girls in Squash gave her a confidence nothing else had.</p>
-<strong>Parent Testimony</strong>
-</div>
-</div>
-</div>
+<div class="row g-4" id="testimonialsGrid" data-aos="fade-up"></div>
 </section>
 
 <!-- PROGRAMS -->
@@ -731,13 +645,7 @@ footer a{color:var(--amber);}
 <h2 class="section-title">Programs</h2>
 <p class="section-lede">Five pathways, one goal: get more young people on court and keep them there.</p>
 
-<div class="row g-4" data-aos="fade-up">
-<div class="col-md-4"><div class="icon-card"><i class="fa-solid fa-child-reaching"></i><h4>Junior Development Pathway</h4><p>Structured coaching for beginners through to competitive juniors.</p></div></div>
-<div class="col-md-4"><div class="icon-card"><i class="fa-solid fa-trophy"></i><h4>Elite Performance Program</h4><p>High-performance training for athletes competing at national level.</p></div></div>
-<div class="col-md-4"><div class="icon-card"><i class="fa-solid fa-venus"></i><h4>Girls in Squash Initiative</h4><p>Dedicated pathway increasing access and retention for young women.</p></div></div>
-<div class="col-md-4"><div class="icon-card"><i class="fa-solid fa-school"></i><h4>School Outreach Program</h4><p>Introducing squash to schools with no prior access to the sport.</p></div></div>
-<div class="col-md-4"><div class="icon-card"><i class="fa-solid fa-chalkboard-user"></i><h4>Coach Development Program</h4><p>Training the next generation of local coaches and mentors.</p></div></div>
-</div>
+<div class="row g-4" id="programsGrid" data-aos="fade-up"></div>
 </section>
 
 <!-- PROJECTS -->
@@ -746,12 +654,7 @@ footer a{color:var(--amber);}
 <h2 class="section-title">Projects</h2>
 <p class="section-lede">Where the impact is actually being built right now.</p>
 
-<div class="row g-4" data-aos="fade-up">
-<div class="col-md-3"><div class="icon-card"><i class="fa-solid fa-people-group"></i><h4>Schools Squash Initiative</h4><p>Rolling out squash access across partner schools.</p></div></div>
-<div class="col-md-3"><div class="icon-card"><i class="fa-solid fa-medal"></i><h4>East Africa Championship</h4><p>Hosting and competing in the region's premier tournament.</p></div></div>
-<div class="col-md-3"><div class="icon-card"><i class="fa-solid fa-trowel-bricks"></i><h4>Community Court Development</h4><p>Building accessible courts in underserved communities.</p></div></div>
-<div class="col-md-3"><div class="icon-card"><i class="fa-solid fa-graduation-cap"></i><h4>Scholarship Program</h4><p>Funding tuition and equipment for our top young athletes.</p></div></div>
-</div>
+<div class="row g-4" id="projectsGrid" data-aos="fade-up"></div>
 </section>
 
 <!-- GALLERY -->
@@ -1224,14 +1127,14 @@ button.classList.add("active");
 
 <div class="row g-5">
 <div class="col-lg-5">
-<div class="contact-info-item"><i class="fa-solid fa-envelope"></i><div><h4>Email</h4><p><a href="mailto:ugandalegacyracketsacademy@gmail.com" style="color:var(--chalk);">ugandalegacyracketsacademy@gmail.com</a></p></div></div>
-<div class="contact-info-item"><i class="fa-solid fa-phone"></i><div><h4>Phone</h4><p><a href="tel:+256772330463" style="color:var(--chalk);">+256 772 330 463</a></p></div></div>
-<div class="contact-info-item"><i class="fa-solid fa-location-dot"></i><div><h4>Location</h4><p>Kampala, Uganda</p></div></div>
+<div class="contact-info-item"><i class="fa-solid fa-envelope"></i><div><h4>Email</h4><p><a href="mailto:ugandalegacyracketsacademy@gmail.com" style="color:var(--chalk);" id="contactEmailLink">ugandalegacyracketsacademy@gmail.com</a></p></div></div>
+<div class="contact-info-item"><i class="fa-solid fa-phone"></i><div><h4>Phone</h4><p><a href="tel:+256772330463" style="color:var(--chalk);" id="contactPhoneLink">+256 772 330 463</a></p></div></div>
+<div class="contact-info-item"><i class="fa-solid fa-location-dot"></i><div><h4>Location</h4><p id="contactLocation">Kampala, Uganda</p></div></div>
 <div class="social-row">
-<a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-<a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-<a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-<a href="https://wa.me/256700122803" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<a href="#" aria-label="Facebook" id="socialFacebook"><i class="fa-brands fa-facebook-f"></i></a>
+<a href="#" aria-label="Instagram" id="socialInstagram"><i class="fa-brands fa-instagram"></i></a>
+<a href="#" aria-label="X" id="socialX"><i class="fa-brands fa-x-twitter"></i></a>
+<a href="https://wa.me/256700122803" aria-label="WhatsApp" id="socialWhatsapp"><i class="fa-brands fa-whatsapp"></i></a>
 </div>
 </div>
 <div class="col-lg-7">
@@ -1246,12 +1149,12 @@ button.classList.add("active");
 
 <!-- FOOTER -->
 <footer>
-<img src="img/logo.jpg" alt="Green Shoots Legacy Sports Squash Academy" height="42" style="border-radius:6px;margin-bottom:14px;">
-<p>&copy; 2025 Green Shoots Legacy Sports Squash Academy. All rights reserved.</p>
-<p>Kampala, Uganda &nbsp;·&nbsp; <a href="mailto:ivan@greenshootsacademy.ug">ivan@greenshootsacademy.ug</a> &nbsp;·&nbsp; <a href="tel:+256772330463">+256 772 330 463</a></p>
+<img src="img/logo.jpg" alt="Green Shoots Legacy Sports Squash Academy" height="42" style="border-radius:6px;margin-bottom:14px;" id="footerLogo">
+<p id="footerCopyright">&copy; 2025 Green Shoots Legacy Sports Squash Academy. All rights reserved.</p>
+<p id="footerContactLine">Kampala, Uganda &nbsp;·&nbsp; <a href="mailto:ivan@greenshootsacademy.ug">ivan@greenshootsacademy.ug</a> &nbsp;·&nbsp; <a href="tel:+256772330463">+256 772 330 463</a></p>
 </footer>
 
-<a class="whatsapp" href="https://wa.me/256700122803" aria-label="Chat on WhatsApp" target="_blank" rel="noopener">
+<a class="whatsapp" href="https://wa.me/256700122803" aria-label="Chat on WhatsApp" target="_blank" rel="noopener" id="whatsappFab">
 <i class="fa-brands fa-whatsapp"></i>
 </a>
 
@@ -1272,7 +1175,6 @@ track.innerHTML += track.innerHTML;
 
 /* ===== Scoreboard count-up ===== */
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const counters = document.querySelectorAll('.stat h3');
 const countUp = (el) => {
   const target = parseInt(el.dataset.count, 10);
   const suffix = el.dataset.suffix || '';
@@ -1297,20 +1199,12 @@ const counterObserver = new IntersectionObserver((entries) => {
     }
   });
 }, {threshold:0.5});
-counters.forEach(c => counterObserver.observe(c));
 
-/* ===== Gallery: build from img/1.jpg..45.jpg + img/a-d.jpg, tag with categories, paginate ===== */
+/* ===== Gallery: built from content/site-data.json "gallery" list, tag with categories, paginate ===== */
 const galleryGrid = document.getElementById('galleryGrid');
 const galleryMoreBtn = document.getElementById('galleryMore');
 
-const galleryImages = [];
-['a','b','c','d'].forEach((letter, i) => {
-  galleryImages.push({src:`img/${letter}.jpg`, cat: String((i % 4) + 1)});
-});
-for (let i = 1; i <= 45; i++) {
-  galleryImages.push({src:`img/${i}.jpg`, cat: String((i % 4) + 1)});
-}
-
+let galleryImages = [];
 const categoryLabels = {1:'Training', 2:'Tournaments', 3:'Schools', 4:'Community'};
 let visibleCount = 18;
 let currentFilter = 'all';
@@ -1321,13 +1215,12 @@ function renderGallery(){
   filtered.slice(0, visibleCount).forEach((img, idx) => {
     const fig = document.createElement('figure');
     fig.dataset.index = idx;
-    fig.innerHTML = `<img src="${img.src}" alt="${categoryLabels[img.cat]} moment at Green Shoots Academy" loading="lazy">`;
+    fig.innerHTML = `<img src="${img.src}" alt="${categoryLabels[img.cat] || 'Gallery'} moment at Green Shoots Academy" loading="lazy">`;
     fig.addEventListener('click', () => openLightbox(filtered, idx));
     galleryGrid.appendChild(fig);
   });
   galleryMoreBtn.style.display = filtered.length > visibleCount ? 'block' : 'none';
 }
-renderGallery();
 
 document.querySelectorAll('.gallery-filters button').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1396,6 +1289,159 @@ tabButtons.forEach(btn => {
 document.querySelectorAll('[data-form-target]').forEach(link => {
   link.addEventListener('click', () => activateForm(link.dataset.formTarget));
 });
+
+/* ===== CONTENT LOADER =====
+   Everything below reads content/site-data.json and fills in the page.
+   This is the file the admin panel (/admin) edits, so updates made
+   there show up here automatically — no code changes needed. */
+fetch('content/site-data.json?v=' + Date.now())
+  .then(res => res.json())
+  .then(data => {
+
+    // Brand / logo
+    if (data.brand) {
+      const logo = document.getElementById('navLogo');
+      if (logo && data.brand.logo) logo.src = data.brand.logo;
+      const brandText = document.getElementById('navBrandText');
+      if (brandText) brandText.innerHTML = `${data.brand.name}<small>${data.brand.tagline}</small>`;
+      const footerLogo = document.getElementById('footerLogo');
+      if (footerLogo && data.brand.logo) footerLogo.src = data.brand.logo;
+    }
+
+    // Hero
+    if (data.hero) {
+      const h = data.hero;
+      const eyebrow = document.getElementById('heroEyebrow');
+      if (eyebrow) eyebrow.textContent = h.eyebrow;
+      const heading = document.getElementById('heroHeading');
+      if (heading) heading.innerHTML = `${h.heading_top}<br>${h.heading_bottom_normal}<em>${h.heading_bottom_highlight}</em>${h.heading_bottom_end}`;
+      const lede = document.getElementById('heroLede');
+      if (lede) lede.textContent = h.lede;
+      const video = document.getElementById('heroVideo');
+      const source = document.getElementById('heroVideoSource');
+      if (video && h.poster) video.setAttribute('poster', h.poster);
+      if (source && h.video) { source.src = h.video; if (video) video.load(); }
+    }
+
+    // Sponsor logos
+    if (Array.isArray(data.sponsors)) {
+      const track = document.getElementById('logoTrack');
+      track.innerHTML = data.sponsors.map(s => `<img src="${s.logo}" alt="Partner logo" loading="lazy">`).join('');
+      track.innerHTML += track.innerHTML; // duplicate for seamless scroll loop
+    }
+
+    // Scoreboard stats
+    if (Array.isArray(data.stats)) {
+      const grid = document.getElementById('scoreboardGrid');
+      grid.innerHTML = data.stats.map(s =>
+        `<div class="stat"><h3 data-count="${s.number}" data-suffix="${s.suffix || ''}">0</h3><p>${s.label}</p></div>`
+      ).join('');
+      grid.querySelectorAll('.stat h3').forEach(c => counterObserver.observe(c));
+    }
+
+    // Why partner cards
+    if (Array.isArray(data.why_partner)) {
+      const grid = document.getElementById('partnerGrid');
+      grid.innerHTML = data.why_partner.map(c =>
+        `<div class="partner-card"><i class="${c.icon}"></i><h4>${c.title}</h4><p>${c.text}</p></div>`
+      ).join('');
+    }
+
+    // Athletes
+    if (Array.isArray(data.athletes)) {
+      const grid = document.getElementById('athletesGrid');
+      grid.innerHTML = data.athletes.map(a => `
+        <div class="col-md-4">
+        <div class="athlete-card">
+        <div class="athlete-img-wrap">
+        <img src="${a.photo}" alt="${a.name}" loading="lazy">
+        <span class="athlete-tag">${a.tag}</span>
+        </div>
+        <div class="athlete-body">
+        <h4>${a.name}</h4>
+        <span class="role">${a.subtitle}</span>
+        <div class="athlete-stat-row"><span>Ranking</span><strong>${a.ranking}</strong></div>
+        <div class="athlete-stat-row"><span>Goal</span><strong>${a.goal}</strong></div>
+        <div class="athlete-stat-row"><span>Sponsor Need</span><strong>${a.need}</strong></div>
+        </div>
+        </div>
+        </div>`).join('');
+    }
+
+    // Story banner
+    if (data.story_banner) {
+      const b = data.story_banner;
+      const banner = document.getElementById('storyBanner');
+      banner.innerHTML = `
+        <img src="${b.image}" alt="Green Shoots Academy athletes and coaches">
+        <div class="story-banner-text">
+        <span class="eyebrow">${b.eyebrow}</span>
+        <h3>${b.heading}</h3>
+        <p>${b.text}</p>
+        </div>`;
+    }
+
+    // Testimonials
+    if (Array.isArray(data.testimonials)) {
+      const grid = document.getElementById('testimonialsGrid');
+      grid.innerHTML = data.testimonials.map(t => `
+        <div class="col-md-6">
+        <div class="testimonial">
+        <span class="quote-mark">&ldquo;</span>
+        <p>${t.quote}</p>
+        <strong>${t.author}</strong>
+        </div>
+        </div>`).join('');
+    }
+
+    // Programs
+    if (Array.isArray(data.programs)) {
+      const grid = document.getElementById('programsGrid');
+      grid.innerHTML = data.programs.map(p =>
+        `<div class="col-md-4"><div class="icon-card"><i class="${p.icon}"></i><h4>${p.title}</h4><p>${p.text}</p></div></div>`
+      ).join('');
+    }
+
+    // Projects
+    if (Array.isArray(data.projects)) {
+      const grid = document.getElementById('projectsGrid');
+      grid.innerHTML = data.projects.map(p =>
+        `<div class="col-md-3"><div class="icon-card"><i class="${p.icon}"></i><h4>${p.title}</h4><p>${p.text}</p></div></div>`
+      ).join('');
+    }
+
+    // Gallery
+    if (Array.isArray(data.gallery)) {
+      galleryImages = data.gallery.map(g => ({src: g.src, cat: String(g.category)}));
+      renderGallery();
+    }
+
+    // Contact section
+    if (data.contact) {
+      const c = data.contact;
+      const emailLink = document.getElementById('contactEmailLink');
+      if (emailLink) { emailLink.href = `mailto:${c.email}`; emailLink.textContent = c.email; }
+      const phoneLink = document.getElementById('contactPhoneLink');
+      if (phoneLink) { phoneLink.href = `tel:${c.phone_link}`; phoneLink.textContent = c.phone; }
+      const location = document.getElementById('contactLocation');
+      if (location) location.textContent = c.location;
+      const fb = document.getElementById('socialFacebook'); if (fb && c.facebook_link) fb.href = c.facebook_link;
+      const ig = document.getElementById('socialInstagram'); if (ig && c.instagram_link) ig.href = c.instagram_link;
+      const x = document.getElementById('socialX'); if (x && c.x_link) x.href = c.x_link;
+      const wa = document.getElementById('socialWhatsapp'); if (wa && c.whatsapp_link) wa.href = c.whatsapp_link;
+      const fab = document.getElementById('whatsappFab'); if (fab && c.whatsapp_link) fab.href = c.whatsapp_link;
+    }
+
+    // Footer
+    if (data.footer) {
+      const f = data.footer;
+      const copy = document.getElementById('footerCopyright');
+      if (copy) copy.innerHTML = `&copy; ${f.copyright_text.replace(/^\u00a9\s*/, '')}`;
+      const line = document.getElementById('footerContactLine');
+      if (line) line.innerHTML = `${f.location} &nbsp;\u00b7&nbsp; <a href="mailto:${f.email}">${f.email}</a> &nbsp;\u00b7&nbsp; <a href="tel:${f.phone_link}">${f.phone}</a>`;
+    }
+  })
+  .catch(err => console.error('Could not load site content:', err));
 </script>
 
 </body>
