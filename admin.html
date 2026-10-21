@@ -1,0 +1,512 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Green Shoots | Admin</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #f2f6f1;
+      color: #193b2a;
+    }
+    header {
+      background: #174c32;
+      color: white;
+      padding: 20px 6%;
+    }
+    main { max-width: 900px; margin: 45px auto; padding: 20px; }
+    .panel {
+      background: white;
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px #173b2a12;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 13px;
+      margin-top: 12px;
+      border-radius: 7px;
+      font-size: 16px;
+    }
+    input, select, textarea { border: 1px solid #ccd7cd; border-radius: 7px; padding: 12px; font: inherit; max-width: 100%; }\n    #contentEditorMessage { white-space: pre-wrap; overflow-wrap: anywhere; }\n    #contentEditorMessage.success { color: #207447; }\n    #contentEditorMessage.error { color: #b42318; }
+    button {
+      background: #207447;
+      color: white;
+      border: 0;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:disabled { opacity: .6; cursor: wait; }
+    #message { white-space: pre-wrap; overflow-wrap: anywhere; }
+    .success { color: #207447; }
+    .error { color: #b42318; }
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .tile { background: #edf5ed; padding: 20px; border-radius: 10px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Green Shoots Legacy Sports Squash Academy</h2>
+    <div>Website Administration</div>\n    <small>Admin dashboard build: 2026-10-21-fix1</small>
+  </header>
+
+  <main>
+    <section id="loginPanel" class="panel">
+      <h1>Administrator Login</h1>
+      <p>Sign in with your registered administrator account.</p>
+      <form id="loginForm">
+        <label for="email">Email address</label>
+        <input id="email" type="email" autocomplete="username"
+               required placeholder="Admin email">
+
+        <label for="password">Password</label>
+        <input id="password" type="password"
+               autocomplete="current-password" required
+               placeholder="Your password">
+
+        <button id="loginButton" type="submit">Sign in</button>
+      </form>
+      <p id="message" role="status"></p>
+    </section>
+
+    <section id="dashboard" class="panel hidden">
+      <h1>Admin Dashboard</h1>
+      <p id="welcome"></p>
+      <p class="success">Administrator access verified.</p>
+
+      
+<section class="panel" id="contentEditor">
+  <h2>Website Content Editor</h2>
+  <p>Select a saved content entry, edit its JSON, and save it as unpublished.</p>
+
+  <label for="contentSelect">Content entry</label>
+  <select id="contentSelect">
+    <option value="">Loading entries...</option>
+  </select>
+
+  <label for="contentJson">Content (JSON)</label>
+  <textarea id="contentJson" rows="10" spellcheck="false"
+    style="width:100%; box-sizing:border-box; font-family:monospace;"
+    placeholder="Select a content entry first"></textarea>
+
+  <p id="contentEditorMessage" role="status"></p>
+
+  <button id="loadContentButton" type="button">Reload entries</button>
+  <button id="saveContentButton" type="button">Save as unpublished</button>
+  <button id="publishContentButton" type="button">Publish selected content</button>
+</section>
+
+
+      <div class="tiles">
+        <div class="tile">
+          <h3>Website Content</h3>
+          <p>Homepage text and website sections</p>
+        </div>
+        <div class="tile">
+          <h3>Athletes</h3>
+          <p>Manage athlete profiles</p>
+        </div>
+        <div class="tile">
+          <h3>Programs & Events</h3>
+          <p>Manage academy activities</p>
+        </div>
+        <div class="tile">
+          <h3>Gallery & Enquiries</h3>
+          <p>Images and incoming submissions</p>
+        </div>
+      </div>
+
+      <p id="dashboardMessage"></p>
+      <button id="logoutButton" type="button">Sign out</button>
+    </section>
+  </main>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+    const SUPABASE_URL = 'https://sbfyvcsechxnsxlvzuvv.supabase.co';
+    const SUPABASE_PUBLIC_KEY = 'sb_publishable_itwkgKU9h9fd8qMn7w9qjg_2DY2uezD';
+
+    const $ = (id) => document.getElementById(id);
+    const loginPanel = $('loginPanel');
+    const dashboard = $('dashboard');
+    const message = $('message');
+    const loginButton = $('loginButton');
+    const editorStatus = $('contentEditorMessage');
+    const contentSelect = $('contentSelect');
+    const contentJson = $('contentJson');
+    const loadButton = $('loadContentButton');
+    const saveButton = $('saveContentButton');
+    const publishButton = $('publishContentButton');
+
+    let supabase = null;
+    let currentAdminUser = null;
+    let editorEntries = [];
+
+    const configured = SUPABASE_URL.startsWith('https://') &&
+      !SUPABASE_URL.includes('PASTE_') &&
+      SUPABASE_PUBLIC_KEY.length > 20 &&
+      !SUPABASE_PUBLIC_KEY.includes('PASTE_');
+
+    function setMessage(text, kind = '') {
+      message.className = kind;
+      message.textContent = text;
+    }
+
+    function setEditorStatus(text, kind = '') {
+      editorStatus.className = kind;
+      editorStatus.textContent = text;
+    }
+
+    function showError(text) {
+      setMessage(text, 'error');
+    }
+
+    async function loadContentEntries() {
+      if (!supabase || !currentAdminUser) {
+        setEditorStatus('Please sign in with an administrator account first.', 'error');
+        return;
+      }
+
+      loadButton.disabled = true;
+      saveButton.disabled = true;
+      setEditorStatus('Loading content entries...');
+
+      try {
+        const { data, error } = await supabase
+          .from('site_content')
+          .select('content_key, content, published')
+          .order('content_key');
+
+        if (error) throw error;
+
+        editorEntries = data || [];
+        const previousKey = contentSelect.value;
+        contentSelect.replaceChildren();
+
+        if (editorEntries.length === 0) {
+          contentSelect.add(new Option('No content entries found', ''));
+          contentJson.value = '';
+          setEditorStatus('No entries were found in site_content. Add a row in Supabase first.');
+          return;
+        }
+
+        for (const entry of editorEntries) {
+          const label = `${entry.content_key}${entry.published ? ' (published)' : ' (unpublished)'}`;
+          contentSelect.add(new Option(label, entry.content_key));
+        }
+
+        const desiredKey = editorEntries.some(e => e.content_key === previousKey)
+          ? previousKey : editorEntries[0].content_key;
+        contentSelect.value = desiredKey;
+        await showSelectedContent();
+      } catch (error) {
+        console.error('Loading site_content failed:', error);
+        setEditorStatus(`Could not load entries: ${error.message || String(error)}`, 'error');
+      } finally {
+        loadButton.disabled = false;
+        saveButton.disabled = false;
+      }
+    }
+
+    async function showSelectedContent() {
+      const key = contentSelect.value;
+      if (!key) {
+        contentJson.value = '';
+        return;
+      }
+
+      const entry = editorEntries.find(item => item.content_key === key);
+      if (!entry) {
+        setEditorStatus('That entry is not in the loaded list. Click Reload entries.', 'error');
+        return;
+      }
+
+      contentJson.value = JSON.stringify(entry.content, null, 2);
+      setEditorStatus(entry.published
+        ? 'This entry is published. Saving will change it to unpublished.'
+        : 'This entry is unpublished.');
+    }
+
+    async function saveContentEntry() {
+      // This visible message confirms that the button handler is running.
+      setEditorStatus('Save button clicked. Validating content...');
+
+      const key = contentSelect.value;
+      if (!key) {
+        setEditorStatus('Select a content entry before saving.', 'error');
+        return;
+      }
+      if (editorEntries.filter(entry => entry.content_key === key).length !== 1) {
+        setEditorStatus('Cannot safely save: this content_key is missing or duplicated. Make each site_content.content_key unique in Supabase before editing it.', 'error');
+        return;
+      }
+
+      let parsedContent;
+      try {
+        parsedContent = JSON.parse(contentJson.value);
+      } catch (error) {
+        setEditorStatus(`Invalid JSON: ${error.message}`, 'error');
+        return;
+      }
+
+      if (parsedContent === null || typeof parsedContent !== 'object') {
+        setEditorStatus('Content must be a JSON object or array.', 'error');
+        return;
+      }
+
+      if (!currentAdminUser) {
+        setEditorStatus('Your administrator session is missing. Sign out and sign in again.', 'error');
+        return;
+      }
+
+      saveButton.disabled = true;
+      loadButton.disabled = true;
+      setEditorStatus('Saving to Supabase as unpublished...');
+
+      try {
+        const { data, error } = await supabase
+          .from('site_content')
+          .update({
+            content: parsedContent,
+            published: false,
+            updated_at: new Date().toISOString(),
+            updated_by: currentAdminUser.id
+          })
+          .eq('content_key', key)
+          .select('content_key, content, published');
+
+        if (error) throw error;
+        if (!data || data.length === 0) {
+          throw new Error('Supabase updated zero rows. Check the site_content UPDATE/SELECT RLS policies and that this content_key exists.');
+        }
+
+        editorEntries = editorEntries.map(entry =>
+          entry.content_key === key
+            ? { ...entry, content: parsedContent, published: false }
+            : entry
+        );
+        setEditorStatus(`Saved successfully: "${key}" is now unpublished.`, 'success');
+        await loadContentEntries();
+        contentSelect.value = key;
+        await showSelectedContent();
+        setEditorStatus(`Saved successfully: "${key}" is now unpublished.`, 'success');
+      } catch (error) {
+        console.error('Saving site_content failed:', error);
+        setEditorStatus(`Save failed: ${error.message || String(error)}`, 'error');
+      } finally {
+        saveButton.disabled = false;
+        loadButton.disabled = false;
+      }
+    }
+
+    async function publishContentEntry() {
+      const key = contentSelect.value;
+
+      if (!supabase || !currentAdminUser) {
+        setEditorStatus('Please sign in again with an administrator account.', 'error');
+        return;
+      }
+
+      if (!key || editorEntries.filter(e => e.content_key === key).length !== 1) {
+        setEditorStatus('Cannot publish: select an entry that exists exactly once.', 'error');
+        return;
+      }
+
+      let parsedContent;
+      try {
+        parsedContent = JSON.parse(contentJson.value);
+      } catch (error) {
+        setEditorStatus('Cannot publish invalid JSON: ' + error.message, 'error');
+        return;
+      }
+
+      if (parsedContent === null || typeof parsedContent !== 'object') {
+        setEditorStatus('Content must be a JSON object or array.', 'error');
+        return;
+      }
+
+      const confirmed = window.confirm(
+        'Publish "' + key + '" now? This makes this entry available to the website.'
+      );
+      if (!confirmed) return;
+
+      publishButton.disabled = true;
+      saveButton.disabled = true;
+      loadButton.disabled = true;
+      setEditorStatus('Verifying administrator access before publishing...');
+
+      try {
+        const { data: admin, error: adminError } = await supabase
+          .from('site_admins')
+          .select('user_id')
+          .eq('user_id', currentAdminUser.id)
+          .maybeSingle();
+
+        if (adminError) throw adminError;
+        if (!admin) throw new Error('Administrator verification failed. Please sign in again.');
+
+        const { data, error } = await supabase
+          .from('site_content')
+          .update({
+            content: parsedContent,
+            published: true,
+            updated_at: new Date().toISOString(),
+            updated_by: currentAdminUser.id
+          })
+          .eq('content_key', key)
+          .select('content_key, content, published');
+
+        if (error) throw error;
+        if (!data || data.length !== 1) {
+          throw new Error('Expected exactly one updated row. Check content_key uniqueness and Supabase permissions.');
+        }
+
+        setEditorStatus('Published "' + key + '" successfully.', 'success');
+        await loadContentEntries();
+        contentSelect.value = key;
+        await showSelectedContent();
+        setEditorStatus('Published "' + key + '" successfully.', 'success');
+      } catch (error) {
+        console.error('Publishing content failed:', error);
+        setEditorStatus('Publish failed: ' + (error.message || String(error)), 'error');
+      } finally {
+        publishButton.disabled = false;
+        saveButton.disabled = false;
+        loadButton.disabled = false;
+      }
+    }
+    async function verifyAdmin(user) {
+      const { data, error } = await supabase
+        .from('site_admins')
+        .select('user_id')
+        .eq('user_id', user.id)
+        .maybeSingle();
+
+      if (error) {
+        console.error('Admin verification failed:', error);
+        throw new Error(`Could not verify administrator access: ${error.message}`);
+      }
+      if (!data) {
+        await supabase.auth.signOut();
+        throw new Error('This account is not registered as a site administrator.');
+      }
+
+      currentAdminUser = user;
+      loginPanel.classList.add('hidden');
+      dashboard.classList.remove('hidden');
+      $('welcome').textContent = `Signed in as ${user.email || 'administrator'}`;
+      await loadContentEntries();
+    }
+
+    async function checkExistingSession() {
+      try {
+        const { data, error } = await supabase.auth.getSession();
+        if (error) throw error;
+        if (data.session) await verifyAdmin(data.session.user);
+      } catch (error) {
+        console.error('Session check failed:', error);
+        showError(error.message || 'Could not verify your session.');
+      }
+    }
+
+    // Attach handlers only after confirming the expected elements exist.
+    $('loginForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!configured) {
+        showError('Supabase setup is incomplete. Check the project URL and publishable key.');
+        return;
+      }
+
+      loginButton.disabled = true;
+      setMessage('Signing in...');
+      try {
+        const email = $('email').value.trim();
+        const password = $('password').value;
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        await verifyAdmin(data.user);
+        setMessage('');
+      } catch (error) {
+        console.error('Sign-in failed:', error);
+        showError(error.message || 'Sign-in failed.');
+      } finally {
+        loginButton.disabled = false;
+      }
+    });
+
+    contentSelect.addEventListener('change', () => {
+      showSelectedContent().catch(error => {
+        console.error(error);
+        setEditorStatus(error.message || 'Could not display this entry.', 'error');
+      });
+    });
+
+    loadButton.addEventListener('click', () => {
+      loadContentEntries().catch(error => {
+        console.error(error);
+        setEditorStatus(error.message || 'Reload failed.', 'error');
+      });
+    });
+
+    saveButton.addEventListener('click', () => {
+      saveContentEntry().catch(error => {
+        console.error(error);
+        setEditorStatus(error.message || 'Save failed unexpectedly.', 'error');
+      });
+    });
+
+    publishButton.addEventListener('click', () => {
+      publishContentEntry().catch(error => {
+        console.error('Publishing failed:', error);
+        setEditorStatus('Publish failed: ' + (error.message || String(error)), 'error');
+      });
+    });
+
+    $('logoutButton').addEventListener('click', async () => {
+      try {
+        const { error } = await supabase.auth.signOut();
+        if (error) throw error;
+        currentAdminUser = null;
+        editorEntries = [];
+        dashboard.classList.add('hidden');
+        loginPanel.classList.remove('hidden');
+        $('password').value = '';
+        setMessage('You have signed out.', 'success');
+        setEditorStatus('');
+      } catch (error) {
+        console.error('Sign-out failed:', error);
+        $('dashboardMessage').textContent = `Sign-out failed: ${error.message || String(error)}`;
+      }
+    });
+
+    if (!loginPanel || !dashboard || !message || !loginButton ||
+        !editorStatus || !contentSelect || !contentJson || !loadButton || !saveButton) {
+      console.error('Admin page setup failed: one or more required HTML elements are missing.');
+    } else if (configured) {
+      try {
+        supabase = createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY);
+        checkExistingSession();
+      } catch (error) {
+        console.error('Supabase client initialization failed:', error);
+        showError(`Could not initialize Supabase: ${error.message || String(error)}`);
+      }
+    } else {
+      showError('Setup required: add your Supabase project URL and publishable key in admin.html.');
+    }
+  </script>
+</body>
+</html>
+
