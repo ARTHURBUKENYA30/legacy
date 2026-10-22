@@ -1779,19 +1779,6 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
       src: `img/${i + 1}.jpg`, category: 'all', alt: `Legacy Rackets Academy photo ${i + 1}`
     }));
   }
-  // Always include the requested local photo sequence (46.jpeg–109.jpeg),
-  // even when published gallery records are available from Supabase.
-  const requestedGalleryImages = Array.from({length:64}, (_, i) => {
-    const n = i + 46;
-    return {src:`img/${n}.jpeg`, category:'all', alt:`Legacy Rackets Academy gallery photo ${n}`};
-  });
-  const gallerySources = new Set();
-  data.gallery = [...(Array.isArray(data.gallery) ? data.gallery : []), ...requestedGalleryImages].filter(g => {
-    const src = g.src || g.image_url;
-    if (!src || gallerySources.has(src)) return false;
-    gallerySources.add(src);
-    return true;
-  });
   if (!data.story_banner) {
     data.story_banner = {
       image: 'img/12.jpg', eyebrow: 'Inside the academy',
@@ -1815,6 +1802,19 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
     return { icon:d.icon || 'fa-regular fa-calendar', title:ev.name, text:[ev.description,meta].filter(Boolean).join(' — ') };
   });
   if (managed.gallery.length) data.gallery = managed.gallery.map(g => ({ src:g.image_url, category:g.category || '1', alt:g.alt_text || g.title }));
+  // Always include the requested local photo sequence (46.jpeg–109.jpeg),
+  // even when published gallery records are available from Supabase.
+  const requestedGalleryImages = Array.from({length:64}, (_, i) => {
+    const n = i + 46;
+    return {src:`img/${n}.jpeg`, category:'all', alt:`Legacy Rackets Academy gallery photo ${n}`};
+  });
+  const gallerySources = new Set();
+  data.gallery = [...(Array.isArray(data.gallery) ? data.gallery : []), ...requestedGalleryImages].filter(g => {
+    const src = g.src || g.image_url;
+    if (!src || gallerySources.has(src)) return false;
+    gallerySources.add(src);
+    return true;
+  });
   return data;
 })()
   .then(data => {
