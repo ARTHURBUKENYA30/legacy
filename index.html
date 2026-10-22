@@ -944,7 +944,7 @@ footer a:hover{color:var(--line-white);}
 <div class="court-divider"><span class="line"></span><span class="t-mark"></span><span class="line"></span></div>
 <span class="eyebrow">The Case</span>
 <h2 class="section-title">Why Partner <span>With Us</span></h2>
-<p class="section-lede">Squash is the fastest-growing racquet sport on the continent. Here's what your name next to ours actually buys.</p>
+<p class="section-lede">Squash can build fitness, focus and resilience. Here's how partners can help turn access into opportunity.</p>
 
 <div class="partner-grid" id="partnerGrid" data-aos="fade-up"></div>
 </section>
@@ -979,8 +979,8 @@ footer a:hover{color:var(--line-white);}
 <!-- PROJECTS -->
 <section id="projects">
 <span class="eyebrow">On The Ground</span>
-<h2 class="section-title">Projects</h2>
-<p class="section-lede">Where the impact is actually being built right now.</p>
+<h2 class="section-title">Projects &amp; <span>Activities</span></h2>
+<p class="section-lede">Explore initiatives and announced activities that support player development and community access. Dates, availability and delivery details should be confirmed with the academy.</p>
 
 <div class="row g-4" id="projectsGrid" data-aos="fade-up"></div>
 </section>
@@ -1507,7 +1507,7 @@ AOS.init({duration:900, once:true, easing:'ease-out-cubic'});
 
 /* ===== Usability enhancements ===== */
 // Close the mobile menu after a navigation selection.
-document.querySelectorAll('#nav .nav-link, #nav .dropdown-item').forEach(link => {
+document.querySelectorAll('#nav .nav-link:not(.dropdown-toggle), #nav .dropdown-item').forEach(link => {
   link.addEventListener('click', () => {
     const menu = document.getElementById('nav');
     if (menu && menu.classList.contains('show') && window.bootstrap) {
@@ -1646,14 +1646,31 @@ function activateForm(target){
   tabButtons.forEach(b => {
     const isActive = b.dataset.tab === target;
     b.classList.toggle('active', isActive);
-    b.setAttribute('aria-selected', isActive);
+    b.setAttribute('aria-selected', String(isActive));
+    b.tabIndex = isActive ? 0 : -1;
   });
-  forms.forEach(f => f.classList.toggle('active', f.id === `form-${target}`));
+  forms.forEach(f => {
+    const isActive = f.id === 'form-' + target;
+    f.classList.toggle('active', isActive);
+    f.setAttribute('aria-hidden', String(!isActive));
+  });
 }
 
 tabButtons.forEach(btn => {
   btn.addEventListener('click', () => activateForm(btn.dataset.tab));
 });
+tabButtons.forEach(btn => {
+  btn.addEventListener('keydown', event => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    event.preventDefault();
+    const current = Array.from(tabButtons).indexOf(btn);
+    const delta = event.key === 'ArrowRight' ? 1 : -1;
+    const next = (current + delta + tabButtons.length) % tabButtons.length;
+    tabButtons[next].focus();
+    activateForm(tabButtons[next].dataset.tab);
+  });
+});
+
 
 document.querySelectorAll('[data-form-target]').forEach(link => {
   link.addEventListener('click', () => activateForm(link.dataset.formTarget));
