@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Green Shoots Legacy Sports Squash Academy</title>
+<title>Legacy Rackets Academy | Squash Development in Uganda</title>
+<meta name="theme-color" content="#081E1B">
+<meta property="og:title" content="Legacy Rackets Academy | Building Africa's Next Squash Champions">
+<meta property="og:description" content="Discover squash development, athlete pathways, community programmes and ways to support Legacy Rackets Academy in Uganda.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23081E1B'/%3E%3Ccircle cx='32' cy='32' r='20' fill='%23C6F36B'/%3E%3Cpath d='M20 17 Q42 32 20 47' fill='none' stroke='%23081E1B' stroke-width='4'/%3E%3C/svg%3E">
 <meta name="description" content="Green Shoots Legacy Sports Squash Academy — building Africa's next squash champions through talent development, community courts and school outreach in Uganda.">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -719,6 +724,110 @@ footer a:hover{color:var(--line-white);}
   .scroll-cue{animation:none;}
 }
 
+
+/* ===== Content architecture, clarity and trust ===== */
+.dropdown-menu{
+  background:#0D302A;border:1px solid rgba(247,248,242,.13);
+  border-radius:14px;padding:9px;box-shadow:0 18px 44px rgba(0,0,0,.3);
+}
+.dropdown-item{color:#DCE7E1;border-radius:8px;padding:10px 14px;font-size:.9rem;}
+.dropdown-item:hover,.dropdown-item:focus{background:rgba(198,243,107,.12);color:var(--service-red);}
+.navbar .dropdown-toggle::after{vertical-align:.15em;}
+.about-section{background:linear-gradient(135deg,#0A241F,#123F36 58%,#0A241F);}
+.about-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,6vw,84px);align-items:center;}
+.about-visual{position:relative;min-height:390px;border-radius:24px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.28);background:#1B5144;}
+.about-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.about-visual::after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(8,30,27,.7));pointer-events:none;}
+.about-photo-note{position:absolute;z-index:1;left:20px;right:20px;bottom:20px;display:flex;align-items:center;gap:10px;color:#fff;font-size:.84rem;font-weight:700;letter-spacing:.04em;}
+.about-photo-note i{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--service-red);color:var(--ink);}
+.about-copy .section-title{max-width:580px;margin-bottom:20px;}
+.about-intro{font-size:clamp(1.08rem,1.5vw,1.28rem);line-height:1.8;color:var(--line-white);font-weight:500;}
+.about-detail{color:var(--chalk);line-height:1.9;margin-bottom:22px;}
+.text-link{display:inline-flex;align-items:center;gap:10px;color:var(--service-red);font-weight:800;font-size:.9rem;}
+.text-link i{transition:transform .2s ease;}
+.text-link:hover{color:var(--line-white);}
+.text-link:hover i{transform:translateX(4px);}
+.values-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:56px;}
+.value-card,.transparency-card{border:1px solid rgba(247,248,242,.12);border-radius:18px;background:rgba(8,30,27,.5);padding:28px;transition:transform .22s ease,border-color .22s ease,background .22s ease;}
+.value-card:hover,.transparency-card:hover{transform:translateY(-4px);border-color:rgba(198,243,107,.45);background:rgba(27,81,68,.58);}
+.value-icon,.transparency-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:rgba(198,243,107,.12);color:var(--service-red);font-size:1.2rem;margin-bottom:18px;}
+.value-card h3,.transparency-card h3{font-family:var(--font-body);font-size:1.08rem;font-weight:800;letter-spacing:0;text-transform:none;margin-bottom:9px;color:var(--line-white);}
+.value-card p,.transparency-card p{font-size:.92rem;line-height:1.8;color:var(--chalk);margin:0 0 10px;}
+.transparency-section{background:#0B2923;}
+.section-heading-row{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;}
+.section-heading-row .section-lede{margin-bottom:36px;}
+.transparency-mark{flex-shrink:0;display:grid;place-items:center;width:74px;height:74px;border-radius:22px;background:rgba(198,243,107,.12);border:1px solid rgba(198,243,107,.2);color:var(--service-red);font-size:1.8rem;}
+.transparency-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.transparency-card{background:linear-gradient(150deg,rgba(27,81,68,.6),rgba(8,30,27,.7));padding:30px;}
+.info-label{display:inline-flex;margin-top:18px;padding:6px 10px;border-radius:999px;background:rgba(198,243,107,.1);color:var(--service-red);font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;}
+.transparency-note{display:flex;gap:14px;align-items:flex-start;margin-top:22px;padding:18px 20px;border:1px solid rgba(233,184,107,.22);border-radius:14px;background:rgba(233,184,107,.07);color:var(--chalk);}
+.transparency-note>i{color:var(--amber);margin-top:4px;}
+.transparency-note p{margin:0;line-height:1.8;font-size:.88rem;}
+.transparency-note strong{color:var(--line-white);}
+.faq-section{background:linear-gradient(150deg,#123F36,#081E1B);}
+.faq-list{max-width:900px;border-top:1px solid rgba(247,248,242,.14);}
+.faq-item{border-bottom:1px solid rgba(247,248,242,.14);}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:23px 4px;color:var(--line-white);font-weight:800;font-size:1rem;}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary i{display:grid;place-items:center;width:30px;height:30px;flex-shrink:0;border-radius:50%;background:rgba(198,243,107,.12);color:var(--service-red);font-size:.8rem;transition:transform .2s ease;}
+.faq-item[open] summary i{transform:rotate(45deg);}
+.faq-item summary:focus-visible{outline:2px solid var(--service-red);outline-offset:3px;border-radius:5px;}
+.faq-answer{padding:0 42px 22px 4px;color:var(--chalk);line-height:1.9;}
+.faq-answer p{margin:0;}
+.faq-contact{margin-top:30px;color:var(--chalk);font-size:.92rem;}
+.faq-contact a{display:inline-flex;gap:8px;margin-left:8px;color:var(--service-red);font-weight:800;}
+.site-footer{text-align:left;padding:64px clamp(22px,7vw,112px) 22px;background:#061613;border-top:1px solid rgba(247,248,242,.1);}
+.footer-main{display:grid;grid-template-columns:1.4fr .8fr .9fr 1.2fr;gap:38px;max-width:1400px;margin:0 auto 48px;}
+.footer-brand-link{display:inline-flex;align-items:center;gap:13px;color:var(--line-white);font-family:var(--font-body);font-weight:800;line-height:1.3;}
+.footer-brand-link img{width:52px;height:52px;object-fit:cover;border:1px solid rgba(198,243,107,.4);border-radius:14px!important;margin:0!important;}
+.footer-brand-link small{display:block;color:var(--service-red);font-size:.68rem;letter-spacing:.04em;margin-top:3px;font-weight:700;}
+.footer-brand>p{max-width:290px;margin-top:18px;color:var(--chalk);font-size:.9rem;line-height:1.8;}
+.footer-links h3,.footer-contact h3{font-family:var(--font-body);font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--line-white);font-weight:800;margin:6px 0 18px;}
+.footer-links>a{display:block;width:fit-content;margin:11px 0;color:var(--chalk);font-size:.88rem;font-weight:500;}
+.footer-links>a:hover{color:var(--service-red);}
+.footer-contact p{display:flex;align-items:flex-start;gap:11px;color:var(--chalk);font-size:.86rem;line-height:1.7;margin:0 0 13px;}
+.footer-contact p>i{color:var(--service-red);margin-top:5px;min-width:15px;}
+.footer-contact a{color:var(--chalk);font-weight:600;overflow-wrap:anywhere;}
+.footer-contact a:hover{color:var(--service-red);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid rgba(247,248,242,.1);padding-top:20px;max-width:1400px;margin:0 auto;color:#93AAA0;font-size:.75rem;}
+.footer-bottom p{margin:0;}
+.footer-bottom #footerContactLine{display:none;}
+.footer-back-top{color:var(--service-red);font-weight:800;display:inline-flex;align-items:center;gap:8px;}
+.whatsapp{z-index:1050;}
+@media(max-width:1000px){
+ .about-layout{gap:34px;}
+ .footer-main{grid-template-columns:repeat(2,minmax(0,1fr));}
+ .transparency-grid{grid-template-columns:1fr 1fr;}
+ .transparency-card:last-child{grid-column:1/-1;}
+}
+@media(max-width:767.98px){
+ .about-layout{grid-template-columns:1fr;}
+ .about-visual{min-height:280px;order:2;}
+ .about-copy{order:1;}
+ .values-grid{grid-template-columns:1fr;gap:12px;margin-top:30px;}
+ .value-card{padding:24px;}
+ .section-heading-row{gap:12px;}
+ .transparency-mark{width:52px;height:52px;border-radius:15px;font-size:1.25rem;}
+ .transparency-grid{grid-template-columns:1fr;}
+ .transparency-card:last-child{grid-column:auto;}
+ .transparency-card{padding:24px;}
+ .faq-item summary{font-size:.94rem;padding:20px 2px;}
+ .faq-answer{padding-right:12px;}
+ .site-footer{padding:46px 22px 20px;}
+ .footer-main{grid-template-columns:1fr 1fr;gap:30px 20px;margin-bottom:32px;}
+ .footer-brand{grid-column:1/-1;}
+ .footer-bottom{align-items:flex-start;flex-direction:column;}
+}
+@media(max-width:420px){
+ .footer-main{grid-template-columns:1fr;}
+ .footer-brand{grid-column:auto;}
+ .section-heading-row{display:block;}
+ .transparency-mark{display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+ .about-visual img,.value-card,.transparency-card,.faq-item summary i,.text-link i{transition:none!important;}
+}
+
 </style>
 </head>
 
@@ -741,13 +850,22 @@ footer a:hover{color:var(--line-white);}
 
 <div class="collapse navbar-collapse" id="nav">
 <ul class="navbar-nav ms-auto align-items-lg-center">
-<li class="nav-item"><a class="nav-link" href="#impact">Impact</a></li>
-<li class="nav-item"><a class="nav-link" href="#athletes">Athletes</a></li>
+<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
 <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
-<li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-<li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+<li class="nav-item"><a class="nav-link" href="#athletes">Athletes</a></li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="exploreMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">Explore</a>
+<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="exploreMenu">
+<li><a class="dropdown-item" href="#impact">Our Impact</a></li>
+<li><a class="dropdown-item" href="#projects">Projects &amp; Activities</a></li>
+<li><a class="dropdown-item" href="#stories">Success Stories</a></li>
+<li><a class="dropdown-item" href="#gallery">Photo Gallery</a></li>
+<li><a class="dropdown-item" href="#faq">FAQs</a></li>
+</ul>
+</li>
+<li class="nav-item"><a class="nav-link" href="#transparency">Transparency</a></li>
 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-<li class="nav-item"><a class="nav-link nav-cta" href="#join">Join Us</a></li>
+<li class="nav-item"><a class="nav-link nav-cta" href="#join">Join Us <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
 </ul>
 </div>
 </div>
@@ -788,6 +906,28 @@ footer a:hover{color:var(--line-white);}
 <!-- SPONSOR LOGOS -->
 <section class="logo-slider py-0">
 <div class="logo-track" id="logoTrack"></div>
+</section>
+
+<!-- ABOUT / ACADEMY STORY -->
+<section id="about" class="about-section">
+<div class="about-layout">
+<div class="about-visual" data-aos="fade-right">
+<img src="img/1.jpg" alt="Squash court and athlete training at Legacy Rackets Academy" loading="lazy">
+<div class="about-photo-note"><i class="fa-solid fa-bullseye" aria-hidden="true"></i><span>Skill. Discipline. Opportunity.</span></div>
+</div>
+<div class="about-copy" data-aos="fade-up">
+<span class="eyebrow">Who We Are</span>
+<h2 class="section-title">A bigger future <span>starts on court.</span></h2>
+<p class="about-intro">Legacy Rackets Academy uses squash as a pathway to confidence, discipline, opportunity and community. We support young people as they learn the game, build their skills and discover what they can achieve.</p>
+<p class="about-detail">From first-time players to athletes working toward competitive goals, our aim is to create a welcoming route into the sport and connect promising players with the coaching, encouragement and support they need.</p>
+<a href="#programs" class="text-link">Explore our programmes <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+</div>
+</div>
+<div class="values-grid" data-aos="fade-up">
+<article class="value-card"><span class="value-icon"><i class="fa-solid fa-person-running" aria-hidden="true"></i></span><h3>Develop talent</h3><p>Build fundamentals, fitness, confidence and a love of learning through sport.</p></article>
+<article class="value-card"><span class="value-icon"><i class="fa-solid fa-people-group" aria-hidden="true"></i></span><h3>Open access</h3><p>Help more young people discover squash through community and school pathways.</p></article>
+<article class="value-card"><span class="value-icon"><i class="fa-solid fa-handshake-angle" aria-hidden="true"></i></span><h3>Grow together</h3><p>Connect athletes, families, coaches and supporters around meaningful progress.</p></article>
+</div>
 </section>
 
 <!-- IMPACT / SCOREBOARD -->
@@ -871,6 +1011,24 @@ footer a:hover{color:var(--line-white);}
 <img id="lbImg" src="" alt="Gallery photo enlarged">
 <button class="lb-next" id="lbNext" aria-label="Next photo"><i class="fa-solid fa-chevron-right"></i></button>
 </div>
+
+<!-- TRANSPARENCY & ACCOUNTABILITY -->
+<section id="transparency" class="transparency-section">
+<div class="section-heading-row">
+<div>
+<span class="eyebrow">Trust &amp; Accountability</span>
+<h2 class="section-title">Clear about <span>our work.</span></h2>
+<p class="section-lede">Trust grows when people can understand the work, ask questions and see updates. We aim to share clear, verified information with families, partners and supporters.</p>
+</div>
+<div class="transparency-mark" aria-hidden="true"><i class="fa-solid fa-shield-heart"></i></div>
+</div>
+<div class="transparency-grid">
+<article class="transparency-card"><span class="transparency-icon"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i></span><h3>Programme updates</h3><p>We will share confirmed programme activities, community visits and academy milestones as updates are approved for publication.</p><span class="info-label">Verified updates only</span></article>
+<article class="transparency-card"><span class="transparency-icon"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i></span><h3>Support &amp; sponsorship</h3><p>Supporters can enquire about athlete sponsorship, equipment and travel support. Our team can explain current needs and next steps directly.</p><a href="#join" class="text-link" data-form-target="sponsor">Ask about sponsorship <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+<article class="transparency-card"><span class="transparency-icon"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></span><h3>Reports &amp; governance</h3><p>Approved reports, financial summaries and governance information should be published here when available. We do not present unverified totals as official results.</p><a href="mailto:ugandalegacyracketsacademy@gmail.com?subject=Transparency%20and%20reporting%20enquiry" class="text-link">Request information <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+</div>
+<div class="transparency-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><p><strong>Good to know:</strong> the donation form records a pledge or enquiry; it is not an online payment checkout. Please wait for payment instructions from the academy and verify payment details before sending funds.</p></div>
+</section>
 
 <!-- CTA -->
 <section class="pt-0">
@@ -1282,6 +1440,22 @@ Submit Donation Pledge
 
 
 <!-- CONTACT -->
+<!-- FREQUENTLY ASKED QUESTIONS -->
+<section id="faq" class="faq-section">
+<span class="eyebrow">Helpful Answers</span>
+<h2 class="section-title">Good to <span>know.</span></h2>
+<p class="section-lede">A few practical answers for players, parents and supporters. If your question is not covered, contact the academy directly.</p>
+<div class="faq-list">
+<details class="faq-item"><summary><span>How do I register an athlete?</span><i class="fa-solid fa-plus" aria-hidden="true"></i></summary><div class="faq-answer"><p>Open the Join Us section and choose Register Athlete. Share the player's details and programme of interest. The academy team will follow up to discuss suitability, schedules and next steps.</p></div></details>
+<details class="faq-item"><summary><span>Which programme is right for me?</span><i class="fa-solid fa-plus" aria-hidden="true"></i></summary><div class="faq-answer"><p>Use the registration form to tell us the athlete's age, experience and goals. The team can advise on the most suitable available pathway. Programme availability should be confirmed directly with the academy.</p></div></details>
+<details class="faq-item"><summary><span>Where can I find fees and training schedules?</span><i class="fa-solid fa-plus" aria-hidden="true"></i></summary><div class="faq-answer"><p>Current fees and schedules are not listed here as fixed figures. Please contact the academy before making plans or payments so you receive the latest confirmed information.</p></div></details>
+<details class="faq-item"><summary><span>How does a donation or sponsorship work?</span><i class="fa-solid fa-plus" aria-hidden="true"></i></summary><div class="faq-answer"><p>Submit a donation pledge or sponsorship enquiry. The academy will respond with current options and instructions. The website does not process card payments, and you should verify the recipient and payment details before sending money.</p></div></details>
+<details class="faq-item"><summary><span>How is my information used when I submit a form?</span><i class="fa-solid fa-plus" aria-hidden="true"></i></summary><div class="faq-answer"><p>Forms are submitted through FormSubmit and sent to the academy email address. Please provide only the information needed to respond to your enquiry, and avoid including sensitive personal or medical details in open text fields. Contact the academy if you have a question about a submission.</p></div></details>
+<details class="faq-item"><summary><span>Can a school or organisation partner with the academy?</span><i class="fa-solid fa-plus" aria-hidden="true"></i></summary><div class="faq-answer"><p>Yes, you can use the sponsorship enquiry form to introduce your organisation and describe the type of partnership or support you have in mind. The team will follow up to discuss what may be possible.</p></div></details>
+</div>
+<div class="faq-contact">Still need help? <a href="mailto:ugandalegacyracketsacademy@gmail.com">Email the academy <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+</section>
+
 <section id="contact">
 <span class="eyebrow">Reach Us</span>
 <h2 class="section-title">Contact <span>Us</span></h2>
@@ -1309,10 +1483,17 @@ Submit Donation Pledge
 </main>
 
 <!-- FOOTER -->
-<footer>
-<img src="img/logo.jpg" alt="Green Shoots Legacy Sports Squash Academy" height="42" style="border-radius:6px;margin-bottom:14px;" id="footerLogo">
-<p id="footerCopyright">&copy; 2025 Green Shoots Legacy Sports Squash Academy. All rights reserved.</p>
-<p id="footerContactLine">Kampala, Uganda &nbsp;·&nbsp; <a href="mailto:ugandalegacyracketsacademy@gmail.com">ugandalegacyracketsacademy@gmail.com</a> &nbsp;·&nbsp; <a href="tel:+256772330463">+256 772 330 463</a></p>
+<footer class="site-footer">
+<div class="footer-main">
+<div class="footer-brand">
+<a href="#top" class="footer-brand-link" aria-label="Legacy Rackets Academy home"><img src="img/logo.jpg" alt="" id="footerLogo"><span>Legacy Rackets Academy<small>Building confidence through squash</small></span></a>
+<p>Developing athletes, opening pathways and growing the game in Uganda.</p>
+</div>
+<div class="footer-links"><h3>Explore</h3><a href="#about">About the Academy</a><a href="#programs">Programmes</a><a href="#athletes">Athletes</a><a href="#projects">Projects &amp; Activities</a><a href="#gallery">Gallery</a></div>
+<div class="footer-links"><h3>Get Involved</h3><a href="#join" data-form-target="register">Register an Athlete</a><a href="#join" data-form-target="sponsor">Sponsor a Player</a><a href="#join" data-form-target="donate">Make a Pledge</a><a href="#transparency">Transparency</a><a href="#faq">FAQs</a></div>
+<div class="footer-contact"><h3>Contact</h3><p><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:ugandalegacyracketsacademy@gmail.com">ugandalegacyracketsacademy@gmail.com</a></p><p><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+256772330463">+256 772 330 463</a></p><p><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Kampala, Uganda</span></p></div>
+</div>
+<div class="footer-bottom"><p id="footerCopyright">&copy; 2026 Green Shoots Legacy Sports Squash Academy. All rights reserved.</p><p id="footerContactLine">Kampala, Uganda &nbsp;·&nbsp; <a href="mailto:ugandalegacyracketsacademy@gmail.com">ugandalegacyracketsacademy@gmail.com</a> &nbsp;·&nbsp; <a href="tel:+256772330463">+256 772 330 463</a></p><a class="footer-back-top" href="#top">Back to top <i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a></div>
 </footer>
 
 <a class="whatsapp" href="https://wa.me/256700122803" aria-label="Chat on WhatsApp" target="_blank" rel="noopener" id="whatsappFab">
@@ -1323,6 +1504,33 @@ Submit Donation Pledge
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
 AOS.init({duration:900, once:true, easing:'ease-out-cubic'});
+
+/* ===== Usability enhancements ===== */
+// Close the mobile menu after a navigation selection.
+document.querySelectorAll('#nav .nav-link, #nav .dropdown-item').forEach(link => {
+  link.addEventListener('click', () => {
+    const menu = document.getElementById('nav');
+    if (menu && menu.classList.contains('show') && window.bootstrap) {
+      bootstrap.Collapse.getOrCreateInstance(menu).hide();
+    }
+  });
+});
+// Keep FAQ controls and form tabs keyboard/screen-reader friendly.
+document.querySelectorAll('.form-tab-btn').forEach((button, index) => {
+  const targetId = 'form-' + button.dataset.tab;
+  button.setAttribute('role', 'tab');
+  button.setAttribute('id', 'tab-' + button.dataset.tab);
+  button.setAttribute('aria-controls', targetId);
+  const panel = document.getElementById(targetId);
+  if (panel) {
+    panel.setAttribute('role', 'tabpanel');
+    panel.setAttribute('aria-labelledby', button.id);
+  }
+});
+// Use a calm, readable current-year copyright.
+const copyright = document.getElementById('footerCopyright');
+if (copyright) copyright.innerHTML = '&copy; ' + new Date().getFullYear() + ' Green Shoots Legacy Sports Squash Academy. All rights reserved.';
+
 
 /* ===== Navbar shrink on scroll ===== */
 const nav = document.querySelector('.navbar');
