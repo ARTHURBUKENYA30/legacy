@@ -1973,6 +1973,15 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
       const line = document.getElementById('footerContactLine');
       if (line) line.innerHTML = `${f.location} &nbsp;\u00b7&nbsp; <a href="mailto:${f.email}">${f.email}</a> &nbsp;\u00b7&nbsp; <a href="tel:${f.phone_link}">${f.phone}</a>`;
     }
+    // Re-apply after the managed footer renders so its saved settings cannot override this number.
+    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+      link.href = 'tel:+256772330463';
+      if (!link.querySelector('i') && /\d/.test(link.textContent)) link.textContent = '+256 772 330 463';
+    });
+    ['socialWhatsapp','whatsappFab'].forEach(id => {
+      const link = document.getElementById(id);
+      if (link) link.href = 'https://wa.me/256772330463';
+    });
   })
   .catch(err => console.error('Could not load site content:', err));
 </script>
