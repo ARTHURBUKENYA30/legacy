@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/jpeg" href="img/logo.jpg">
 <title>Green Shoots Legacy Sports Squash Academy</title>
 <meta name="description" content="Green Shoots Legacy Sports Squash Academy — building Africa's next squash champions through talent development, community courts and school outreach in Uganda.">
 
@@ -11,7 +10,7 @@
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://kit.fontawesome.com/a2d04b0df3.js" crossorigin="anonymous"></script>
 
 <style>
 
@@ -571,7 +570,7 @@ footer a{color:var(--amber);}
 <!-- HERO -->
 <header class="hero" id="top">
 <video autoplay muted loop playsinline poster="img/1.jpg" id="heroVideo">
-
+<source src="videos/squash.mp4" type="video/mp4" id="heroVideoSource">
 </video>
 <div class="hero-fallback"></div>
 
@@ -718,15 +717,15 @@ No redirects, no third-party forms — fill in what applies to you right here an
 
 <div class="form-tabs" role="tablist">
 
-<button class="form-tab-btn active" onclick="showForm('form-register',this)">
+<button type="button" class="form-tab-btn active" data-tab="register" aria-selected="true">
 Register Athlete
 </button>
 
-<button class="form-tab-btn" onclick="showForm('form-sponsor',this)">
+<button type="button" class="form-tab-btn" data-tab="sponsor" aria-selected="false">
 Sponsor a Player
 </button>
 
-<button class="form-tab-btn" onclick="showForm('form-donate',this)">
+<button type="button" class="form-tab-btn" data-tab="donate" aria-selected="false">
 Donate
 </button>
 
@@ -751,7 +750,7 @@ method="POST">
 
 <input type="hidden" name="_captcha" value="false">
 
-<input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+<input type="hidden" name="_next" value="https://greenshootslegacysportssquashacademy.vercel.app/#join">
 
 
 
@@ -1000,7 +999,6 @@ method="POST">
 </div>
 
 
-
 <div class="col-md-6">
 
 <label>Pledge Amount (UGX)</label>
@@ -1095,33 +1093,7 @@ Submit Donation Pledge
 
 
 
-<script>
-
-function showForm(id,button){
-
-document.querySelectorAll(".join-form").forEach(form=>{
-
-form.classList.remove("active");
-
-});
-
-
-document.getElementById(id).classList.add("active");
-
-
-document.querySelectorAll(".form-tab-btn").forEach(btn=>{
-
-btn.classList.remove("active");
-
-});
-
-
-button.classList.add("active");
-
-
-}
-
-</script><!-- CONTACT -->
+<!-- CONTACT -->
 <section id="contact">
 <span class="eyebrow">Reach Us</span>
 <h2 class="section-title">Contact <span>Us</span></h2>
@@ -1216,7 +1188,7 @@ function renderGallery(){
   filtered.slice(0, visibleCount).forEach((img, idx) => {
     const fig = document.createElement('figure');
     fig.dataset.index = idx;
-    fig.innerHTML = `<img src="${img.src}" alt="${categoryLabels[img.cat] || 'Gallery'} moment at Green Shoots Academy" loading="lazy">`;
+    fig.innerHTML = `<img src="${img.src}" alt="${img.alt || ((categoryLabels[img.cat] || 'Gallery') + ' moment at Green Shoots Academy')}" loading="lazy">`;
     fig.addEventListener('click', () => openLightbox(filtered, idx));
     galleryGrid.appendChild(fig);
   });
@@ -1292,35 +1264,58 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
 });
 
 /* ===== CONTENT LOADER =====
-   Everything below reads content/site-data.json and fills in the page.
-   This is the file the admin panel (/admin) edits, so updates made
-   there show up here automatically — no code changes needed. */
-import('https://esm.sh/@supabase/supabase-js@2')
-  .then(({ createClient }) => {
-    const supabase = createClient(
+   Prefer published content and managed records from Supabase. Keep the
+   bundled JSON as a fallback so the site still renders if Supabase is down. */
+(async function loadWebsiteData(){
+  let data = null;
+  const managed = { athletes: [], programs: [], events: [], gallery: [] };
+  try {
+    const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
+    const sb = createClient(
       'https://sbfyvcsechxnsxlvzuvv.supabase.co',
       'sb_publishable_itwkgKU9h9fd8qMn7w9qjg_2DY2uezD'
     );
-
-    return supabase
-      .from('site_content')
-      .select('content')
-      .eq('content_key', 'homepage')
-      .eq('published', true)
-      .maybeSingle();
-  })
-  .then(({ data: row, error }) => {
-    if (error) throw error;
-
-    if (!row || !row.content) {
-      console.info('No published homepage content; keeping the existing page.');
-      return null;
-    }
-
-    return row.content;
-  })
+    const [contentResult, athletesResult, programsResult, eventsResult, galleryResult] = await Promise.all([
+      sb.from('site_content').select('content').eq('content_key','homepage').eq('published',true).maybeSingle(),
+      sb.from('athletes').select('name,description,image_url,details,sort_order').eq('published',true).order('sort_order',{ascending:true}),
+      sb.from('programs').select('name,description,image_url,details,sort_order').eq('published',true).order('sort_order',{ascending:true}),
+      sb.from('events').select('name,description,image_url,starts_at,location,details,sort_order').eq('published',true).order('sort_order',{ascending:true}),
+      sb.from('gallery_items').select('title,image_url,category,alt_text,sort_order').eq('published',true).order('sort_order',{ascending:true})
+    ]);
+    if (contentResult.data && contentResult.data.content && !contentResult.error) data = contentResult.data.content;
+    if (!athletesResult.error) managed.athletes = athletesResult.data || [];
+    if (!programsResult.error) managed.programs = programsResult.data || [];
+    if (!eventsResult.error) managed.events = eventsResult.data || [];
+    if (!galleryResult.error) managed.gallery = galleryResult.data || [];
+  } catch (e) {
+    console.warn('Supabase content could not be loaded; using bundled content where available.', e);
+  }
+  if (!data) {
+    try {
+      const response = await fetch('content/site-data.json?v=' + Date.now());
+      if (response.ok) data = await response.json();
+    } catch (e) { console.warn('Bundled site content could not be loaded.', e); }
+  }
+  if (!data) data = {};
+  // Managed tables take priority only when they contain published records.
+  if (managed.athletes.length) data.athletes = managed.athletes.map(a => {
+    const d = a.details || {};
+    return { photo:a.image_url || d.photo || 'img/1.jpg', name:a.name, tag:d.tag || 'Athlete', subtitle:d.subtitle || a.description || '', ranking:d.ranking || '—', goal:d.goal || '—', need:d.need || '—' };
+  });
+  if (managed.programs.length) data.programs = managed.programs.map(p => {
+    const d = p.details || {};
+    return { icon:d.icon || 'fa-solid fa-table-tennis-paddle-ball', title:p.name, text:p.description || d.text || '' };
+  });
+  if (managed.events.length) data.projects = managed.events.map(ev => {
+    const d = ev.details || {};
+    const when = ev.starts_at ? new Date(ev.starts_at).toLocaleString() : '';
+    const meta = [when, ev.location].filter(Boolean).join(' · ');
+    return { icon:d.icon || 'fa-regular fa-calendar', title:ev.name, text:[ev.description,meta].filter(Boolean).join(' — ') };
+  });
+  if (managed.gallery.length) data.gallery = managed.gallery.map(g => ({ src:g.image_url, category:g.category || '1', alt:g.alt_text || g.title }));
+  return data;
+})()
   .then(data => {
-    if (!data) return;
 
     // Brand / logo
     if (data.brand) {
@@ -1342,7 +1337,9 @@ import('https://esm.sh/@supabase/supabase-js@2')
       const lede = document.getElementById('heroLede');
       if (lede) lede.textContent = h.lede;
       const video = document.getElementById('heroVideo');
+      const source = document.getElementById('heroVideoSource');
       if (video && h.poster) video.setAttribute('poster', h.poster);
+      if (source && h.video) { source.src = h.video; if (video) video.load(); }
     }
 
     // Sponsor logos
@@ -1434,7 +1431,7 @@ import('https://esm.sh/@supabase/supabase-js@2')
 
     // Gallery
     if (Array.isArray(data.gallery)) {
-      galleryImages = data.gallery.map(g => ({src: g.src, cat: String(g.category)}));
+      galleryImages = data.gallery.map(g => ({src: g.src, cat: String(g.category), alt: g.alt || ''})).filter(g => g.src);
       renderGallery();
     }
 
