@@ -992,11 +992,7 @@ footer a:hover{color:var(--line-white);}
 <p class="section-lede">Moments from training sessions, school visits and tournament day.</p>
 
 <div class="gallery-filters">
-<button class="active" data-filter="all">All</button>
-<button data-filter="1">Training</button>
-<button data-filter="2">Tournaments</button>
-<button data-filter="3">Schools</button>
-<button data-filter="4">Community</button>
+<button class="active" data-filter="all">All Photos</button>
 </div>
 
 <div class="gallery" id="galleryGrid" data-aos="fade-up"></div>
@@ -1724,6 +1720,20 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
     } catch (e) { console.warn('Bundled site content could not be loaded.', e); }
   }
   if (!data) data = {};
+  // Use the repository's own photo library as a reliable visual fallback.
+  // Keep the full gallery available even when remote content services are empty.
+  if (!Array.isArray(data.gallery) || !data.gallery.length) {
+    data.gallery = Array.from({length:45}, (_, i) => ({
+      src: `img/${i + 1}.jpg`, category: 'all', alt: `Legacy Rackets Academy photo ${i + 1}`
+    }));
+  }
+  if (!data.story_banner) {
+    data.story_banner = {
+      image: 'img/12.jpg', eyebrow: 'Inside the academy',
+      heading: 'Every rally starts with a chance.',
+      text: 'Explore moments from the academy’s photo collection and the people and places around the game.'
+    };
+  }
   // Managed tables take priority only when they contain published records.
   if (managed.athletes.length) data.athletes = managed.athletes.map(a => {
     const d = a.details || {};
