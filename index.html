@@ -187,10 +187,12 @@ section{padding:110px 8% 90px;position:relative;}
 }
 .hero .hero-fallback{
   background:
-    radial-gradient(ellipse at top left, rgba(200,16,46,.25), transparent 55%),
-    radial-gradient(ellipse at bottom right, rgba(232,163,61,.2), transparent 55%),
-    linear-gradient(160deg,var(--court-blue-deep),var(--court-blue) 60%,var(--court-blue-mid));
+    linear-gradient(180deg, rgba(7,30,48,.24), rgba(7,30,48,.68)),
+    url('img/109.jpeg') center center / cover no-repeat;
 }
+/* Use the requested academy photo as the hero banner background. */
+.hero video{display:none !important;}
+
 .hero::before{
   content:"";
   position:absolute;inset:0;
@@ -924,7 +926,7 @@ img{max-width:100%;}
 
 <!-- HERO -->
 <header class="hero" id="top">
-<video autoplay muted loop playsinline poster="img/1.jpg" id="heroVideo">
+<video autoplay muted loop playsinline poster="img/109.jpeg" id="heroVideo">
 <source src="videos/squash.mp4" type="video/mp4" id="heroVideoSource">
 </video>
 <div class="hero-fallback"></div>
@@ -1542,7 +1544,7 @@ Submit Donation Pledge
 <div class="footer-bottom"><p id="footerCopyright">&copy; 2026 Green Shoots Legacy Sports Squash Academy. All rights reserved.</p><p id="footerContactLine">Kampala, Uganda &nbsp;·&nbsp; <a href="mailto:ugandalegacyracketsacademy@gmail.com">ugandalegacyracketsacademy@gmail.com</a> &nbsp;·&nbsp; <a href="tel:+256772330463">+256 772 330 463</a></p><a class="footer-back-top" href="#top">Back to top <i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a></div>
 </footer>
 
-<a class="whatsapp" href="https://wa.me/256700122803" aria-label="Chat on WhatsApp" target="_blank" rel="noopener" id="whatsappFab">
+<a class="whatsapp" href="https://wa.me/256772330463" aria-label="Chat on WhatsApp" target="_blank" rel="noopener" id="whatsappFab">
 <i class="fa-brands fa-whatsapp"></i>
 </a>
 
@@ -1800,6 +1802,19 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
     return { icon:d.icon || 'fa-regular fa-calendar', title:ev.name, text:[ev.description,meta].filter(Boolean).join(' — ') };
   });
   if (managed.gallery.length) data.gallery = managed.gallery.map(g => ({ src:g.image_url, category:g.category || '1', alt:g.alt_text || g.title }));
+  // Always include the requested local photo sequence (46.jpeg–109.jpeg),
+  // even when published gallery records are available from Supabase.
+  const requestedGalleryImages = Array.from({length:64}, (_, i) => {
+    const n = i + 46;
+    return {src:`img/${n}.jpeg`, category:'all', alt:`Legacy Rackets Academy gallery photo ${n}`};
+  });
+  const gallerySources = new Set();
+  data.gallery = [...(Array.isArray(data.gallery) ? data.gallery : []), ...requestedGalleryImages].filter(g => {
+    const src = g.src || g.image_url;
+    if (!src || gallerySources.has(src)) return false;
+    gallerySources.add(src);
+    return true;
+  });
   return data;
 })()
   .then(data => {
@@ -1938,6 +1953,18 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
       const fab = document.getElementById('whatsappFab'); if (fab && c.whatsapp_link) fab.href = c.whatsapp_link;
     }
 
+    // Keep direct contact and WhatsApp links aligned with the requested number.
+    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+      link.href = 'tel:+256772330463';
+      if (!link.querySelector('i') && /\d/.test(link.textContent)) link.textContent = '+256 772 330 463';
+    });
+    const contactPhone = document.getElementById('contactPhoneLink');
+    if (contactPhone) { contactPhone.href = 'tel:+256772330463'; contactPhone.textContent = '+256 772 330 463'; }
+    ['socialWhatsapp','whatsappFab'].forEach(id => {
+      const link = document.getElementById(id);
+      if (link) link.href = 'https://wa.me/256772330463';
+    });
+
     // Footer
     if (data.footer) {
       const f = data.footer;
@@ -1946,6 +1973,15 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
       const line = document.getElementById('footerContactLine');
       if (line) line.innerHTML = `${f.location} &nbsp;\u00b7&nbsp; <a href="mailto:${f.email}">${f.email}</a> &nbsp;\u00b7&nbsp; <a href="tel:${f.phone_link}">${f.phone}</a>`;
     }
+    // Re-apply after the managed footer renders so its saved settings cannot override this number.
+    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+      link.href = 'tel:+256772330463';
+      if (!link.querySelector('i') && /\d/.test(link.textContent)) link.textContent = '+256 772 330 463';
+    });
+    ['socialWhatsapp','whatsappFab'].forEach(id => {
+      const link = document.getElementById(id);
+      if (link) link.href = 'https://wa.me/256772330463';
+    });
   })
   .catch(err => console.error('Could not load site content:', err));
 </script>
