@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://greenshootslegacysportssquashacademy.vercel.app/sitemap.xml
