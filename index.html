@@ -1054,7 +1054,7 @@ Join the <span>Academy</span>
 </h2>
 
 <p class="section-lede">
-No redirects, no third-party forms — fill in what applies to you right here and we'll be in touch within 48 hours.
+Choose the path that fits you and send an enquiry from this page. The academy team will follow up to confirm details, availability and next steps.
 </p>
 
 
@@ -1670,6 +1670,20 @@ tabButtons.forEach(btn => {
     activateForm(tabButtons[next].dataset.tab);
   });
 });
+activateForm('register');
+// Connect visible labels to their fields for assistive technology.
+document.querySelectorAll('.join-form').forEach(form => {
+  form.querySelectorAll('.row > div').forEach(group => {
+    const label = group.querySelector('label');
+    const field = group.querySelector('input:not([type="hidden"]), select, textarea');
+    if (!label || !field) return;
+    if (!field.id) {
+      const fieldName = (field.name || 'field').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      field.id = form.id + '-' + fieldName;
+    }
+    label.htmlFor = field.id;
+  });
+});
 
 
 document.querySelectorAll('[data-form-target]').forEach(link => {
@@ -1868,7 +1882,7 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
     if (data.footer) {
       const f = data.footer;
       const copy = document.getElementById('footerCopyright');
-      if (copy) copy.innerHTML = `&copy; ${f.copyright_text.replace(/^\u00a9\s*/, '')}`;
+      if (copy) copy.innerHTML = '&copy; ' + new Date().getFullYear() + ' Green Shoots Legacy Sports Squash Academy. All rights reserved.';
       const line = document.getElementById('footerContactLine');
       if (line) line.innerHTML = `${f.location} &nbsp;\u00b7&nbsp; <a href="mailto:${f.email}">${f.email}</a> &nbsp;\u00b7&nbsp; <a href="tel:${f.phone_link}">${f.phone}</a>`;
     }
