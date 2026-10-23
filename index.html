@@ -1531,9 +1531,9 @@ Submit Donation Pledge
 <div class="contact-info-item"><i class="fa-solid fa-phone"></i><div><h4>Phone</h4><p><a href="tel:+256772330463" style="color:var(--chalk);" id="contactPhoneLink">+256 772 330 463</a></p></div></div>
 <div class="contact-info-item"><i class="fa-solid fa-location-dot"></i><div><h4>Location</h4><p id="contactLocation">Kampala, Uganda</p></div></div>
 <div class="social-row">
-<a href="#" aria-label="Facebook" id="socialFacebook"><i class="fa-brands fa-facebook-f"></i></a>
-<a href="#" aria-label="Instagram" id="socialInstagram"><i class="fa-brands fa-instagram"></i></a>
-<a href="#" aria-label="X" id="socialX"><i class="fa-brands fa-x-twitter"></i></a>
+<a href="#" aria-label="Facebook" id="socialFacebook" hidden><i class="fa-brands fa-facebook-f"></i></a>
+<a href="#" aria-label="Instagram" id="socialInstagram" hidden><i class="fa-brands fa-instagram"></i></a>
+<a href="#" aria-label="X" id="socialX" hidden><i class="fa-brands fa-x-twitter"></i></a>
 <a href="https://wa.me/256772330463" aria-label="WhatsApp" id="socialWhatsapp"><i class="fa-brands fa-whatsapp"></i></a>
 </div>
 </div>
@@ -1971,9 +1971,9 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
       if (phoneLink) { phoneLink.href = `tel:${c.phone_link}`; phoneLink.textContent = c.phone; }
       const location = document.getElementById('contactLocation');
       if (location) location.textContent = c.location;
-      const fb = document.getElementById('socialFacebook'); if (fb && c.facebook_link) fb.href = c.facebook_link;
-      const ig = document.getElementById('socialInstagram'); if (ig && c.instagram_link) ig.href = c.instagram_link;
-      const x = document.getElementById('socialX'); if (x && c.x_link) x.href = c.x_link;
+      const fb = document.getElementById('socialFacebook'); if (fb && c.facebook_link) { fb.href = c.facebook_link; fb.hidden = false; }
+      const ig = document.getElementById('socialInstagram'); if (ig && c.instagram_link) { ig.href = c.instagram_link; ig.hidden = false; }
+      const x = document.getElementById('socialX'); if (x && c.x_link) { x.href = c.x_link; x.hidden = false; }
       const wa = document.getElementById('socialWhatsapp'); if (wa && c.whatsapp_link) wa.href = c.whatsapp_link;
       const fab = document.getElementById('whatsappFab'); if (fab && c.whatsapp_link) fab.href = c.whatsapp_link;
     }
