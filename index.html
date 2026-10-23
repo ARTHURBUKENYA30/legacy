@@ -186,11 +186,15 @@ section{padding:110px 8% 90px;position:relative;}
   object-fit:cover;
 }
 .hero .hero-fallback{
-  background:
+  background-color:var(--court-blue-deep);
+  background-image:
     linear-gradient(180deg, rgba(7,30,48,.24), rgba(7,30,48,.68)),
-    url('img/109.jpeg') center center / cover no-repeat;
+    url('/img/109.jpeg') !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
 }
-/* Use the requested academy photo as the hero banner background. */
+/* The requested academy photo is the visible hero background; do not depend on a video file. */
 .hero video{display:none !important;}
 
 .hero::before{
@@ -1621,7 +1625,11 @@ const counterObserver = new IntersectionObserver((entries) => {
 const galleryGrid = document.getElementById('galleryGrid');
 const galleryMoreBtn = document.getElementById('galleryMore');
 
-let galleryImages = [];
+const suppliedGalleryImages = Array.from({length:64}, (_, i) => {
+  const number = i + 46;
+  return {src: `img/${number}.jpeg`, cat: '1', alt: `Legacy Rackets Academy gallery photo ${number}`};
+});
+let galleryImages = [...suppliedGalleryImages];
 const categoryLabels = {1:'Training', 2:'Tournaments', 3:'Schools', 4:'Community'};
 let visibleCount = 18;
 let currentFilter = 'all';
@@ -1638,6 +1646,8 @@ function renderGallery(){
   });
   galleryMoreBtn.style.display = filtered.length > visibleCount ? 'block' : 'none';
 }
+
+renderGallery();
 
 document.querySelectorAll('.gallery-filters button').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1931,11 +1941,12 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
       ).join('');
     }
 
-    // Gallery
-    if (Array.isArray(data.gallery)) {
-      galleryImages = data.gallery.map(g => ({src: g.src, cat: String(g.category), alt: g.alt || ''})).filter(g => g.src);
-      renderGallery();
-    }
+    // Merge CMS-managed photos with the local series; local photos render even if remote content fails.
+    const managedGallery = Array.isArray(data.gallery)
+      ? data.gallery.map(g => ({src: g.src, cat: String(g.category), alt: g.alt || ''})).filter(g => g.src)
+      : [];
+    galleryImages = [...managedGallery, ...suppliedGalleryImages.filter(photo => !managedGallery.some(item => item.src === photo.src))];
+    renderGallery();
 
     // Contact section
     if (data.contact) {
