@@ -63,3 +63,13 @@ Open the public website in another browser tab and refresh the page. Check that 
 - The **Homepage text** section contains structured JSON and is intended for advanced changes. For normal updates, use the specific tabs instead.
 - The Messages tab shows enquiries already stored in the database. If a visitor's website form is not saving new messages, contact the website maintainer to check the public enquiry form integration.
 - This guide does not replace testing. The owner should confirm that signing in, saving, publishing and uploading photos work on the live website before relying on them.
+
+
+### 8. Student portal, attendance and finance records
+
+- Student / parent portal: https://greenshootslegacysportssquashacademy.vercel.app/student.html
+- Admin dashboard: https://greenshootslegacysportssquashacademy.vercel.app/admin.html
+- Use **Student profiles** to create a student record. In the extra details JSON, set `user_id` to the student's existing Supabase Auth user UUID and include `guardian_name`, `phone`, `program_name`, `date_of_birth` and `status`. The student's login email must already have an Auth account before linking it.
+- Use **Memberships**, **Attendance** and **Payment records** to keep operational records. These records are visible only to administrators and the linked student account under database access policies.
+- Payment records are a tracking ledger only. Do not mark a payment paid until the payment is independently verified. The site does not currently process real mobile-money/card transactions; connecting a payment provider requires the academy's verified merchant account and provider credentials.
+- Add verified updates and approved testimonials using the **News** and **Testimonials** tabs. Publish only with permission, especially when identifying minors.
