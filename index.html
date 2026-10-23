@@ -1814,7 +1814,7 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
   });
   if (managed.programs.length) data.programs = managed.programs.map(p => {
     const d = p.details || {};
-    return { icon:d.icon || 'fa-solid fa-table-tennis-paddle-ball', title:p.name, text:p.description || d.text || '' };
+    return { icon:d.icon || 'fa-solid fa-table-tennis-paddle-ball', title:p.name, text:[p.description || d.text || '', d.schedule ? 'Schedule: ' + d.schedule : '', d.fee_ugx ? 'Fee: UGX ' + Number(d.fee_ugx).toLocaleString() : (d.fee ? 'Fee: ' + d.fee : '')].filter(Boolean).join(' · ') };
   });
   if (managed.events.length) data.projects = managed.events.map(ev => {
     const d = ev.details || {};
@@ -2006,6 +2006,53 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
     });
   })
   .catch(err => console.error('Could not load site content:', err));
+
+/* ===== Database-backed academy forms, news and testimonials ===== */
+(async function initialiseAcademyServices(){
+  const SUPABASE_URL='https://sbfyvcsechxnsxlvzuvv.supabase.co';
+  const SUPABASE_KEY='sb_publishable_itwkgKU9h9fd8qMn7w9qjg_2DYuezD';
+  let client;
+  try { const {createClient}=await import('https://esm.sh/@supabase/supabase-js@2'); client=createClient(SUPABASE_URL,SUPABASE_KEY); }
+  catch(err){ console.error('Academy services unavailable',err); }
+  for(const form of document.querySelectorAll('.join-form')){
+    let notice=form.querySelector('[data-form-notice]');
+    if(!notice){notice=document.createElement('p');notice.dataset.formNotice='true';notice.className='form-note';notice.setAttribute('role','status');notice.setAttribute('aria-live','polite');form.append(notice);}
+    form.addEventListener('submit',async event=>{
+      event.preventDefault();
+      if(!client){notice.textContent='Submission service is unavailable. Please contact +256 772 330 463 on WhatsApp.';notice.classList.add('error');return;}
+      const button=form.querySelector('button[type="submit"]'), fd=new FormData(form), fields={};
+      for(const [key,value] of fd.entries()){if(key.startsWith('_')||key==='Privacy Consent'||key==='website_url')continue;if(typeof value==='string'&&value.trim())fields[key]=value.trim();}
+      if(fd.get('website_url'))return;
+      const type=form.id==='form-register'?'registration':form.id==='form-sponsor'?'sponsorship':'donation';
+      const name=fields['Athlete Name']||fields['Contact Name']||fields['Donor Name']||'Website visitor';
+      const amountRaw=fields.Amount||'', amount=amountRaw?Number(String(amountRaw).replace(/[^0-9.]/g,'')):null;
+      if(type==='donation'&&(!Number.isFinite(amount)||amount<=0)){notice.textContent='Enter a valid pledge amount in UGX.';notice.classList.add('error');return;}
+      button.disabled=true;notice.classList.remove('error','success');notice.textContent='Submitting securely…';
+      try{
+        const details={...fields,source:'public-website',privacy_consent:true,submitted_at:new Date().toISOString()};
+        if(amount!==null)details.amount_ugx=amount;
+        const {error}=await client.from('enquiries').insert({enquiry_type:type,name,email:fields.Email||'',phone:fields.Phone||'',message:fields.Notes||'',details,status:'new'});
+        if(error)throw error;
+        form.reset();
+        notice.textContent=type==='registration'?'Registration enquiry saved. The academy team will contact you to confirm availability and next steps.':type==='sponsorship'?'Sponsorship enquiry saved. The academy team will follow up with you.':'Donation pledge saved. This is not an online payment; the academy will contact you with verified payment instructions.';
+        notice.classList.add('success');
+      }catch(err){console.error('Enquiry submission failed',err);notice.textContent='We could not save your submission. Please try again or contact +256 772 330 463 on WhatsApp.';notice.classList.add('error');}
+      finally{button.disabled=false;}
+    });
+  }
+  if(!client)return;
+  try{
+    const {data,error}=await client.from('news_posts').select('name,description,image_url,created_at').eq('published',true).order('sort_order',{ascending:true}).limit(6);
+    if(error)throw error;
+    const grid=document.getElementById('newsPostsGrid');
+    if(grid&&data?.length){grid.replaceChildren();for(const post of data){const col=document.createElement('div');col.className='col-md-6 col-lg-4';const card=document.createElement('article');card.className='transparency-card';card.style.height='100%';if(post.image_url){const img=document.createElement('img');img.src=post.image_url;img.alt='';img.loading='lazy';img.style.cssText='width:100%;max-height:210px;object-fit:cover;border-radius:12px;margin-bottom:18px';card.append(img);}const title=document.createElement('h3');title.textContent=post.name;const body=document.createElement('p');body.textContent=post.description||'';const date=document.createElement('small');date.textContent=post.created_at?new Date(post.created_at).toLocaleDateString():'';date.style.color='var(--amber)';card.append(title,body,date);col.append(card);grid.append(col);}}
+  }catch(err){console.warn('No published news is available yet.',err);}
+  try{
+    const {data,error}=await client.from('testimonials').select('name,description,sort_order').eq('published',true).order('sort_order',{ascending:true}).limit(6);
+    if(!error&&data?.length){const grid=document.getElementById('testimonialsGrid');if(grid){grid.replaceChildren();for(const t of data){const col=document.createElement('div');col.className='col-md-6';const card=document.createElement('div');card.className='testimonial';const quote=document.createElement('p');quote.textContent=t.description||'';const author=document.createElement('strong');author.textContent=t.name;card.append(quote,author);col.append(card);grid.append(col);}}}
+  }catch(err){console.warn('No published testimonials are available yet.',err);}
+})();
+
 </script>
 
 </body>
