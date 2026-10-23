@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Student Portal | Legacy Rackets Academy</title>
+<style>
+:root{color-scheme:light;--green:#123d2b;--green2:#21764b;--lime:#c9e7a5;--ink:#183528;--muted:#65776b;--paper:#f4f7f3;--line:#dce7de}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}header{background:linear-gradient(125deg,#102f22,#226d45);color:white;padding:25px max(20px,calc((100% - 1100px)/2));border-bottom:4px solid var(--lime)}header h1{font-size:clamp(1.4rem,4vw,2rem);margin:0}header a{color:white}main{max-width:1100px;margin:26px auto;padding:0 16px 50px}.card{background:#fff;border:1px solid #e2eae3;border-radius:16px;padding:clamp(18px,3vw,28px);margin:16px 0;box-shadow:0 10px 28px #123d2b0b}.hidden{display:none!important}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.metric{border:1px solid var(--line);border-radius:12px;padding:15px}.metric strong{display:block;font-size:1.1rem;color:var(--green)}label{display:block;font-weight:700;margin:12px 0 6px}input,button{font:inherit;width:100%;padding:12px;border-radius:9px}input{border:1px solid #cbd9ce}button{margin-top:14px;background:var(--green2);color:white;border:0;font-weight:750;cursor:pointer}button.secondary{background:#edf4ee;color:var(--green)}.status{white-space:pre-wrap;overflow-wrap:anywhere}.error{color:#b42318}.success{color:#176c3a}.muted{color:var(--muted)}.record{padding:12px 0;border-bottom:1px solid var(--line)}.record:last-child{border-bottom:0}a{color:var(--green2)}@media(max-width:600px){header{padding:22px 16px}main{margin-top:12px}}
+</style>
+</head>
+<body>
+<header><h1>Legacy Rackets Academy · Student Portal</h1><a href="/">← Return to academy website</a></header>
+<main>
+<section class="card" id="loginCard">
+<h2>Student / parent sign in</h2>
+<p class="muted">Use the account details provided by the academy. If you need access, contact the academy; student accounts are not created from this public page.</p>
+<form id="loginForm"><label for="email">Email address</label><input id="email" type="email" autocomplete="username" required><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required><button id="loginButton">Sign in</button></form>
+<button class="secondary" id="resetButton" type="button">Email me a password reset link</button>
+<p class="status" id="loginStatus" role="status" aria-live="polite"></p>
+</section>
+<section id="portal" class="hidden">
+<div class="card"><div class="grid"><div><h2 id="studentName">Welcome</h2><p class="muted" id="studentDetails"></p></div><div><button id="logoutButton" class="secondary">Sign out</button></div></div><p class="status" id="portalStatus" role="status" aria-live="polite"></p></div>
+<div class="card"><h2>Membership</h2><div id="membershipList" class="muted">Loading membership…</div></div>
+<div class="card"><h2>Attendance</h2><div id="attendanceList" class="muted">Loading attendance…</div></div>
+<div class="card"><h2>Payment records</h2><p class="muted">This portal displays records maintained by the academy. A “Pending” item is not a receipt or proof of payment.</p><div id="paymentList" class="muted">Loading payments…</div></div>
+</section>
+</main>
+<script type="module">
+import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
+const sb=createClient('https://sbfyvcsechxnsxlvzuvv.supabase.co','sb_publishable_itwkgKU9h9fd8qMn7w9qjg_2DY2uezD');
+const $=id=>document.getElementById(id);
+function show(id,msg,kind=''){const e=$(id);e.textContent=msg;e.className='status '+kind}
+function safeDate(v){if(!v)return '—';const d=new Date(v);return Number.isNaN(d.getTime())?'—':d.toLocaleDateString()}
+function renderRows(id,rows,kind){const root=$(id);root.replaceChildren();if(!rows?.length){root.textContent='No records have been added yet. Contact the academy if you think something is missing.';return}for(const r of rows){const item=document.createElement('div');item.className='record';const title=document.createElement('strong');title.textContent=r.name||r.program_name||kind;const detail=document.createElement('p');detail.className='muted';let parts=[];if(kind==='Membership'){parts=[r.membership_status||'pending',r.starts_at?'Starts '+safeDate(r.starts_at):'',r.ends_at?'Ends '+safeDate(r.ends_at):'',r.fee_ugx!=null?'Fee: UGX '+Number(r.fee_ugx).toLocaleString():''];}else if(kind==='Attendance'){parts=[safeDate(r.attendance_date),r.attendance_status||''];}else{parts=['UGX '+Number(r.amount_ugx||0).toLocaleString(),r.payment_status||'pending',r.payment_method||''];if(r.paid_at)parts.push('Recorded '+safeDate(r.paid_at));}detail.textContent=parts.filter(Boolean).join(' · ');item.append(title,detail);root.append(item)}}
+async function loadPortal(user){$('loginCard').classList.add('hidden');$('portal').classList.remove('hidden');show('portalStatus','Loading your academy records…');const {data:profile,error}=await sb.from('student_profiles').select('student_name,guardian_name,phone,program_name,status').eq('user_id',user.id).maybeSingle();if(error)throw error;if(!profile){show('portalStatus','Your account is signed in, but the academy has not linked a student profile to it yet. Contact +256 772 330 463 and ask the administrator to link your account.','error');$('studentName').textContent='Student profile not linked';return} $('studentName').textContent='Welcome, '+profile.student_name;$('studentDetails').textContent=[profile.program_name,profile.status,profile.guardian_name?'Parent / guardian: '+profile.guardian_name:''].filter(Boolean).join(' · ');const [m,a,p]=await Promise.all([sb.from('memberships').select('name,description,starts_at,ends_at,fee_ugx,membership_status').eq('student_user_id',user.id).order('created_at',{ascending:false}),sb.from('attendance').select('name,attendance_date,attendance_status').eq('student_user_id',user.id).order('attendance_date',{ascending:false}).limit(50),sb.from('payment_records').select('name,amount_ugx,payment_status,payment_method,paid_at').eq('student_user_id',user.id).order('created_at',{ascending:false}).limit(50)]);for(const r of [m,a,p])if(r.error)throw r.error;renderRows('membershipList',m.data,'Membership');renderRows('attendanceList',a.data,'Attendance');renderRows('paymentList',p.data,'Payment');show('portalStatus','Your records are up to date.','success')}
+$('loginForm').addEventListener('submit',async e=>{e.preventDefault();$('loginButton').disabled=true;show('loginStatus','Signing in…');try{const {data,error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error)throw error;await loadPortal(data.user)}catch(err){show('loginStatus',err.message||'Sign in failed.','error')}finally{$('loginButton').disabled=false}});
+$('resetButton').onclick=async()=>{const email=$('email').value.trim();if(!email){show('loginStatus','Enter your email address first.','error');return}try{const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+'/reset-password.html'});if(error)throw error;show('loginStatus','If this email belongs to an account, a password reset link has been sent.','success')}catch(e){show('loginStatus',e.message,'error')}};
+$('logoutButton').onclick=async()=>{await sb.auth.signOut();$('portal').classList.add('hidden');$('loginCard').classList.remove('hidden');show('loginStatus','Signed out.')};
+const {data:{session}}=await sb.auth.getSession();if(session){try{await loadPortal(session.user)}catch(e){show('portalStatus',e.message,'error')}}
+</script>
+</body></html>
