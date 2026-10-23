@@ -1931,11 +1931,16 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
       ).join('');
     }
 
-    // Gallery
-    if (Array.isArray(data.gallery)) {
-      galleryImages = data.gallery.map(g => ({src: g.src, cat: String(g.category), alt: g.alt || ''})).filter(g => g.src);
-      renderGallery();
-    }
+    // Gallery: retain CMS-managed photos and always include the supplied image series.
+    const managedGallery = Array.isArray(data.gallery)
+      ? data.gallery.map(g => ({src: g.src, cat: String(g.category), alt: g.alt || ''})).filter(g => g.src)
+      : [];
+    const suppliedGallery = Array.from({length: 64}, (_, i) => {
+      const number = i + 46;
+      return {src: `img/${number}.jpeg`, cat: '1', alt: `Legacy Rackets Academy gallery photo ${number}`};
+    });
+    galleryImages = [...managedGallery, ...suppliedGallery.filter(photo => !managedGallery.some(item => item.src === photo.src))];
+    renderGallery();
 
     // Contact section
     if (data.contact) {
