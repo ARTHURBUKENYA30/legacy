@@ -1945,7 +1945,7 @@ document.querySelectorAll('[data-form-target]').forEach(link => {
     const managedGallery = Array.isArray(data.gallery)
       ? data.gallery.map(g => ({src: g.src, cat: String(g.category), alt: g.alt || ''})).filter(g => g.src)
       : [];
-    galleryImages = [...managedGallery, ...suppliedGalleryImages.filter(photo => !managedGallery.some(item => item.src === photo.src))];
+    galleryImages = [...suppliedGalleryImages, ...managedGallery.filter(photo => !suppliedGalleryImages.some(item => item.src === photo.src))];
     renderGallery();
 
     // Contact section
