@@ -407,6 +407,19 @@ section{padding:110px 8% 90px;position:relative;}
 .icon-card h4{color:var(--line-white);font-size:1.08rem;margin-bottom:10px;}
 .icon-card p{color:var(--chalk);font-size:.88rem;margin:0;}
 
+/* ============= PATTERNS ============= */
+#patterns{background:var(--court-blue);}
+.pattern-showcase{
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);
+  gap:clamp(24px,5vw,64px);align-items:center;
+  padding:clamp(18px,3vw,34px);border:1px solid var(--surface-border,rgba(247,248,242,.11));
+  border-radius:16px;background:var(--court-blue-deep);
+}
+.pattern-showcase img{display:block;width:100%;height:auto;max-height:560px;object-fit:contain;border-radius:10px;background:var(--court-blue-mid);}
+.pattern-showcase h3{font-size:clamp(1.5rem,3vw,2.2rem);color:var(--line-white);margin-bottom:14px;}
+.pattern-showcase p{color:var(--chalk);margin:0;max-width:480px;}
+@media(max-width:768px){.pattern-showcase{grid-template-columns:1fr;}.pattern-showcase img{max-height:420px;}}
+
 /* ============= GALLERY ============= */
 #gallery{background:var(--court-blue-deep);}
 .gallery-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px;}
@@ -1040,6 +1053,21 @@ img{max-width:100%;}
 <p class="section-lede">Explore initiatives and announced activities that support player development and community access. Dates, availability and delivery details should be confirmed with the academy.</p>
 
 <div class="row g-4" id="projectsGrid" data-aos="fade-up"></div>
+</section>
+
+<!-- PATTERNS -->
+<section id="patterns">
+  <span class="eyebrow">Design Details</span>
+  <h2 class="section-title">Patterns <span>&amp; Practice</span></h2>
+  <p class="section-lede">Explore the patterns that shape the academy’s squash training and development.</p>
+  <div class="pattern-showcase" data-aos="fade-up">
+    <img src="img/pattern.jpeg" alt="Legacy Rackets Academy patterns" loading="lazy">
+    <div>
+      <span class="eyebrow">On-Court Development</span>
+      <h3>Recognise the pattern. Play with purpose.</h3>
+      <p>Training patterns help players build consistency, sharpen movement and make better decisions on court.</p>
+    </div>
+  </div>
 </section>
 
 <!-- GALLERY -->
