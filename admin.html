@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Green Shoots | Admin Dashboard</title>
+<title>Legacy Rackets Academy | Owner Dashboard</title>
 <style>
 :root{color-scheme:light;--green:#123d2b;--green2:#21764b;--lime:#c9e7a5;--ink:#183528;--muted:#65776b;--line:#dce7de;--paper:#f4f7f3;--red:#b42318;--shadow:0 12px 34px rgba(18,61,43,.07)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -18,8 +18,9 @@ button{border:1px solid transparent;background:var(--green2);color:white;font-we
 @media(max-width:640px){main{margin:18px auto;padding:0 12px 30px}header{padding:24px 16px}.panel{border-radius:14px;padding:17px}.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.tabs button{width:100%;padding:10px 7px}.item{align-items:flex-start}.actions{width:100%}.actions button{flex:1}#dashboard>.panel:first-child .grid>div:last-child{text-align:left!important}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 </style>
-</head><body>
-<header><h2>Green Shoots Legacy Sports Squash Academy</h2><div>Owner portal · Manage your academy website in one place</div></header>
+<link rel="stylesheet" href="/legacy-theme.css">
+</head><body class="legacy-admin">
+<header><h2>Legacy Rackets Academy Sports Squash Academy</h2><div>Owner portal · Manage your academy website in one place</div></header>
 <main>
 <section id="loginPanel" class="panel"><h1>Welcome back</h1><p>Sign in to manage academy staff, programmes, events, photos and website content.</p><form id="loginForm"><div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required></div><div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div><button id="loginButton">Sign in</button></form><p style="margin:12px 0 0"><a id="forgotPasswordLink" href="reset-password.html" style="color:#21764b;font-weight:700">Forgot your password?</a></p><p id="loginStatus" class="status" role="status"></p></section>
 <section id="dashboard" class="hidden"><div class="panel"><div class="grid"><div><h1>Academy website dashboard</h1><p id="welcome"></p><p class="hint">Use the sections below to update the website. Items marked <strong>Unpublished</strong> are saved privately until you choose to publish them.</p></div><div style="align-self:center;text-align:right"><button id="logoutButton" class="secondary">Sign out</button></div></div><div id="globalStatus" class="status" role="status"></div><nav class="tabs" id="tabs"><button class="active" data-tab="content">Homepage text</button><button data-tab="athletes">Athletes &amp; staff</button><button data-tab="programs">Training programmes</button><button data-tab="events">Events</button><button data-tab="gallery_items">Photo gallery</button><button data-tab="student_profiles">Student profiles</button><button data-tab="news_posts">News</button><button data-tab="testimonials">Testimonials</button><button data-tab="memberships">Memberships</button><button data-tab="attendance">Attendance</button><button data-tab="payment_records">Payment records</button><button data-tab="enquiries">Messages</button></nav></div>
