@@ -97,7 +97,7 @@
   window.addEventListener('scroll', updateScroll, {passive: true});
   updateScroll();
 
-  const navLinks = [...document.querySelectorAll('.legacy-home .navbar a[href^="#"]')];
+  const navLinks = [...document.querySelectorAll('.legacy-home .navbar a[href^="#"]')].filter(link => (link.getAttribute('href') || '').length > 1);
   const sections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
   if ('IntersectionObserver' in window && sections.length) {
     const observer = new IntersectionObserver(entries => {
